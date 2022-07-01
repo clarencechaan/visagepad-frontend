@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "KlavikaBoldBold";
+  src: local("KlavikaBoldBold"),
+    url(../fonts/KlavikaBoldBold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "SFUIDisplay-Regular";
+  src: local("SFUIDisplay-Regular"),
+    url(../fonts/SFUIDisplay-Regular.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "SFUIText-Regular";
+  src: local("SFUIText-Regular"),
+    url(../fonts/SFUIText-Regular.otf) format("opentype");
+}
