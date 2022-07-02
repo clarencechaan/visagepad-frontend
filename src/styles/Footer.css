@@ -1,4 +1,17 @@
-.Footer {
-  background-color: white;
+footer {
   height: 120px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  font-size: 14px;
+  color: rgb(115, 115, 115);
+}
+
+footer a {
+  font-weight: 600;
+  color: rgb(24, 119, 242);
+  text-decoration: underline;
 }

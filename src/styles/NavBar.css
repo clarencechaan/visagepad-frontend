@@ -1,0 +1,24 @@
+.NavBar {
+  height: 56px;
+  background-color: white;
+  box-shadow: 0 0 8px rgb(206, 206, 206);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.logo-small {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(rgb(112, 163, 231), rgb(0, 97, 224));
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 46px;
+  line-height: 26px;
+  font-family: "KlavikaMedium-TF";
+  text-decoration: none;
+}

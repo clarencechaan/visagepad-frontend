@@ -5,6 +5,12 @@
 }
 
 @font-face {
+  font-family: "KlavikaMedium-TF";
+  src: local("KlavikaMedium-TF"),
+    url(../fonts/KlavikaMedium-TF.otf) format("opentype");
+}
+
+@font-face {
   font-family: "SFUIDisplay-Regular";
   src: local("SFUIDisplay-Regular"),
     url(../fonts/SFUIDisplay-Regular.otf) format("opentype");
