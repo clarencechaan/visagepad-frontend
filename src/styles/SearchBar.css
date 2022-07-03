@@ -1,5 +1,103 @@
 .SearchBar {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.SearchBar .magnifying-glass {
+  position: absolute;
+  font-size: 18px;
+  color: rgb(86, 86, 86);
+  margin-left: 10px;
+  z-index: 2;
+  transition: 0.4s;
+}
+
+.SearchBar input {
+  border: none;
   height: 40px;
-  width: 232px;
-  background-color: lightgray;
+  width: 240px;
+  background-color: rgb(240, 242, 245);
+  border-radius: 24px;
+  box-sizing: border-box;
+  font-size: inherit;
+  font-family: "SFUIText-Light";
+  padding-left: 34px;
+  z-index: 1;
+  transition: width 0.4s, transform 0.4s, padding 0.4s;
+}
+
+.SearchBar input:focus {
+  outline: none;
+  width: 254px;
+  transform: translateX(-14px);
+  padding-left: 16px;
+}
+
+.SearchBar input::placeholder {
+  color: rgb(86, 86, 86);
+}
+
+.SearchBar input:focus::placeholder {
+  color: rgb(145, 145, 145);
+}
+
+.SearchBar .window {
+  width: 320px;
+  height: 314px;
+  background-color: white;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  box-shadow: -4px 10px 16px rgb(187, 187, 187);
+  border-radius: 6px;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.SearchBar input:focus ~ .window {
+  visibility: visible;
+  opacity: 1;
+}
+
+.SearchBar input:focus ~ .magnifying-glass {
+  opacity: 0;
+  transform: translateX(-28px);
+}
+
+.SearchBar .window .top-bar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.SearchBar .window .back-btn {
+  border: none;
+  cursor: pointer;
+  transform: translateX(28px);
+  transition: transform 0.4s, background-color 0.2s;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.SearchBar .window .back-btn:hover {
+  background-color: rgb(240, 242, 245);
+}
+
+.SearchBar .window .arrow-left {
+  font-size: 22px;
+  color: rgb(86, 86, 86);
+}
+
+.SearchBar input:focus ~ .window .back-btn {
+  transform: translateX(0);
 }
