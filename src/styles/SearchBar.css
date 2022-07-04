@@ -27,7 +27,7 @@
   transition: width 0.4s, transform 0.4s, padding 0.4s;
 }
 
-.SearchBar input:focus {
+.SearchBar:focus-within input {
   outline: none;
   width: 254px;
   transform: translateX(-14px);
@@ -57,12 +57,12 @@
   transition: 0.2s;
 }
 
-.SearchBar input:focus ~ .window {
+.SearchBar:focus-within .window {
   visibility: visible;
   opacity: 1;
 }
 
-.SearchBar input:focus ~ .magnifying-glass {
+.SearchBar:focus-within .magnifying-glass {
   opacity: 0;
   transform: translateX(-28px);
 }
@@ -93,11 +93,16 @@
   background-color: rgb(240, 242, 245);
 }
 
+.SearchBar .window .back-btn:active {
+  background-color: rgb(226, 226, 226);
+}
+
 .SearchBar .window .arrow-left {
+  pointer-events: none;
   font-size: 22px;
   color: rgb(86, 86, 86);
 }
 
-.SearchBar input:focus ~ .window .back-btn {
+.SearchBar:focus-within .window .back-btn {
   transform: translateX(0);
 }

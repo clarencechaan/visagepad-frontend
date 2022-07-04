@@ -67,7 +67,7 @@
 
 .home-link.unselected:active,
 .friends-link.unselected:active {
-  background-color: rgb(226, 226, 226);
+  background-color: rgb(232, 232, 232);
 }
 
 .home-link::after {
