@@ -27,3 +27,9 @@
   src: local("SFUIText-Light"),
     url(../fonts/SFUIText-Light.otf) format("opentype");
 }
+
+@font-face {
+  font-family: "SFUIText-Semibold";
+  src: local("SFUIText-Semibold"),
+    url(../fonts/SFUIText-Semibold.otf) format("opentype");
+}

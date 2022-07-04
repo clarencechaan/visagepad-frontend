@@ -1,0 +1,113 @@
+.YourProfileBtn > button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.YourProfileBtn > button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.YourProfileBtn > button:hover img {
+  filter: brightness(90%);
+}
+
+.YourProfileBtn > button:active {
+  transform: scale(0.96);
+  filter: brightness(80%);
+}
+
+.YourProfileBtn .window {
+  position: absolute;
+  width: 360px;
+  background-color: white;
+  top: 50px;
+  right: 16px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 16px rgb(183, 183, 183);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.YourProfileBtn:focus-within .window {
+  visibility: visible;
+  opacity: 1;
+}
+
+.YourProfileBtn .window .user {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 3px 3px 12px rgb(209, 209, 209);
+  padding: 4px;
+  display: flex;
+  margin: 10px 14px;
+}
+
+.YourProfileBtn .window .user .link {
+  flex: 1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  height: 66px;
+}
+
+.YourProfileBtn .window .user .link:hover,
+.YourProfileBtn .window .log-out-link:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+.YourProfileBtn .window .user .link img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.YourProfileBtn .window .user .link .name {
+  color: black;
+  font-family: "SFUIText-Semibold";
+  font-size: 15px;
+  margin-left: 8px;
+}
+
+.YourProfileBtn .window .log-out-link {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  margin: 4px 8px 8px 8px;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.YourProfileBtn .window .log-out-link .icon {
+  background-color: rgb(228, 230, 235);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 22px;
+}
+
+.YourProfileBtn .window .log-out-link span {
+  margin-left: 10px;
+  font-family: "SFUIText-Regular";
+}
