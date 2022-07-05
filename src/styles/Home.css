@@ -1,0 +1,37 @@
+main {
+  display: flex;
+  padding: 16px 8px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 344px;
+}
+
+.me-link {
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 8px;
+  color: black;
+  text-decoration: none;
+}
+
+.me-link:hover {
+  background-color: rgb(228, 230, 233);
+}
+
+.me-link img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.me-link .name {
+  font-family: "SFUIText-Regular";
+  margin-left: 12px;
+}

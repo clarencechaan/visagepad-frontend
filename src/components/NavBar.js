@@ -6,7 +6,7 @@ import friendsUnselected from "../images/friends-unselected.svg";
 
 function NavBar() {
   return (
-    <div className="NavBar">
+    <nav className="NavBar">
       <div className="left third">
         <a href="" className="logo-small">
           v
@@ -24,7 +24,7 @@ function NavBar() {
       <div className="right third">
         <YourProfileBtn />
       </div>
-    </div>
+    </nav>
   );
 }
 
