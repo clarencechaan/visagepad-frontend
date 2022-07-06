@@ -1,5 +1,7 @@
 import "../styles/Home.css";
 import NavBar from "./NavBar";
+import Feed from "./Feed";
+import ContactsSidebar from "./ContactsSidebar";
 import profilePic from "../images/profile-pic.jpeg";
 
 function Home() {
@@ -13,6 +15,8 @@ function Home() {
             <div className="name">Clarence Chan</div>
           </a>
         </div>
+        <Feed />
+        <ContactsSidebar />
       </main>
     </div>
   );

@@ -33,3 +33,9 @@
   src: local("SFUIText-Semibold"),
     url(../fonts/SFUIText-Semibold.otf) format("opentype");
 }
+
+@font-face {
+  font-family: "SFUIText-Medium";
+  src: local("SFUIText-Medium"),
+    url(../fonts/SFUIText-Medium.otf) format("opentype");
+}

@@ -6,7 +6,7 @@ import { SignOut } from "phosphor-react";
 function YourProfileBtn() {
   return (
     <div className="YourProfileBtn" tabIndex={"-1"}>
-      <button>
+      <button className="has-tooltip">
         <img src={profilePic} alt="" />
       </button>
       <div className="window">

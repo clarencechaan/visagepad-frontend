@@ -14,10 +14,10 @@ function NavBar() {
         <SearchBar />
       </div>
       <div className="middle third">
-        <a href="" className="home-link selected">
+        <a href="" className="home-link selected has-tooltip">
           <img src={homeSelected} alt="" />
         </a>
-        <a href="" className="friends-link unselected">
+        <a href="" className="friends-link unselected has-tooltip">
           <img src={friendsUnselected} alt="" />
         </a>
       </div>

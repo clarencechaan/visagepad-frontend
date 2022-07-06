@@ -1,6 +1,13 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 main {
   display: flex;
-  padding: 16px 8px;
+  flex: 1;
+  padding: 16px 0 0 8px;
 }
 
 .sidebar {
