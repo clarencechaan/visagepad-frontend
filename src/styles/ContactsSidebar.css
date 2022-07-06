@@ -1,4 +1,7 @@
 .ContactsSidebar {
   width: 360px;
   background-color: lightgray;
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
 }

@@ -16,7 +16,11 @@ function Comment() {
             </a>
             <div className="message">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris.
             </div>
           </div>
           <button className="more-options-btn has-tooltip">
@@ -25,7 +29,7 @@ function Comment() {
         </div>
         <div className="comment-btns">
           <button className="like-btn">Like</button>
-          <a href="" className="time-ago">
+          <a href="" className="time-ago has-tooltip">
             24m
           </a>
         </div>

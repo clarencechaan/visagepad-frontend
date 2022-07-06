@@ -15,7 +15,7 @@ function Post() {
           <a href="" className="full-name">
             Clarence Chan
           </a>
-          <a href="" className="time-ago">
+          <a href="" className="time-ago has-tooltip">
             11m
           </a>
         </div>
@@ -42,6 +42,12 @@ function Post() {
         </button>
       </div>
       <div className="comments">
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
         <Comment />
       </div>
       <div className="comment-bar">

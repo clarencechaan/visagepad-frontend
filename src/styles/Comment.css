@@ -40,6 +40,7 @@
   color: rgb(101, 103, 107);
   font-size: 12px;
   margin-top: 2px;
+  display: flex;
 }
 
 .Comment .comment-btns .like-btn {
@@ -60,8 +61,17 @@
 .Comment .comment-btns .time-ago {
   margin-left: 16px;
   font-size: 12px;
-  color: inherit;
+  color: gray;
   text-decoration: none;
+}
+
+.Comment .comment-btns .time-ago::after {
+  content: "Tuesday, July 5, 2022 at 6:19 PM";
+  top: 18px;
+}
+
+.Comment .comment-btns .time-ago:hover::after {
+  transition-delay: 0.5s;
 }
 
 .Comment .comment-btns .time-ago:hover {
@@ -75,12 +85,8 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   opacity: 0;
   background-color: transparent;
-  position: relative;
 }
 
 .Comment .more-options-btn::after {

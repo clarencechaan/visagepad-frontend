@@ -33,7 +33,7 @@
   text-decoration: underline;
 }
 
-.Post .info-bar :nth-child(2) {
+.Post .info-bar > :nth-child(2) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -48,6 +48,15 @@
 
 .Post .info-bar .time-ago:hover {
   text-decoration: underline;
+}
+
+.Post .info-bar .time-ago::after {
+  content: "Tuesday, July 5, 2022 at 6:19 PM";
+  top: 18px;
+}
+
+.Post .info-bar .time-ago:hover::after {
+  transition-delay: 0.5s;
 }
 
 .Post .info-bar .more-options-btn {
@@ -78,9 +87,6 @@
   align-self: flex-end;
   text-decoration: none;
   margin-top: 12px;
-  position: relative;
-  display: flex;
-  justify-content: center;
 }
 
 .Post .comment-count:hover {
