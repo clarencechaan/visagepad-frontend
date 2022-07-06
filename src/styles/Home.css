@@ -29,6 +29,10 @@
   background-color: rgb(228, 230, 233);
 }
 
+.me-link:active {
+  background-color: rgb(216, 217, 220);
+}
+
 .me-link img {
   width: 36px;
   height: 36px;

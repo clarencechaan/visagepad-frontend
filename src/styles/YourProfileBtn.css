@@ -70,6 +70,11 @@
   background-color: rgb(243, 243, 243);
 }
 
+.YourProfileBtn .window .user .link:active,
+.YourProfileBtn .window .log-out-link:active {
+  background-color: rgb(229, 229, 229);
+}
+
 .YourProfileBtn .window .user .link img {
   width: 36px;
   height: 36px;
