@@ -4,7 +4,7 @@
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 1px 2px rgb(188, 188, 188);
-  padding: 12px 16px 8px 16px;
+  padding: 12px 16px 0 16px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -98,6 +98,7 @@
   row-gap: 8px;
   visibility: hidden;
   opacity: 0;
+  transition: 0.2s;
 }
 
 .Post .info-bar .more-options .dropdown {
@@ -163,8 +164,13 @@
 .Post .comment-count {
   color: rgb(101, 103, 107);
   align-self: flex-end;
-  text-decoration: none;
   margin-top: 12px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background-color: transparent;
 }
 
 .Post .comment-count:hover {
@@ -179,7 +185,6 @@
 .Post .action-btns {
   margin-top: 12px;
   border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
   display: flex;
   padding: 4px;
   box-sizing: border-box;
@@ -216,10 +221,15 @@
   font-size: 20px;
 }
 
+.Post .comments {
+  border-top: 1px solid lightgray;
+}
+
 .Post .comment-bar {
   display: flex;
   align-items: center;
   margin-top: 8px;
+  margin-bottom: 8px;
   column-gap: 6px;
 }
 
@@ -248,4 +258,19 @@
 
 .Post .comment-bar input::placeholder {
   color: rgb(101, 103, 107);
+}
+
+.Post .view-more-comments-btn {
+  font-size: 14px;
+  font-family: "SFUIText-Medium";
+  color: rgb(101, 103, 107);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+.Post .view-more-comments-btn:hover {
+  text-decoration: underline;
 }

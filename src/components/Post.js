@@ -3,8 +3,22 @@ import profilePic from "../images/profile-pic.jpeg";
 import dots from "../images/dots.svg";
 import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
+import { useState } from "react";
 
 function Post() {
+  const [commentsExpanded, setCommentsExpanded] = useState(true);
+  const [viewingMoreComments, setViewingMoreComments] = useState(false);
+
+  function handleCommentCountClicked() {
+    // show/hide comments section
+    setCommentsExpanded((prev) => !prev);
+  }
+
+  function handleViewMoreCommentsClicked() {
+    // show/hide more comments
+    setViewingMoreComments((prev) => !prev);
+  }
+
   return (
     <div className="Post">
       <div className="info-bar">
@@ -49,9 +63,13 @@ function Post() {
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris
       </div>
-      <a href="" className="comment-count has-tooltip">
+      <button
+        href=""
+        className="comment-count has-tooltip"
+        onClick={handleCommentCountClicked}
+      >
         4 Comments
-      </a>
+      </button>
       <div className="action-btns">
         <button className="like-btn">
           <ThumbsUp className="icon" />
@@ -62,20 +80,32 @@ function Post() {
           Comment
         </button>
       </div>
-      <div className="comments">
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-        <Comment />
-      </div>
-      <div className="comment-bar">
-        <a href="">
-          <img src={profilePic} className="pfp-small" />
-        </a>
-        <input type="text" placeholder="Write a comment..." />
+      <div className={"comments" + (commentsExpanded ? "" : " hidden")}>
+        <div>
+          <Comment />
+          <Comment />
+          <div className={"more" + (viewingMoreComments ? "" : " hidden")}>
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+            <Comment />
+          </div>
+          <button
+            className={
+              "view-more-comments-btn" + (viewingMoreComments ? " hidden" : "")
+            }
+            onClick={handleViewMoreCommentsClicked}
+          >
+            View 9 more comments
+          </button>
+        </div>
+        <div className="comment-bar">
+          <a href="">
+            <img src={profilePic} className="pfp-small" />
+          </a>
+          <input type="text" placeholder="Write a comment..." />
+        </div>
       </div>
     </div>
   );
