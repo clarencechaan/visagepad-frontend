@@ -1,6 +1,5 @@
 .Post {
   width: 680px;
-  min-height: 185px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 1px 2px rgb(188, 188, 188);
@@ -8,6 +7,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin-bottom: 16px;
 }
 
 .Post .info-bar {

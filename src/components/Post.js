@@ -61,7 +61,10 @@ function Post() {
       <div className="content">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris
+        veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit
+        amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris.
       </div>
       <button
         href=""
@@ -83,8 +86,8 @@ function Post() {
       <div className={"comments" + (commentsExpanded ? "" : " hidden")}>
         <div>
           <Comment />
-          <Comment />
           <div className={"more" + (viewingMoreComments ? "" : " hidden")}>
+            <Comment />
             <Comment />
             <Comment />
             <Comment />
@@ -104,7 +107,12 @@ function Post() {
           <a href="">
             <img src={profilePic} className="pfp-small" />
           </a>
-          <input type="text" placeholder="Write a comment..." />
+          <input
+            type="text"
+            placeholder="Write a comment..."
+            minLength={1}
+            maxLength={1500}
+          />
         </div>
       </div>
     </div>

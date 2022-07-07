@@ -1,0 +1,30 @@
+.Contact {
+  height: 48px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.Contact:hover {
+  background-color: rgb(228, 230, 233);
+}
+
+.Contact:active {
+  background-color: rgb(216, 217, 220);
+}
+
+.Contact img.pfp {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.Contact .full-name {
+  margin-left: 12px;
+  color: black;
+  font-family: "SFUIText-Regular";
+}

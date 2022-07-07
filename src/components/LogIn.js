@@ -1,4 +1,5 @@
 import "../styles/LogIn.css";
+import SignUpForm from "./SignUpForm";
 
 function LogIn() {
   return (
@@ -9,28 +10,35 @@ function LogIn() {
           Connect with friends and the world around you on VisagePad.
         </div>
       </div>
-      <form action="">
-        <input
-          type="text"
-          className="username"
-          placeholder="Username"
-          minLength={1}
-          maxLength={24}
-        />
-        <input
-          type="password"
-          className="password"
-          placeholder="Password"
-          minLength={1}
-          maxLength={24}
-        />
-        <button className="log-in-btn">Log In</button>
+      <div className="window">
+        <form action="" className="log-in-form">
+          <input
+            type="text"
+            className="username"
+            placeholder="Username"
+            minLength={1}
+            maxLength={24}
+            required
+          />
+          <input
+            type="password"
+            className="password"
+            placeholder="Password"
+            minLength={1}
+            maxLength={24}
+            required
+          />
+          <button className="log-in-btn">Log In</button>
+        </form>
         <a href="" class="fb connect">
           Log In with Facebook
         </a>
-        <div className="divider"></div>
-        <button className="new-account-btn">Create new account</button>
-      </form>
+        <div className="divider" />
+        <div className="new-account-container">
+          <button className="new-account-btn">Create new account</button>
+          <SignUpForm />
+        </div>
+      </div>
     </div>
   );
 }

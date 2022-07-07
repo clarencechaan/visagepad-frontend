@@ -24,7 +24,7 @@
   font-size: 28px;
 }
 
-.LogIn form {
+.LogIn > .window {
   margin-left: 80px;
   width: 396px;
   min-height: 300px;
@@ -37,7 +37,12 @@
   box-sizing: border-box;
 }
 
-.LogIn form input {
+.LogIn > .window > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.LogIn > .window input {
   height: 50px;
   box-sizing: border-box;
   margin-bottom: 16px;
@@ -48,27 +53,30 @@
   font-size: 17px;
 }
 
-.LogIn form input::placeholder {
+.LogIn > .window input::placeholder {
   color: rgb(140, 140, 140);
 }
 
-.LogIn form input:focus {
+.LogIn > .window input:focus {
   outline: 2px solid rgb(226, 232, 242);
   border: 1px solid rgb(24, 119, 242);
 }
 
-.LogIn form input:focus::placeholder {
+.LogIn > .window input:focus::placeholder {
   color: rgb(189, 189, 189);
 }
 
-.LogIn form button {
+.LogIn > .window .log-in-btn,
+.LogIn > .window .fb.connect,
+.LogIn > .window .new-account-btn {
   height: 48px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  backdrop-filter: brightness(0);
 }
 
-.LogIn form .log-in-btn {
+.LogIn > .window .log-in-btn {
   background-color: rgb(24, 119, 242);
   border-radius: 5px;
   color: white;
@@ -77,20 +85,37 @@
   margin-bottom: 10px;
 }
 
-.LogIn form .log-in-btn:hover {
-  background-color: rgb(24, 115, 235);
+.LogIn > .window .log-in-btn:hover {
+  background-color: rgba(24, 119, 242, 0.9);
 }
 
-.LogIn form .new-account-btn {
+.LogIn > .window .log-in-btn:active {
+  background-color: rgba(24, 119, 242, 0.8);
+  transform: scale(0.97);
+}
+
+.LogIn > .window .new-account-container {
+  align-self: center;
+}
+
+.LogIn > .window .new-account-container:focus-within .SignUpForm {
+  visibility: visible;
+}
+
+.LogIn > .window .new-account-btn {
   background-color: rgb(66, 183, 42);
   color: white;
   font-size: 16px;
-  align-self: center;
   padding: 0 20px;
 }
 
-.LogIn form .new-account-btn:hover {
-  background-color: rgb(63, 175, 41);
+.LogIn > .window .new-account-btn:hover {
+  background-color: rgba(66, 183, 42, 0.9);
+}
+
+.LogIn > .window .new-account-btn:active {
+  background-color: rgba(66, 183, 42, 0.8);
+  transform: scale(0.97);
 }
 
 .LogIn .divider {
@@ -99,6 +124,8 @@
   margin: 20px 0;
 }
 
+/* Facebook login button */
+
 a.fb {
   font-family: inherit;
   display: flex;
@@ -106,7 +133,7 @@ a.fb {
   justify-content: center;
   font-size: 14px;
   padding: 13px 30px 15px 44px;
-  background: #3a5a97;
+  background-color: rgb(58, 90, 151);
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 20, 0.4);
   text-decoration: none;
@@ -116,10 +143,16 @@ a.fb {
   height: 48px;
   box-sizing: border-box;
   font-size: 18px;
+  backdrop-filter: brightness(0);
 }
 
 a.fb:hover {
-  background: #355289;
+  background-color: rgba(58, 90, 151, 0.9);
+}
+
+a.fb:active {
+  background-color: rgba(58, 90, 151, 0.8);
+  transform: scale(0.97);
 }
 
 .connect:before {

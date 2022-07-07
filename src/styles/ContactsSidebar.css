@@ -1,6 +1,22 @@
 .ContactsSidebar {
   width: 360px;
   position: sticky;
-  top: 72px;
-  height: calc(100vh - 72px);
+  margin-top: 12px;
+  top: 84px;
+  height: calc(100vh - 84px);
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.ContactsSidebar .title {
+  color: rgb(101, 103, 107);
+  font-size: 16px;
+  font-family: "SFUIText-Medium";
+  padding-left: 8px;
+  box-sizing: border-box;
+}
+
+.contacts {
+  box-sizing: border-box;
+  padding: 8px 0;
 }

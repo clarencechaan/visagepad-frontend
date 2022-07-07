@@ -1,0 +1,121 @@
+.SignUpForm {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.75);
+  visibility: hidden;
+}
+
+.SignUpForm:focus-within {
+  visibility: visible;
+}
+
+.SignUpForm form {
+  width: 432px;
+  min-height: 100px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 2px 2px 16px rgb(199, 199, 199);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.SignUpForm form .close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #606770;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.SignUpForm form .close-btn:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.SignUpForm form .close-btn:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.SignUpForm form .title-bar {
+  padding: 10px 16px 14px 16px;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 14px;
+  align-self: normal;
+}
+
+.SignUpForm form .title {
+  font-family: "SFUIText-Semibold";
+  font-size: 32px;
+}
+
+.SignUpForm form .subtitle {
+  margin-top: 2px;
+  color: #606770;
+  font-family: "SFUIText-Regular";
+}
+
+.SignUpForm form input {
+  width: 397px;
+  box-sizing: border-box;
+  padding: 0 11px;
+  display: flex;
+  align-items: center;
+  border: 1px solid lightgray;
+  font-family: "SFUIText-Regular";
+  font-size: 16px;
+  height: 38px;
+  border-radius: 5px;
+  background-color: rgb(245, 246, 247);
+  margin-bottom: 10px;
+}
+
+.SignUpForm form input::placeholder {
+  color: rgb(156, 156, 156);
+}
+
+.SignUpForm form input:focus {
+  outline: none;
+  border-color: rgb(24, 119, 242);
+}
+
+.SignUpForm form .sign-up-btn {
+  width: 194px;
+  height: 36px;
+  padding: none;
+  background-color: rgb(0, 164, 0);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-family: "SFUIText-Semibold";
+  font-size: 18px;
+  cursor: pointer;
+  backdrop-filter: brightness(0);
+  margin: 14px 0 26px 0;
+}
+
+.SignUpForm form .sign-up-btn:hover {
+  background-color: rgba(0, 164, 0, 0.9);
+}
+
+.SignUpForm form .sign-up-btn:active {
+  background-color: rgba(0, 164, 0, 0.8);
+  transform: scale(0.97);
+}

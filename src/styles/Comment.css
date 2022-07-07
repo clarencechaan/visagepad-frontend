@@ -120,51 +120,6 @@
   width: 16px;
   height: 16px;
 }
-/* 
-.Comment .more-options .dropdown {
-  width: 200px;
-  min-height: 100px;
-  box-sizing: border-box;
-  padding: 8px;
-  position: absolute;
-  top: 40px;
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgb(185, 185, 185);
-  row-gap: 8px;
-}
-
-.Comment .more-options .dropdown .triangle {
-  background-color: white;
-  height: 12px;
-  width: 12px;
-  transform: rotate(45deg);
-  position: absolute;
-  top: -6px;
-  align-self: center;
-}
-
-.Comment .more-options .dropdown button {
-  background-color: transparent;
-  border: none;
-  height: 34px;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-family: "SFUIText-Regular";
-  font-size: 14px;
-  text-align: left;
-  padding-left: 12px;
-}
-
-.Comment .more-options .dropdown button:hover {
-  background-color: rgb(242, 242, 242);
-}
-
-.Comment .more-options .dropdown button:active {
-  background-color: rgb(229, 229, 229);
-} */
 
 .Comment .more-options .dropdown .triangle {
   align-self: center;
