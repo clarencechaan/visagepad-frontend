@@ -3,7 +3,7 @@ import { MagnifyingGlass, ArrowLeft } from "phosphor-react";
 
 function SearchBar() {
   return (
-    <div className="SearchBar" tabIndex={"-1"}>
+    <div className="SearchBar" tabIndex={-1}>
       <input type="text" placeholder="Search VisagePad" />
       <MagnifyingGlass className="magnifying-glass" />
       <div className="window">

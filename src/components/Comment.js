@@ -1,6 +1,7 @@
 import "../styles/Comment.css";
 import profilePic from "../images/profile-pic.jpeg";
 import dots from "../images/dots.svg";
+import { PencilSimple, Trash } from "phosphor-react";
 
 function Comment() {
   return (
@@ -23,9 +24,30 @@ function Comment() {
               enim ad minim veniam, quis nostrud exercitation ullamco laboris.
             </div>
           </div>
-          <button className="more-options-btn has-tooltip">
-            <img src={dots} alt="" />
-          </button>
+          <div className="more-options">
+            <button className="has-tooltip">
+              <img src={dots} alt="" />
+            </button>
+            <div className="dropdown" tabIndex={-1}>
+              <div className="triangle"></div>
+              <button
+                onClick={(e) => {
+                  e.target.blur();
+                }}
+              >
+                <PencilSimple className="icon" />
+                Edit comment
+              </button>
+              <button
+                onClick={(e) => {
+                  e.target.blur();
+                }}
+              >
+                <Trash className="icon" />
+                Delete comment
+              </button>
+            </div>
+          </div>
         </div>
         <div className="comment-btns">
           <button className="like-btn">Like</button>

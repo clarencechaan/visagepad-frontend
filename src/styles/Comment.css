@@ -78,7 +78,13 @@
   text-decoration: underline;
 }
 
-.Comment .more-options-btn {
+.Comment .more-options {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.Comment .more-options > button {
   min-width: 32px;
   min-height: 32px;
   border-radius: 50%;
@@ -89,30 +95,79 @@
   background-color: transparent;
 }
 
-.Comment .more-options-btn::after {
+.Comment .more-options > button::after {
   content: "Edit or delete this";
   top: -25px;
 }
 
-.Comment .more-options-btn:hover::after {
+.Comment .more-options > button:hover::after {
   transition-delay: 0.5s;
 }
 
-.Comment:hover .more-options-btn {
+.Comment:hover .more-options > button {
   opacity: 1;
 }
 
-.Comment .more-options-btn:hover {
+.Comment .more-options > button:hover {
   background-color: rgb(240, 242, 245);
 }
 
-.Comment .more-options-btn:active {
+.Comment .more-options > button:active {
   background-color: rgb(229, 229, 229);
 }
 
-.Comment .more-options-btn img {
+.Comment .more-options > button img {
   width: 16px;
   height: 16px;
+}
+/* 
+.Comment .more-options .dropdown {
+  width: 200px;
+  min-height: 100px;
+  box-sizing: border-box;
+  padding: 8px;
+  position: absolute;
+  top: 40px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgb(185, 185, 185);
+  row-gap: 8px;
+}
+
+.Comment .more-options .dropdown .triangle {
+  background-color: white;
+  height: 12px;
+  width: 12px;
+  transform: rotate(45deg);
+  position: absolute;
+  top: -6px;
+  align-self: center;
+}
+
+.Comment .more-options .dropdown button {
+  background-color: transparent;
+  border: none;
+  height: 34px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: "SFUIText-Regular";
+  font-size: 14px;
+  text-align: left;
+  padding-left: 12px;
+}
+
+.Comment .more-options .dropdown button:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.Comment .more-options .dropdown button:active {
+  background-color: rgb(229, 229, 229);
+} */
+
+.Comment .more-options .dropdown .triangle {
+  align-self: center;
 }
 
 .Comment > :nth-child(2) > :first-child {

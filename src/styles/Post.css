@@ -59,7 +59,12 @@
   transition-delay: 0.5s;
 }
 
-.Post .info-bar .more-options-btn {
+.Post .info-bar .more-options {
+  margin-left: auto;
+  position: relative;
+}
+
+.Post .info-bar .more-options > button {
   background-color: transparent;
   border: none;
   width: 36px;
@@ -69,12 +74,85 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-left: auto;
 }
 
-.Post .info-bar .more-options-btn img {
+.Post .info-bar .more-options > button img {
   width: 20px;
   height: 20px;
+}
+
+.Post .info-bar .more-options .dropdown,
+.Comment .more-options .dropdown {
+  width: 200px;
+  min-height: 62px;
+  background-color: white;
+  position: absolute;
+  top: 45px;
+  box-shadow: 0 8px 20px rgb(185, 185, 185);
+  border-radius: 8px;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.Post .info-bar .more-options .dropdown {
+  right: 2px;
+}
+
+.Post .info-bar .more-options .dropdown .triangle,
+.Comment .more-options .dropdown .triangle {
+  background-color: white;
+  height: 12px;
+  width: 12px;
+  transform: rotate(45deg);
+  position: absolute;
+  top: -6px;
+}
+
+.Post .info-bar .more-options .dropdown .triangle {
+  right: 10px;
+}
+
+.Post .info-bar .more-options .dropdown button,
+.Comment .more-options .dropdown button {
+  height: 46px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-family: "SFUIText-Regular";
+  font-size: 14px;
+  column-gap: 8px;
+  padding-left: 12px;
+  border-radius: 6px;
+}
+
+.Post .info-bar .more-options .dropdown button:hover,
+.Comment .more-options .dropdown button:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.Post .info-bar .more-options .dropdown button:active,
+.Comment .more-options .dropdown button:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.Post .info-bar .more-options .dropdown button .icon,
+.Comment .more-options .dropdown button .icon {
+  font-size: 24px;
+}
+
+.Post .info-bar .more-options:focus-within .dropdown,
+.Comment .more-options:focus-within .dropdown {
+  visibility: visible;
+  opacity: 1;
 }
 
 .Post .content {
@@ -125,12 +203,12 @@
 }
 
 .Post .action-btns button:hover,
-.Post .info-bar .more-options-btn:hover {
+.Post .info-bar .more-options > button:hover {
   background-color: rgb(242, 242, 242);
 }
 
 .Post .action-btns button:active,
-.Post .info-bar .more-options-btn:active {
+.Post .info-bar .more-options > button:active {
   background-color: rgb(229, 229, 229);
 }
 

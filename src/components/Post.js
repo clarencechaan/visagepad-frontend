@@ -1,7 +1,7 @@
 import "../styles/Post.css";
 import profilePic from "../images/profile-pic.jpeg";
 import dots from "../images/dots.svg";
-import { ThumbsUp, Chat } from "phosphor-react";
+import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
 
 function Post() {
@@ -19,9 +19,30 @@ function Post() {
             11m
           </a>
         </div>
-        <button className="more-options-btn">
-          <img src={dots} alt="" />
-        </button>
+        <div className="more-options">
+          <button>
+            <img src={dots} alt="" />
+          </button>
+          <div className="dropdown" tabIndex={-1}>
+            <div className="triangle"></div>
+            <button
+              onClick={(e) => {
+                e.target.blur();
+              }}
+            >
+              <PencilSimple className="icon" />
+              Edit post
+            </button>
+            <button
+              onClick={(e) => {
+                e.target.blur();
+              }}
+            >
+              <Trash className="icon" />
+              Delete post
+            </button>
+          </div>
+        </div>
       </div>
       <div className="content">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
