@@ -24,7 +24,6 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
 }
 
@@ -38,9 +37,6 @@
   height: 32px;
   border-radius: 50%;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
   top: 12px;
   right: 12px;
@@ -57,7 +53,6 @@
 .SignUpForm form .title-bar {
   padding: 10px 16px 14px 16px;
   border-bottom: 1px solid lightgray;
-  margin-bottom: 14px;
   align-self: normal;
 }
 
@@ -72,8 +67,14 @@
   font-family: "SFUIText-Regular";
 }
 
+.SignUpForm .content {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 14px 16px 26px 16px;
+}
+
 .SignUpForm form input {
-  width: 397px;
   box-sizing: border-box;
   padding: 0 11px;
   display: flex;
@@ -85,6 +86,16 @@
   border-radius: 5px;
   background-color: rgb(245, 246, 247);
   margin-bottom: 10px;
+}
+
+.SignUpForm form .full-name-inputs {
+  display: flex;
+  column-gap: 10px;
+}
+
+.SignUpForm form .full-name-inputs input {
+  width: 0;
+  flex: 1;
 }
 
 .SignUpForm form input::placeholder {
@@ -108,7 +119,8 @@
   font-size: 18px;
   cursor: pointer;
   backdrop-filter: brightness(0);
-  margin: 14px 0 26px 0;
+  margin-top: 14px;
+  align-self: center;
 }
 
 .SignUpForm form .sign-up-btn:hover {
