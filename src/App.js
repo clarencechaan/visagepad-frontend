@@ -8,12 +8,12 @@ import MyFriends from "./components/MyFriends";
 function App() {
   return (
     <div className="App">
-      {/* <LogIn />
-      <Footer /> */}
+      {/* <LogIn /> */}
+      {/* <Footer /> */}
 
       <NavBar />
-      {/* <Home /> */}
-      <MyFriends />
+      <Home />
+      {/* <MyFriends /> */}
     </div>
   );
 }

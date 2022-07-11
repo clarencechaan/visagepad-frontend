@@ -32,7 +32,7 @@
   top: 50px;
   right: 16px;
   border-radius: 8px;
-  box-shadow: 4px 4px 16px rgb(183, 183, 183);
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.282);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -49,7 +49,7 @@
 .YourProfileBtn .window .user {
   background-color: white;
   border-radius: 8px;
-  box-shadow: 3px 3px 12px rgb(209, 209, 209);
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.18);
   padding: 4px;
   display: flex;
   margin: 10px 14px;

@@ -33,7 +33,7 @@
   flex-direction: column;
   padding: 16px;
   border-radius: 8px;
-  box-shadow: 2px 2px 16px rgb(199, 199, 199);
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
 }
 

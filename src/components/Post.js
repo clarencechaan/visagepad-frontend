@@ -3,11 +3,13 @@ import profilePic from "../images/profile-pic.jpeg";
 import dots from "../images/dots.svg";
 import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function Post() {
   const [commentsExpanded, setCommentsExpanded] = useState(true);
+  const [isLiked, setIsLiked] = useState(false);
   const [viewingMoreComments, setViewingMoreComments] = useState(false);
+  const commentInput = useRef(null);
 
   function handleCommentCountClicked() {
     // show/hide comments section
@@ -17,6 +19,17 @@ function Post() {
   function handleViewMoreCommentsClicked() {
     // show/hide more comments
     setViewingMoreComments((prev) => !prev);
+  }
+
+  function handleLikeBtnClicked() {
+    setIsLiked((prev) => !prev);
+  }
+
+  function handleCommentBtnClicked() {
+    setCommentsExpanded(true);
+    setTimeout(() => {
+      commentInput.current.focus();
+    }, 1);
   }
 
   return (
@@ -74,11 +87,14 @@ function Post() {
         4 Comments
       </button>
       <div className="action-btns">
-        <button className="like-btn">
-          <ThumbsUp className="icon" />
+        <button
+          className={"like-btn" + (isLiked ? " liked" : "")}
+          onClick={handleLikeBtnClicked}
+        >
+          <ThumbsUp className="icon" weight={isLiked ? "fill" : "regular"} />
           Like
         </button>
-        <button className="comment-btn">
+        <button className="comment-btn" onClick={handleCommentBtnClicked}>
           <Chat className="icon" />
           Comment
         </button>
@@ -112,6 +128,7 @@ function Post() {
             placeholder="Write a comment..."
             minLength={1}
             maxLength={1500}
+            ref={commentInput}
           />
         </div>
       </div>

@@ -50,7 +50,7 @@
   z-index: 0;
   top: 0;
   left: 0;
-  box-shadow: -4px 10px 16px rgb(187, 187, 187);
+  box-shadow: -4px 10px 16px rgba(0, 0, 0, 0.23);
   border-radius: 6px;
   visibility: hidden;
   opacity: 0;

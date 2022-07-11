@@ -1,7 +1,7 @@
 .NavBar {
   height: 56px;
   background-color: white;
-  box-shadow: 0 0 8px rgb(206, 206, 206);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
   display: flex;
   align-items: center;
   padding: 0 16px;
@@ -104,7 +104,7 @@
   padding: 8px 12px;
   font-size: 12px;
   border-radius: 8px;
-  box-shadow: 2px 2px 4px rgb(147, 147, 147);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.424);
   background-color: rgba(0, 0, 0, 0.8);
   visibility: hidden;
   opacity: 0;
