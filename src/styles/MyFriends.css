@@ -1,0 +1,37 @@
+.MyFriends {
+  width: 1042px;
+  flex: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.MyFriends .title {
+  font-size: 20px;
+  font-family: "SFUIText-Semibold";
+  margin-bottom: 16px;
+}
+
+.MyFriends .friend-requests {
+  margin-top: 34px;
+  padding-bottom: 24px;
+}
+
+.MyFriends .friend-request-cards,
+.MyFriends .friend-cards {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.MyFriends .divider {
+  height: 1px;
+  background-color: lightgray;
+  width: calc(100% + 40px);
+  align-self: center;
+}
+
+.MyFriends .friends {
+  margin-top: 24px;
+  margin-bottom: 60px;
+}

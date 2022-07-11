@@ -1,0 +1,73 @@
+.FriendCard {
+  width: 200px;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(206, 208, 212);
+  box-shadow: 0 1px 2px rgb(196, 196, 196);
+}
+
+.FriendCard a.pfp-anchor {
+  line-height: 0;
+}
+
+.FriendCard img.pfp {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.FriendCard .details {
+  box-sizing: border-box;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.FriendCard .full-name {
+  font-size: 15px;
+  font-family: "SFUIText-Medium";
+  text-decoration: none;
+  color: black;
+}
+
+.FriendCard .full-name:hover {
+  text-decoration: underline;
+}
+
+.FriendCard .mutual-friends {
+  display: flex;
+  align-items: center;
+  color: rgb(101, 103, 107);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.FriendCard .mutual-friends .pfps {
+  display: flex;
+  align-items: center;
+}
+
+.FriendCard .mutual-friends img.mutual-pfp {
+  width: 16px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: relative;
+}
+
+.FriendCard .mutual-friends img.mutual-pfp:first-child {
+  z-index: 1;
+}
+
+.FriendCard .mutual-friends img.mutual-pfp:nth-child(2) {
+  margin-left: -8px;
+}
+
+.FriendCard .mutual-friends .count {
+  margin-left: 3px;
+}
