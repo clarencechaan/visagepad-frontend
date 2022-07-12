@@ -19,6 +19,7 @@
   border-radius: 18px;
   box-sizing: border-box;
   padding: 8px 12px;
+  position: relative;
 }
 
 .Comment .author-full-name {
@@ -34,6 +35,51 @@
 
 .Comment .message {
   margin-top: 2px;
+}
+
+.Comment .bubble .like-count {
+  height: 20px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  position: absolute;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  color: rgb(101, 103, 107);
+  font-size: 12px;
+  font-family: "SFUIText-Regular";
+  cursor: pointer;
+}
+
+.Comment .bubble .like-count:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.Comment .bubble .like-count::after {
+  content: "5 likes";
+  top: 22px;
+  justify-self: center;
+  align-self: center;
+}
+
+.Comment .bubble .like-count .badge {
+  height: 17px;
+  width: 17px;
+  margin: 0 4px 0 2px;
+  border-radius: 50%;
+  background: linear-gradient(rgb(112, 163, 231), rgb(0, 97, 224));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.Comment .bubble .like-count span {
+  margin-right: 4px;
 }
 
 .Comment .comment-btns {
@@ -56,6 +102,10 @@
 
 .Comment .comment-btns .like-btn:hover {
   text-decoration: underline;
+}
+
+.Comment .comment-btns .like-btn.liked {
+  color: rgb(32, 120, 244);
 }
 
 .Comment .comment-btns .time-ago {

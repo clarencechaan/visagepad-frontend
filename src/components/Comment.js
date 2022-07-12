@@ -1,9 +1,16 @@
 import "../styles/Comment.css";
 import profilePic from "../images/profile-pic.jpeg";
 import dots from "../images/dots.svg";
-import { PencilSimple, Trash } from "phosphor-react";
+import { PencilSimple, Trash, ThumbsUp } from "phosphor-react";
+import { useState } from "react";
 
 function Comment() {
+  const [isLiked, setIsLiked] = useState(false);
+
+  function handleLikeBtnClicked() {
+    setIsLiked((prev) => !prev);
+  }
+
   return (
     <div className="Comment">
       <a href="">
@@ -20,6 +27,12 @@ function Comment() {
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris.
             </div>
+            <button className="like-count has-tooltip">
+              <div className="badge">
+                <ThumbsUp weight="fill" />
+              </div>
+              <span>5</span>
+            </button>
           </div>
           <div className="more-options">
             <button className="has-tooltip">
@@ -47,7 +60,12 @@ function Comment() {
           </div>
         </div>
         <div className="comment-btns">
-          <button className="like-btn">Like</button>
+          <button
+            className={"like-btn" + (isLiked ? " liked" : "")}
+            onClick={handleLikeBtnClicked}
+          >
+            Like
+          </button>
           <a href="" className="time-ago has-tooltip">
             24m
           </a>
