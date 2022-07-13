@@ -1,0 +1,166 @@
+.NewPostBtn {
+  width: 680px;
+  height: 62px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.263);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  column-gap: 10px;
+}
+
+.NewPostBtn .new-post-btn-pfp {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.NewPostBtn .new-post-form-container {
+  flex: 1;
+}
+
+.NewPostBtn .new-post-btn {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 16px;
+  border: none;
+  border-radius: 20px;
+  text-align: left;
+  font-family: "SFUIText-Regular";
+  font-size: 16px;
+  color: rgb(101, 103, 107);
+  background-color: rgb(240, 242, 245);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.NewPostBtn .new-post-btn:hover {
+  background-color: rgb(228, 230, 233);
+}
+
+.NewPostBtn .new-post-btn:active {
+  background-color: rgb(216, 217, 220);
+}
+
+.NewPostBtn .new-post-form-container:focus-within .new-post-form {
+  visibility: visible;
+}
+
+.NewPostBtn .new-post-form {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.NewPostBtn .new-post-form form {
+  width: 500px;
+  height: 428px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.NewPostBtn form .close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #606770;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.NewPostBtn .new-post-form form .close-btn:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.SignUpForm .new-post-form form .close-btn:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.NewPostBtn .new-post-form form .title-bar {
+  height: 59px;
+  border-bottom: 1px solid rgb(222, 222, 222);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NewPostBtn .new-post-form form .title-bar .title {
+  font-size: 20px;
+  font-family: "SFUIText-Semibold";
+}
+
+.NewPostBtn .new-post-form form .content {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.NewPostBtn .new-post-form form .content .author-bar {
+  display: flex;
+  align-items: center;
+}
+
+.NewPostBtn .new-post-form form .content .author-bar a {
+  line-height: 0;
+}
+
+.NewPostBtn .new-post-form form .content .author-bar .pfp {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.NewPostBtn .new-post-form form .content .author-bar .text {
+  margin-left: 12px;
+}
+
+.NewPostBtn .new-post-form form .content .author-bar .surtitle {
+  color: rgb(101, 103, 107);
+}
+
+.NewPostBtn .new-post-form form .content .author-bar .full-name {
+  font-family: "SFUIText-Medium";
+}
+
+.NewPostBtn .new-post-form form .content textarea#post-content {
+  flex: 1;
+  font-size: 22px;
+  font-family: "SFUIText-Light";
+  margin-top: 16px;
+  border: none;
+  resize: none;
+}
+
+.NewPostBtn .new-post-form form .content textarea#post-content:focus {
+  outline: none;
+}
+
+.NewPostBtn .new-post-form form .content textarea#post-content::placeholder {
+  color: rgb(101, 103, 107);
+}

@@ -21,7 +21,6 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
 }
 
 .Post .info-bar {
