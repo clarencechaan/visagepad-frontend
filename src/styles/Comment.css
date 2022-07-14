@@ -38,7 +38,7 @@
 }
 
 .Comment .bubble .like-count {
-  height: 20px;
+  height: 22px;
   background-color: white;
   border: none;
   border-radius: 10px;
@@ -66,8 +66,8 @@
 }
 
 .Comment .bubble .like-count .badge {
-  height: 17px;
-  width: 17px;
+  height: 18px;
+  width: 18px;
   margin: 0 4px 0 2px;
   border-radius: 50%;
   background: linear-gradient(rgb(112, 163, 231), rgb(0, 97, 224));

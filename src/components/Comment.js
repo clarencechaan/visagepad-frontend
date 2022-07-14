@@ -25,7 +25,7 @@ function Comment() {
             <div className="message">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+              enim ad minim veniam, quis nostrud.
             </div>
             <button className="like-count has-tooltip">
               <div className="badge">

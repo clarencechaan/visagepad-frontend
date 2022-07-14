@@ -174,24 +174,49 @@
   line-height: 18px;
 }
 
-.Post .comment-count {
-  color: rgb(101, 103, 107);
-  align-self: flex-end;
+.Post .counts {
   margin-top: 12px;
-  font-size: 14px;
-  font-family: inherit;
+  display: flex;
+}
+
+.Post .counts button {
   cursor: pointer;
   padding: 0;
   border: none;
   background-color: transparent;
+  color: rgb(101, 103, 107);
+  font-size: 14px;
+  font-family: inherit;
 }
 
-.Post .comment-count:hover {
+.Post .counts button:hover {
   text-decoration: underline;
 }
 
-.Post .comment-count::after {
+.Post .counts .like-count .badge {
+  height: 18px;
+  width: 18px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: linear-gradient(rgb(112, 163, 231), rgb(0, 97, 224));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.Post .counts .comment-count {
+  margin-left: auto;
+}
+
+.Post .counts .comment-count::after {
   content: "Clarence Chan";
+  top: 20px;
+}
+
+.Post .counts .like-count::after {
+  content: "6 likes";
   top: 20px;
 }
 

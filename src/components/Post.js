@@ -81,13 +81,20 @@ function Post() {
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris.
       </div>
-      <button
-        href=""
-        className="comment-count has-tooltip"
-        onClick={handleCommentCountClicked}
-      >
-        4 Comments
-      </button>
+      <div className="counts">
+        <button className="like-count has-tooltip">
+          <div className="badge">
+            <ThumbsUp weight="fill" />
+          </div>
+          Clarence Chan and 5 others
+        </button>
+        <button
+          className="comment-count has-tooltip"
+          onClick={handleCommentCountClicked}
+        >
+          4 Comments
+        </button>
+      </div>
       <div className="action-btns">
         <button
           type="button"
