@@ -206,12 +206,16 @@
   position: relative;
   line-height: 0;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .NewPostBtn .new-post-form form img.photo-preview {
   width: 100%;
   border-radius: 8px;
-  min-height: 100px;
 }
 
 .NewPostBtn .new-post-form form .remove-btn {
@@ -252,4 +256,10 @@
 
 .NewPostBtn .new-post-form form .post-btn:hover {
   background-color: rgba(24, 119, 242, 0.9);
+}
+
+.NewPostBtn .new-post-form form .post-btn:disabled {
+  pointer-events: none;
+  background-color: rgb(228, 230, 235);
+  color: rgb(188, 188, 188);
 }
