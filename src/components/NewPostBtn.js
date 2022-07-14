@@ -1,11 +1,14 @@
 import "../styles/NewPostBtn.css";
 import profilePic from "../images/profile-pic.jpeg";
 import { Image } from "phosphor-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function NewPostBtn() {
   const photoPreviewRef = useRef(null);
   const photoPickerRef = useRef(null);
+  const photoPickerInput = useRef(null);
+  const textInputRef = useRef(null);
+  const [newPostFormShown, setNewPostFormShown] = useState(false);
 
   function handlePhotoPicked() {
     photoPreviewRef.current.hidden = false;
@@ -15,6 +18,26 @@ function NewPostBtn() {
   function handleRemovePhotoBtnClicked() {
     photoPreviewRef.current.hidden = true;
     photoPickerRef.current.hidden = false;
+    photoPickerInput.current.value = "";
+  }
+
+  function handleNewPostBtnClicked() {
+    setNewPostFormShown(true);
+    setTimeout(focusTextInput, 1);
+  }
+
+  function handleCloseFormBtnClicked() {
+    setNewPostFormShown(false);
+  }
+
+  function focusTextInput() {
+    textInputRef.current.focus();
+  }
+
+  function resizeTextInput() {
+    textInputRef.current.style.minHeight = "0px";
+    textInputRef.current.style.minHeight =
+      textInputRef.current.scrollHeight + "px";
   }
 
   return (
@@ -23,37 +46,42 @@ function NewPostBtn() {
         <img src={profilePic} alt="" className="new-post-btn-pfp" />
       </a>
       <div className="new-post-form-container">
-        <button type="button" className="new-post-btn" tabIndex={-1}>
+        <button
+          type="button"
+          className="new-post-btn"
+          onClick={handleNewPostBtnClicked}
+        >
           What's on your mind, Clarence?
         </button>
-        <div className="new-post-form" tabIndex={-1}>
+        <div className={"new-post-form" + (newPostFormShown ? "" : " hidden")}>
           <form action="">
             <button
               type="button"
               className="close-btn"
-              onClick={(e) => {
-                e.target.blur();
-              }}
+              onClick={handleCloseFormBtnClicked}
             >
               ✕
             </button>
             <div className="title-bar">
               <div className="title">Create post</div>
             </div>
-            <div className="content">
-              <div className="author-bar">
-                <a href="">
-                  <img src={profilePic} alt="" className="pfp" />
-                </a>
-                <div className="text">
-                  <div className="surtitle">posting as</div>
-                  <div className="full-name">Clarence Chan</div>
-                </div>
+            <div className="author-bar">
+              <a href="">
+                <img src={profilePic} alt="" className="pfp" />
+              </a>
+              <div className="text">
+                <div className="surtitle">posting as</div>
+                <div className="full-name">Clarence Chan</div>
               </div>
+            </div>
+            <div className="content">
               <textarea
                 name="post-content"
                 id="post-content"
                 placeholder="What's on your mind, Clarence?"
+                maxLength={1500}
+                ref={textInputRef}
+                onChange={resizeTextInput}
               ></textarea>
               <input
                 type="file"
@@ -61,6 +89,7 @@ function NewPostBtn() {
                 id="photo-picker-input"
                 accept="image/png, image/jpeg"
                 onChange={handlePhotoPicked}
+                ref={photoPickerInput}
                 hidden
               />
               <label
@@ -92,6 +121,9 @@ function NewPostBtn() {
                 </button>
               </div>
             </div>
+            <button type="button" className="post-btn">
+              Post
+            </button>
           </form>
         </div>
       </div>

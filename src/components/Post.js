@@ -27,9 +27,11 @@ function Post() {
 
   function handleCommentBtnClicked() {
     setCommentsExpanded(true);
-    setTimeout(() => {
-      commentInput.current.focus();
-    }, 1);
+    setTimeout(focusCommentInput, 1);
+  }
+
+  function focusCommentInput() {
+    commentInput.current.focus();
   }
 
   return (

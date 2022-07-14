@@ -46,10 +46,6 @@
   background-color: rgb(216, 217, 220);
 }
 
-.NewPostBtn .new-post-form-container:focus-within .new-post-form {
-  visibility: visible;
-}
-
 .NewPostBtn .new-post-form {
   top: 0;
   left: 0;
@@ -61,7 +57,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  visibility: hidden;
 }
 
 .NewPostBtn .new-post-form form {
@@ -101,7 +96,7 @@
 }
 
 .NewPostBtn .new-post-form form .title-bar {
-  height: 59px;
+  min-height: 59px;
   border-bottom: 1px solid rgb(222, 222, 222);
   display: flex;
   align-items: center;
@@ -116,55 +111,54 @@
 .NewPostBtn .new-post-form form .content {
   flex: 1;
   box-sizing: border-box;
-  padding: 16px;
+  padding: 0 16px;
   display: flex;
   flex-direction: column;
   overflow: auto;
 }
 
-.NewPostBtn .new-post-form form .content .author-bar {
+.NewPostBtn .new-post-form form .author-bar {
   display: flex;
   align-items: center;
+  margin: 16px;
 }
 
-.NewPostBtn .new-post-form form .content .author-bar a {
+.NewPostBtn .new-post-form form .author-bar a {
   line-height: 0;
 }
 
-.NewPostBtn .new-post-form form .content .author-bar .pfp {
+.NewPostBtn .new-post-form form .author-bar .pfp {
   height: 40px;
   width: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.NewPostBtn .new-post-form form .content .author-bar .text {
+.NewPostBtn .new-post-form form .author-bar .text {
   margin-left: 12px;
 }
 
-.NewPostBtn .new-post-form form .content .author-bar .surtitle {
+.NewPostBtn .new-post-form form .author-bar .surtitle {
   color: rgb(101, 103, 107);
 }
 
-.NewPostBtn .new-post-form form .content .author-bar .full-name {
+.NewPostBtn .new-post-form form .author-bar .full-name {
   font-family: "SFUIText-Medium";
 }
 
-.NewPostBtn .new-post-form form .content textarea#post-content {
-  flex: 1;
+.NewPostBtn .new-post-form form .content #post-content {
   font-size: 22px;
   font-family: "SFUIText-Light";
-  margin-top: 16px;
+  word-wrap: break-word;
   border: none;
   resize: none;
+  padding: 0;
+  height: auto;
+  margin-bottom: 16px;
 }
 
-.NewPostBtn .new-post-form form .content textarea#post-content:focus {
+.NewPostBtn .new-post-form form .content #post-content:focus {
   outline: none;
-}
-
-.NewPostBtn .new-post-form form .content textarea#post-content::placeholder {
-  color: rgb(101, 103, 107);
 }
 
 .NewPostBtn
@@ -173,6 +167,10 @@
   .content
   textarea#post-content:focus::placeholder {
   color: rgb(142, 142, 142);
+}
+
+.NewPostBtn .new-post-form form .photo-picker-label {
+  margin-top: auto;
 }
 
 .NewPostBtn .new-post-form form .photo-picker-label .prompt {
@@ -207,11 +205,13 @@
   border-radius: 8px;
   position: relative;
   line-height: 0;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .NewPostBtn .new-post-form form img.photo-preview {
   width: 100%;
   border-radius: 8px;
+  min-height: 100px;
 }
 
 .NewPostBtn .new-post-form form .remove-btn {
@@ -234,4 +234,22 @@
 
 .NewPostBtn .new-post-form form .remove-btn:hover {
   background-color: rgb(242, 242, 242);
+}
+
+.NewPostBtn .new-post-form form .post-btn {
+  min-height: 36px;
+  border: none;
+  padding: 0;
+  margin: 16px;
+  cursor: pointer;
+  background-color: rgb(24, 119, 242);
+  color: white;
+  font-family: "SFUIText-Medium";
+  font-size: 15px;
+  border-radius: 6px;
+  backdrop-filter: brightness(0);
+}
+
+.NewPostBtn .new-post-form form .post-btn:hover {
+  background-color: rgba(24, 119, 242, 0.9);
 }
