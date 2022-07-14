@@ -8,7 +8,7 @@ import { useState, useRef } from "react";
 function Post() {
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
-  const [viewingMoreComments, setViewingMoreComments] = useState(false);
+  const [viewingPrevComments, setViewingPrevComments] = useState(false);
   const commentInput = useRef(null);
 
   function handleCommentCountClicked() {
@@ -16,9 +16,9 @@ function Post() {
     setCommentsExpanded((prev) => !prev);
   }
 
-  function handleViewMoreCommentsClicked() {
-    // show/hide more comments
-    setViewingMoreComments((prev) => !prev);
+  function handleViewPrevCommentsClicked() {
+    // show/hide previous comments
+    setViewingPrevComments((prev) => !prev);
   }
 
   function handleLikeBtnClicked() {
@@ -107,9 +107,17 @@ function Post() {
         </button>
       </div>
       <div className={"comments" + (commentsExpanded ? "" : " hidden")}>
+        <button
+          type="button"
+          className={
+            "view-prev-comments-btn" + (viewingPrevComments ? " hidden" : "")
+          }
+          onClick={handleViewPrevCommentsClicked}
+        >
+          View 9 previous comments
+        </button>
         <div>
-          <Comment />
-          <div className={"more" + (viewingMoreComments ? "" : " hidden")}>
+          <div className={"prev" + (viewingPrevComments ? "" : " hidden")}>
             <Comment />
             <Comment />
             <Comment />
@@ -117,15 +125,7 @@ function Post() {
             <Comment />
             <Comment />
           </div>
-          <button
-            type="button"
-            className={
-              "view-more-comments-btn" + (viewingMoreComments ? " hidden" : "")
-            }
-            onClick={handleViewMoreCommentsClicked}
-          >
-            View 9 more comments
-          </button>
+          <Comment />
         </div>
         <div className="comment-bar">
           <a href="">

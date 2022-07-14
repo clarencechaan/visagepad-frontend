@@ -249,7 +249,7 @@
 .Post .comment-bar {
   display: flex;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 10px;
   margin-bottom: 8px;
   column-gap: 6px;
 }
@@ -281,7 +281,7 @@
   color: rgb(101, 103, 107);
 }
 
-.Post .view-more-comments-btn {
+.Post .view-prev-comments-btn {
   font-size: 14px;
   font-family: "SFUIText-Medium";
   color: rgb(101, 103, 107);
@@ -289,9 +289,8 @@
   border: none;
   cursor: pointer;
   margin-top: 8px;
-  margin-bottom: 2px;
 }
 
-.Post .view-more-comments-btn:hover {
+.Post .view-prev-comments-btn:hover {
   text-decoration: underline;
 }

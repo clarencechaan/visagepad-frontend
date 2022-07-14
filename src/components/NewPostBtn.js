@@ -27,10 +27,17 @@ function NewPostBtn() {
       redirect: "follow",
     };
 
-    return fetch("https://api.imgur.com/3/image", requestOptions)
-      .then((response) => response.text())
-      .then((result) => JSON.parse(result).data.link)
-      .catch((error) => console.log("error", error));
+    try {
+      const response = await fetch(
+        "https://api.imgur.com/3/image",
+        requestOptions
+      );
+      const result = await response.text();
+      const json = JSON.parse(result).data.link;
+      return json;
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   async function handlePhotoPicked(e) {
