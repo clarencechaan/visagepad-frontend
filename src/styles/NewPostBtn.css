@@ -66,7 +66,8 @@
 
 .NewPostBtn .new-post-form form {
   width: 500px;
-  height: 428px;
+  min-height: 428px;
+  max-height: 676px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
@@ -118,6 +119,7 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 
 .NewPostBtn .new-post-form form .content .author-bar {
@@ -163,4 +165,73 @@
 
 .NewPostBtn .new-post-form form .content textarea#post-content::placeholder {
   color: rgb(101, 103, 107);
+}
+
+.NewPostBtn
+  .new-post-form
+  form
+  .content
+  textarea#post-content:focus::placeholder {
+  color: rgb(142, 142, 142);
+}
+
+.NewPostBtn .new-post-form form .photo-picker-label .prompt {
+  height: 56px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "SFUIText-Medium";
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+}
+
+.NewPostBtn .new-post-form form .photo-picker-label .prompt:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.NewPostBtn .new-post-form form .photo-picker-label .icon {
+  color: rgb(24, 119, 242);
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.NewPostBtn .new-post-form form .photo-preview-container {
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  position: relative;
+  line-height: 0;
+}
+
+.NewPostBtn .new-post-form form img.photo-preview {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.NewPostBtn .new-post-form form .remove-btn {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 16px;
+  right: 16px;
+  padding: 0;
+  border: none;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #606770;
+  font-size: 18px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.NewPostBtn .new-post-form form .remove-btn:hover {
+  background-color: rgb(242, 242, 242);
 }

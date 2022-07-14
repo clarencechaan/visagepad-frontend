@@ -35,7 +35,9 @@ function LogIn() {
         </a>
         <div className="divider" />
         <div className="new-account-container">
-          <button className="new-account-btn">Create new account</button>
+          <button type="button" className="new-account-btn">
+            Create new account
+          </button>
           <SignUpForm />
         </div>
       </div>

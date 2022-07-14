@@ -18,8 +18,12 @@ function FriendRequestCard() {
           </div>
           <div className="count">24 mutual friends</div>
         </div>
-        <button className="confirm-btn">Confirm</button>
-        <button className="delete-btn">Delete</button>
+        <button type="button" className="confirm-btn">
+          Confirm
+        </button>
+        <button type="button" className="delete-btn">
+          Delete
+        </button>
       </div>
     </div>
   );

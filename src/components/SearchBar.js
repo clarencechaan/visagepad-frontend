@@ -9,6 +9,7 @@ function SearchBar() {
       <div className="window">
         <div className="top-bar">
           <button
+            type="button"
             className="back-btn"
             onClick={(e) => {
               e.target.blur();

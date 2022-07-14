@@ -61,6 +61,7 @@ function Comment() {
         </div>
         <div className="comment-btns">
           <button
+            type="button"
             className={"like-btn" + (isLiked ? " liked" : "")}
             onClick={handleLikeBtnClicked}
           >

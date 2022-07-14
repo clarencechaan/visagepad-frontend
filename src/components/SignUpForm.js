@@ -50,7 +50,9 @@ function SignUpForm() {
             maxLength={24}
             required
           />
-          <button className="sign-up-btn">Sign Up</button>
+          <button type="button" className="sign-up-btn">
+            Sign Up
+          </button>
         </div>
       </form>
     </div>

@@ -88,13 +88,18 @@ function Post() {
       </button>
       <div className="action-btns">
         <button
+          type="button"
           className={"like-btn" + (isLiked ? " liked" : "")}
           onClick={handleLikeBtnClicked}
         >
           <ThumbsUp className="icon" weight={isLiked ? "fill" : "regular"} />
           Like
         </button>
-        <button className="comment-btn" onClick={handleCommentBtnClicked}>
+        <button
+          type="button"
+          className="comment-btn"
+          onClick={handleCommentBtnClicked}
+        >
           <Chat className="icon" />
           Comment
         </button>
@@ -111,6 +116,7 @@ function Post() {
             <Comment />
           </div>
           <button
+            type="button"
             className={
               "view-more-comments-btn" + (viewingMoreComments ? " hidden" : "")
             }
