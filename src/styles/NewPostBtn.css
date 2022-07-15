@@ -52,7 +52,7 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(244, 244, 244, 0.8);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@
   background-color: rgb(242, 242, 242);
 }
 
-.SignUpForm .new-post-form form .close-btn:active {
+.NewPostBtn .new-post-form form .close-btn:active {
   background-color: rgb(229, 229, 229);
 }
 

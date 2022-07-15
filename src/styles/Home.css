@@ -1,7 +1,6 @@
 .Home {
   display: flex;
   flex: 1;
-  padding: 16px 0 0 8px;
   position: relative;
 }
 
@@ -10,8 +9,11 @@
   flex-direction: column;
   width: 344px;
   position: sticky;
-  top: 72px;
-  height: 48px;
+  top: 56px;
+  padding-top: 16px;
+  padding-left: 8px;
+  box-sizing: border-box;
+  align-self: flex-start;
 }
 
 .me-link {

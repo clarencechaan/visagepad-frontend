@@ -3,12 +3,14 @@ import profilePic from "../images/profile-pic.jpeg";
 import dots from "../images/dots.svg";
 import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
+import UserList from "./UserList";
 import { useState, useRef } from "react";
 
 function Post() {
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
+  const [userListShowm, setUserListShown] = useState(false);
   const commentInput = useRef(null);
 
   function handleCommentCountClicked() {
@@ -32,6 +34,10 @@ function Post() {
 
   function focusCommentInput() {
     commentInput.current.focus();
+  }
+
+  function handleLikeCountClicked() {
+    setUserListShown(true);
   }
 
   return (
@@ -82,12 +88,20 @@ function Post() {
         exercitation ullamco laboris.
       </div>
       <div className="counts">
-        <button className="like-count has-tooltip">
-          <div className="badge">
-            <ThumbsUp weight="fill" />
-          </div>
-          Clarence Chan and 5 others
-        </button>
+        <div className="like-count-container">
+          <button
+            className="like-count has-tooltip"
+            onClick={handleLikeCountClicked}
+          >
+            <div className="badge">
+              <ThumbsUp weight="fill" />
+            </div>
+            Clarence Chan and 5 others
+          </button>
+          {userListShowm ? (
+            <UserList setUserListShown={setUserListShown} />
+          ) : null}
+        </div>
         <button
           className="comment-count has-tooltip"
           onClick={handleCommentCountClicked}

@@ -60,7 +60,7 @@
 
 .Comment .bubble .like-count::after {
   content: "5 likes";
-  top: 22px;
+  top: 25px;
   justify-self: center;
   align-self: center;
 }

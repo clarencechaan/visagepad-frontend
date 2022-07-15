@@ -14,6 +14,18 @@ function ContactsSidebar() {
         <Contact />
         <Contact />
         <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
+        <Contact />
       </div>
     </div>
   );

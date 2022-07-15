@@ -3,12 +3,18 @@ import profilePic from "../images/profile-pic.jpeg";
 import dots from "../images/dots.svg";
 import { PencilSimple, Trash, ThumbsUp } from "phosphor-react";
 import { useState } from "react";
+import UserList from "./UserList";
 
 function Comment() {
   const [isLiked, setIsLiked] = useState(false);
+  const [userListShowm, setUserListShown] = useState(false);
 
   function handleLikeBtnClicked() {
     setIsLiked((prev) => !prev);
+  }
+
+  function handleLikeCountClicked() {
+    setUserListShown(true);
   }
 
   return (
@@ -27,12 +33,20 @@ function Comment() {
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud.
             </div>
-            <button className="like-count has-tooltip">
-              <div className="badge">
-                <ThumbsUp weight="fill" />
-              </div>
-              <span>5</span>
-            </button>
+            <div className="like-count-container">
+              <button
+                className="like-count has-tooltip"
+                onClick={handleLikeCountClicked}
+              >
+                <div className="badge">
+                  <ThumbsUp weight="fill" />
+                </div>
+                <span>5</span>
+              </button>
+              {userListShowm ? (
+                <UserList setUserListShown={setUserListShown} />
+              ) : null}
+            </div>
           </div>
           <div className="more-options">
             <button className="has-tooltip">

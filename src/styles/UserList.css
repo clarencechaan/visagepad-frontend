@@ -1,0 +1,85 @@
+.UserList {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(244, 244, 244, 0.8);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.UserList .user-list-window {
+  width: 548px;
+  height: 440px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 4px 4px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.UserList .top-bar {
+  min-height: 60px;
+  border-bottom: 1px solid rgb(222, 222, 222);
+  display: flex;
+  padding: 0 16px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.UserList .user-list-count {
+  border-bottom: 3px solid rgb(24, 119, 242);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.UserList .top-bar .badge {
+  height: 20px;
+  width: 20px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: linear-gradient(rgb(112, 163, 231), rgb(0, 97, 224));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.UserList .user-list-count {
+  color: rgb(24, 119, 242);
+  font-family: "SFUIText-Medium";
+}
+
+.UserList .close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #606770;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.UserList .close-btn:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.UserList .close-btn:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.UserList .user-list {
+  padding: 8px 0;
+  overflow: auto;
+}

@@ -179,7 +179,8 @@
   display: flex;
 }
 
-.Post .counts button {
+.Post .counts .like-count,
+.Post .counts .comment-count {
   cursor: pointer;
   padding: 0;
   border: none;
@@ -189,7 +190,8 @@
   font-family: inherit;
 }
 
-.Post .counts button:hover {
+.Post .counts .like-count:hover,
+.Post .counts .comment-count:hover {
   text-decoration: underline;
 }
 
