@@ -155,6 +155,7 @@
   padding: 0;
   height: auto;
   margin-bottom: 16px;
+  min-height: 53px;
 }
 
 .NewPostBtn .new-post-form form .content #post-content:focus {

@@ -50,7 +50,6 @@ function NewPostBtn() {
     setIsLoading(true);
     const imgUrlResponse = await uploadImage(e.target.files[0]);
     setImgUrl(imgUrlResponse);
-    setIsLoading(false);
   }
 
   function handleRemovePhotoBtnClicked() {
@@ -73,7 +72,7 @@ function NewPostBtn() {
   function resizeTextInput() {
     textInputRef.current.style.minHeight = "0px";
     textInputRef.current.style.minHeight =
-      textInputRef.current.scrollHeight + "px";
+      Math.max(textInputRef.current.scrollHeight, 53) + "px";
   }
 
   function handleTextInputChanged(e) {
@@ -145,20 +144,24 @@ function NewPostBtn() {
                 </label>
               ) : (
                 <div className="photo-preview-container">
-                  {isLoading ? (
-                    <Throbber />
-                  ) : (
-                    <div>
-                      <img src={imgUrl} alt="" className="photo-preview" />
-                      <button
-                        type="button"
-                        className="remove-btn"
-                        onClick={handleRemovePhotoBtnClicked}
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  )}
+                  {isLoading ? <Throbber /> : null}
+                  <div className={isLoading ? "hidden" : ""}>
+                    <img
+                      src={imgUrl}
+                      alt=""
+                      className="photo-preview"
+                      onLoad={() => {
+                        setIsLoading(false);
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="remove-btn"
+                      onClick={handleRemovePhotoBtnClicked}
+                    >
+                      ✕
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
