@@ -35,14 +35,14 @@
   margin-right: 8px;
 }
 
-.Post .info-bar .full-name {
-  font-family: "SFUIText-Semibold";
+.Post .info-bar a.full-name {
+  font-family: "SFUIText-Medium";
   color: black;
   text-decoration: none;
   margin-top: 2px;
 }
 
-.Post .info-bar .full-name:hover {
+.Post .info-bar a.full-name:hover {
   text-decoration: underline;
 }
 
@@ -132,9 +132,10 @@
   right: 10px;
 }
 
-.Post .info-bar .more-options .dropdown button,
-.Comment .more-options .dropdown button {
+.Post .info-bar .more-options .dropdown > button,
+.Comment .more-options .dropdown > button {
   height: 46px;
+  width: 100%;
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -171,7 +172,7 @@
 
 .Post .content {
   margin-top: 4px;
-  line-height: 18px;
+  line-height: 20px;
 }
 
 .Post .counts {
@@ -275,10 +276,13 @@
 
 .Post .comment-bar {
   display: flex;
-  align-items: center;
   margin-top: 10px;
   margin-bottom: 8px;
   column-gap: 6px;
+}
+
+.Post .comment-bar a {
+  line-height: 0;
 }
 
 .Post .comment-bar .pfp-small {
@@ -286,26 +290,40 @@
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+  margin-top: 2px;
 }
 
-.Post .comment-bar input {
-  border: none;
+.Post .comment-bar .bubble {
   background-color: rgb(240, 242, 245);
-  flex: 1;
+  min-height: 36px;
+  border-radius: 18px;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Post .comment-bar textarea {
+  background-color: transparent;
+  resize: none;
   font-family: inherit;
   font-size: inherit;
-  height: 36px;
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  border: none;
   box-sizing: border-box;
-  border-radius: 18px;
-  padding: 0 14px;
+  line-height: 20px;
 }
 
-.Post .comment-bar input:focus {
-  outline: none;
-}
-
-.Post .comment-bar input::placeholder {
+.Post .comment-bar textarea::placeholder {
   color: rgb(101, 103, 107);
+}
+
+.Post .comment-bar textarea:focus {
+  outline: none;
 }
 
 .Post .view-prev-comments-btn {

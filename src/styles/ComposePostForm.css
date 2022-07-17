@@ -1,0 +1,214 @@
+.ComposePostForm {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: rgba(244, 244, 244, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ComposePostForm form {
+  width: 500px;
+  min-height: 428px;
+  max-height: 676px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ComposePostForm form .close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #606770;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.ComposePostForm form .close-btn:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.ComposePostForm form .close-btn:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.ComposePostForm form .title-bar {
+  min-height: 59px;
+  border-bottom: 1px solid rgb(222, 222, 222);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ComposePostForm form .title-bar .title {
+  font-size: 20px;
+  font-family: "SFUIText-Semibold";
+}
+
+.ComposePostForm form .content {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.ComposePostForm form .author-bar {
+  display: flex;
+  align-items: center;
+  margin: 16px;
+}
+
+.ComposePostForm form .author-bar a {
+  line-height: 0;
+}
+
+.ComposePostForm form .author-bar .pfp {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ComposePostForm form .author-bar .text {
+  margin-left: 12px;
+}
+
+.ComposePostForm form .author-bar .surtitle {
+  color: rgb(101, 103, 107);
+}
+
+.ComposePostForm form .author-bar .full-name {
+  font-family: "SFUIText-Medium";
+}
+
+.ComposePostForm form .content .post-content {
+  background-color: transparent;
+  font-size: 22px;
+  font-family: "SFUIText-Light";
+  word-wrap: break-word;
+  border: none;
+  resize: none;
+  padding: 0;
+  height: 0;
+  margin-bottom: 16px;
+}
+
+.ComposePostForm form .content .post-content:focus {
+  outline: none;
+}
+
+.ComposePostForm form .content textarea.post-content:focus::placeholder {
+  color: rgb(142, 142, 142);
+}
+
+.ComposePostForm form .photo-picker-label {
+  margin-top: auto;
+}
+
+.ComposePostForm form .photo-picker-label .prompt {
+  height: 56px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "SFUIText-Medium";
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  transition: 0.2s;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+}
+
+.ComposePostForm form .photo-picker-label .prompt:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.ComposePostForm form .photo-picker-label .icon {
+  color: rgb(24, 119, 242);
+  font-size: 32px;
+  margin-right: 10px;
+}
+
+.ComposePostForm form .photo-preview-container {
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  position: relative;
+  line-height: 0;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ComposePostForm form img.photo-preview {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.ComposePostForm form .remove-btn {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 16px;
+  right: 16px;
+  padding: 0;
+  border: none;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+  border-radius: 50%;
+  color: #606770;
+  font-size: 18px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.ComposePostForm form .remove-btn:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.ComposePostForm form .done-btn {
+  min-height: 36px;
+  border: none;
+  padding: 0;
+  margin: 16px;
+  cursor: pointer;
+  background-color: rgb(24, 119, 242);
+  color: white;
+  font-family: "SFUIText-Medium";
+  font-size: 15px;
+  border-radius: 6px;
+  backdrop-filter: brightness(0);
+}
+
+.ComposePostForm form .done-btn:hover {
+  background-color: rgba(24, 119, 242, 0.9);
+}
+
+.ComposePostForm form .done-btn:disabled {
+  pointer-events: none;
+  background-color: rgb(228, 230, 235);
+  color: rgb(188, 188, 188);
+}

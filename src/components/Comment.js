@@ -20,6 +20,10 @@ function Comment() {
   }
 
   function focusTextInput() {
+    textInputRef.current.setSelectionRange(
+      textInputRef.current.value.length,
+      textInputRef.current.value.length
+    );
     textInputRef.current.focus();
   }
 
@@ -29,15 +33,15 @@ function Comment() {
       textInputRef.current.scrollHeight + "px";
   }
 
-  function handleTextInputChanged(e) {
+  function handleTextInputChanged() {
     resizeTextInput();
-    // setPostContent(e.target.value);
   }
 
   function handleEditBtnClicked() {
     setIsEditing(true);
     setTimeout(() => {
       resizeTextInput();
+      focusTextInput();
     }, 1);
   }
 
@@ -50,7 +54,7 @@ function Comment() {
       <a href="">
         <img src={profilePic} className="pfp-small" alt="" />
       </a>
-      <div className={"display" + (isEditing ? " hidden" : null)}>
+      <div className={"display" + (isEditing ? " hidden" : "")}>
         <div>
           <div className="bubble">
             <a href="" className="author-full-name">
@@ -114,14 +118,15 @@ function Comment() {
         <div className="bubble">
           <textarea
             name="edit-message"
-            id="edit-message"
+            className="edit-message"
+            minLength={1}
+            maxLength={1500}
             ref={textInputRef}
             onChange={handleTextInputChanged}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud.
-          </textarea>
+            ad minim veniam, quis nostrud."
+          />
         </div>
         <button className="cancel-btn" onClick={handleCancelBtnClicked}>
           Cancel

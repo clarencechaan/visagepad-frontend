@@ -4,6 +4,7 @@ import dots from "../images/dots.svg";
 import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
 import UserList from "./UserList";
+import ComposePostForm from "./ComposePostForm";
 import { useState, useRef } from "react";
 
 function Post() {
@@ -11,7 +12,8 @@ function Post() {
   const [isLiked, setIsLiked] = useState(false);
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
   const [userListShowm, setUserListShown] = useState(false);
-  const commentInput = useRef(null);
+  const [editPostFormShown, setEditPostFormShown] = useState(false);
+  const commentInputRef = useRef(null);
 
   function handleCommentCountClicked() {
     // show/hide comments section
@@ -33,11 +35,25 @@ function Post() {
   }
 
   function focusCommentInput() {
-    commentInput.current.focus();
+    commentInputRef.current.focus();
   }
 
   function handleLikeCountClicked() {
     setUserListShown(true);
+  }
+
+  function resizeTextInput() {
+    commentInputRef.current.style.minHeight = "0px";
+    commentInputRef.current.style.minHeight =
+      commentInputRef.current.scrollHeight + "px";
+  }
+
+  function handleTextInputChanged() {
+    resizeTextInput();
+  }
+
+  function handleEditBtnClicked() {
+    setEditPostFormShown(true);
   }
 
   return (
@@ -60,11 +76,7 @@ function Post() {
           </button>
           <div className="dropdown" tabIndex={-1}>
             <div className="triangle"></div>
-            <button
-              onClick={(e) => {
-                e.target.blur();
-              }}
-            >
+            <button onClick={handleEditBtnClicked}>
               <PencilSimple className="icon" />
               Edit post
             </button>
@@ -78,6 +90,16 @@ function Post() {
             </button>
           </div>
         </div>
+        {editPostFormShown ? (
+          <ComposePostForm
+            setComposePostFormShown={setEditPostFormShown}
+            editMode={true}
+            postToEdit={{
+              content: "ABC DEF GHI.",
+              imgUrl: "https://i.imgur.com/VCYws7K.jpg",
+            }}
+          />
+        ) : null}
       </div>
       <div className="content">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -152,13 +174,17 @@ function Post() {
           <a href="">
             <img src={profilePic} className="pfp-small" />
           </a>
-          <input
-            type="text"
-            placeholder="Write a comment..."
-            minLength={1}
-            maxLength={1500}
-            ref={commentInput}
-          />
+          <div className="bubble">
+            <textarea
+              name="comment-input"
+              id="comment-input"
+              ref={commentInputRef}
+              onChange={handleTextInputChanged}
+              minLength={1}
+              maxLength={1500}
+              placeholder="Write a comment..."
+            />
+          </div>
         </div>
       </div>
     </div>

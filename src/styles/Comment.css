@@ -35,6 +35,7 @@
 
 .Comment .message {
   margin-top: 2px;
+  line-height: 20px;
 }
 
 .Comment .bubble .like-count {
@@ -189,9 +190,10 @@
   width: 100%;
   min-height: 36px;
   display: flex;
+  align-items: center;
 }
 
-.Comment #edit-message {
+.Comment .edit-message {
   background-color: transparent;
   resize: none;
   font-family: inherit;
@@ -201,8 +203,10 @@
   padding: 0;
   border: none;
   box-sizing: border-box;
+  line-height: 20px;
 }
-.Comment #edit-message:focus {
+
+.Comment .edit-message:focus {
   outline: none;
 }
 
