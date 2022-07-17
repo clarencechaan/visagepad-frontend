@@ -1,5 +1,6 @@
 import "../styles/Post.css";
 import profilePic from "../images/profile-pic.jpeg";
+import photo from "../images/photo-2.jpeg";
 import dots from "../images/dots.svg";
 import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
@@ -108,6 +109,9 @@ function Post() {
         amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
         exercitation ullamco laboris.
+      </div>
+      <div className="photo-container">
+        <img src={photo} alt="" />
       </div>
       <div className="counts">
         <div className="like-count-container">

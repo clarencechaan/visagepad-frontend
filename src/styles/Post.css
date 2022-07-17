@@ -175,6 +175,23 @@
   line-height: 20px;
 }
 
+.Post .photo-container {
+  max-height: 520px;
+  width: calc(100% + 32px);
+  display: flex;
+  justify-content: center;
+  background-color: lightgray;
+  margin-top: 12px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  align-self: center;
+}
+
+.Post .photo-container img {
+  width: 100%;
+  object-fit: contain;
+}
+
 .Post .counts {
   margin-top: 12px;
   display: flex;

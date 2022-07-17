@@ -12,8 +12,8 @@ function App() {
       {/* <Footer /> */}
 
       <NavBar />
-      <Home />
-      {/* <MyFriends /> */}
+      {/* <Home /> */}
+      <MyFriends />
     </div>
   );
 }
