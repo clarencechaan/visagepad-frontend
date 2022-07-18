@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import MyFriends from "./components/MyFriends";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
 
       <NavBar />
       {/* <Home /> */}
-      <MyFriends />
+      {/* <MyFriends /> */}
+      <Profile />
     </div>
   );
 }

@@ -1,0 +1,161 @@
+.Profile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Profile .header {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
+}
+
+.Profile .header .header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.Profile .cover-photo {
+  width: 1250px;
+  height: 463px;
+  background: linear-gradient(rgb(240, 242, 245) 84%, rgb(109, 109, 109));
+  border-radius: 0 0 8px 8px;
+}
+
+.Profile .user {
+  height: 158px;
+  padding: 0 32px 16px 32px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.Profile .user img.pfp {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  object-fit: cover;
+  align-self: flex-end;
+  border: 4px solid white;
+}
+
+.Profile .user .info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 14px 16px;
+  box-sizing: border-box;
+}
+
+.Profile .user .full-name {
+  font-family: "SFUIText-Semibold";
+  font-size: 30px;
+  margin-top: auto;
+}
+
+.Profile .user .friend-count {
+  font-family: "SFUIText-Medium";
+  font-size: 16px;
+  color: rgb(101, 103, 107);
+  margin-top: 6px;
+  text-decoration: none;
+}
+
+.Profile .user .friend-count:hover {
+  text-decoration: underline;
+}
+
+.Profile .user .friends-pfps {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: -2px;
+  line-height: 0;
+}
+
+.Profile .user .friends-pfps img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+  filter: brightness(1);
+}
+
+.Profile .user .friends-pfps img:hover {
+  filter: brightness(0.88);
+}
+
+.Profile .user .friends-pfps a:first-child {
+  margin-right: auto;
+}
+
+.Profile .user .friends-pfps a:not(:first-child) {
+  margin-right: -8px;
+}
+
+.Profile .user .relationship {
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+  column-gap: 8px;
+}
+
+.Profile .user .relationship button {
+  margin-left: auto;
+  height: 36px;
+  padding: 0 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-family: "SFUIText-Medium";
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  transition: 0.2s;
+}
+
+.Profile .user .relationship .add-friend-btn,
+.Profile .user .relationship .cancel-request-btn {
+  background-color: rgb(24, 119, 242);
+  color: white;
+}
+
+.Profile .user .relationship .unfriend-btn {
+  background-color: rgb(242, 24, 119);
+  color: white;
+}
+
+.Profile .user .relationship button .icon {
+  font-size: 18px;
+}
+
+.Profile .user .relationship button:hover {
+  filter: brightness(0.95);
+}
+
+.Profile .user .relationship button:active {
+  filter: brightness(0.9);
+  transform: scale(0.95);
+}
+
+.Profile .user .relationship .is-friend {
+  height: 34px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  font-family: "SFUIText-Medium";
+  font-size: 14px;
+  border: 1px solid rgb(24, 119, 242);
+  border-radius: 6px;
+  margin-left: auto;
+  color: rgb(24, 119, 242);
+}
+
+.Profile .user .relationship .is-friend .icon {
+  font-size: 18px;
+}
