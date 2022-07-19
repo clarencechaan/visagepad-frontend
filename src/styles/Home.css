@@ -4,7 +4,7 @@
   position: relative;
 }
 
-.sidebar {
+.Home .sidebar {
   display: flex;
   flex-direction: column;
   width: 344px;
@@ -16,7 +16,7 @@
   align-self: flex-start;
 }
 
-.me-link {
+.Home .me-link {
   height: 48px;
   border-radius: 8px;
   display: flex;
@@ -27,22 +27,27 @@
   text-decoration: none;
 }
 
-.me-link:hover {
+.Home .me-link:hover {
   background-color: rgb(228, 230, 233);
 }
 
-.me-link:active {
+.Home .me-link:active {
   background-color: rgb(216, 217, 220);
 }
 
-.me-link img {
+.Home .me-link img {
   width: 36px;
   height: 36px;
   object-fit: cover;
   border-radius: 50%;
 }
 
-.me-link .name {
+.Home .me-link .name {
   font-family: "SFUIText-Regular";
   margin-left: 12px;
+}
+
+.Home .home-feed {
+  flex: 1;
+  padding: 28px 0 60px 0;
 }

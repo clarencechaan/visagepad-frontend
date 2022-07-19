@@ -1,11 +1,27 @@
 import "../styles/Profile.css";
 import profilePic from "../images/profile-pic.jpeg";
 import { UserPlus, UserMinus, Check } from "phosphor-react";
+import Feed from "./Feed";
+import { useEffect, useRef } from "react";
 
 function Profile() {
+  const navLinksRef = useRef(null);
+  const intersectionTriggerRef = useRef(null);
+
+  useEffect(() => {
+    const navLinksEl = navLinksRef.current;
+    const intersectionTriggerEl = intersectionTriggerRef.current;
+    const observer = new IntersectionObserver(
+      ([e]) => e.target.classList.toggle("stuck", e.intersectionRatio < 1),
+      { threshold: [1] }
+    );
+
+    observer.observe(intersectionTriggerEl);
+  }, []);
+
   return (
     <div className="Profile">
-      <div className="header">
+      <header>
         <div className="header-content">
           <div className="cover-photo"></div>
           <div className="user">
@@ -62,7 +78,36 @@ function Profile() {
             </div>
           </div>
         </div>
-      </div>
+      </header>
+      <nav className="profile-nav">
+        <div className="intersection-trigger" ref={intersectionTriggerRef} />
+        <div className="nav-content">
+          <div className="nav-links" ref={navLinksRef}>
+            <a href="" className="posts-link selected">
+              Posts
+            </a>
+            <a href="" className="friends-link unselected">
+              Friends
+            </a>
+          </div>
+          <button className="user-jump-to-top-btn">
+            <img src={profilePic} alt="" className="jump-pfp" />
+            <div className="jump-full-name">Clarence Chan</div>
+          </button>
+        </div>
+      </nav>
+      <main>
+        <div className="friends">
+          <div className="top-bar">
+            <a href="" className="title">
+              Friends
+            </a>
+          </div>
+        </div>
+        <div className="profile-feed">
+          <Feed />
+        </div>
+      </main>
     </div>
   );
 }

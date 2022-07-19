@@ -9,27 +9,27 @@
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 }
 
-.third {
+.NavBar .third {
   flex: 1;
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-.middle.third {
+.NavBar .middle.third {
   justify-content: center;
   column-gap: 8px;
 }
 
-.right.third {
+.NavBar .right.third {
   justify-content: flex-end;
   column-gap: 8px;
 }
 
-.logo-small {
+.NavBar .logo-small {
   width: 40px;
   height: 40px;
   background: linear-gradient(rgb(112, 163, 231), rgb(0, 97, 224));
@@ -43,8 +43,8 @@
   text-decoration: none;
 }
 
-.home-link,
-.friends-link {
+.NavBar .home-link,
+.NavBar .friends-link {
   width: 130px;
   display: flex;
   align-items: center;
@@ -52,41 +52,41 @@
   box-sizing: border-box;
 }
 
-.home-link.selected,
-.friends-link.selected {
+.NavBar .home-link.selected,
+.NavBar .friends-link.selected {
   border-bottom: 3px solid rgb(24, 119, 242);
   height: 100%;
 }
 
-.home-link.unselected,
-.friends-link.unselected {
+.NavBar .home-link.unselected,
+.NavBar .friends-link.unselected {
   height: 48px;
   border-radius: 8px;
 }
 
-.home-link.unselected:hover,
-.friends-link.unselected:hover {
+.NavBar .home-link.unselected:hover,
+.NavBar .friends-link.unselected:hover {
   background-color: rgb(245, 246, 247);
 }
 
-.home-link.unselected:active,
-.friends-link.unselected:active {
+.NavBar .home-link.unselected:active,
+.NavBar .friends-link.unselected:active {
   background-color: rgb(232, 232, 232);
 }
 
-.home-link::after {
+.NavBar .home-link::after {
   content: "Home";
 }
 
-.friends-link::after {
+.NavBar .friends-link::after {
   content: "Friends";
 }
 
-.YourProfileBtn > button::after {
+.NavBar .YourProfileBtn > button::after {
   content: "Your profile";
 }
 
-.NavBar .has-tooltip::after {
+.has-tooltip::after {
   top: 60px;
 }
 
@@ -118,6 +118,6 @@
   opacity: 1;
 }
 
-.YourProfileBtn > button::after {
+.NavBar .YourProfileBtn > button::after {
   right: 8px;
 }

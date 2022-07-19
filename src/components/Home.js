@@ -13,7 +13,9 @@ function Home() {
           <div className="name">Clarence Chan</div>
         </a>
       </div>
-      <Feed />
+      <div className="home-feed">
+        <Feed />
+      </div>
       <ContactsSidebar />
     </div>
   );
