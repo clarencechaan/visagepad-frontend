@@ -1,15 +1,15 @@
 import "../styles/Profile.css";
 import profilePic from "../images/profile-pic.jpeg";
 import { UserPlus, UserMinus, Check } from "phosphor-react";
-import Feed from "./Feed";
 import { useEffect, useRef } from "react";
+import ProfilePosts from "./ProfilePosts";
+import ProfileFriends from "./ProfileFriends";
 
 function Profile() {
   const navLinksRef = useRef(null);
   const intersectionTriggerRef = useRef(null);
 
   useEffect(() => {
-    const navLinksEl = navLinksRef.current;
     const intersectionTriggerEl = intersectionTriggerRef.current;
     const observer = new IntersectionObserver(
       ([e]) => e.target.classList.toggle("stuck", e.intersectionRatio < 1),
@@ -18,19 +18,6 @@ function Profile() {
 
     observer.observe(intersectionTriggerEl);
   }, []);
-
-  function friendsSmallItem() {
-    return (
-      <div className="friend-item">
-        <a href="">
-          <img src={profilePic} alt="" className="pfp" />
-        </a>
-        <a href="" className="full-name">
-          Clarence Chan
-        </a>
-      </div>
-    );
-  }
 
   return (
     <div className="Profile">
@@ -109,27 +96,8 @@ function Profile() {
           </button>
         </div>
       </nav>
-      <main>
-        <div className="friends-small ">
-          <div className="top-bar">
-            <div className="upper">
-              <a href="" className="title">
-                Friends
-              </a>
-              <a href="" className="all-friends-link">
-                See all friends
-              </a>
-            </div>
-            <div className="friend-count">41 friends</div>
-          </div>
-          <div className="grid">
-            {[...Array(9)].map((e) => friendsSmallItem())}
-          </div>
-        </div>
-        <div className="profile-feed">
-          <Feed />
-        </div>
-      </main>
+      {/* <ProfilePosts /> */}
+      <ProfileFriends />
     </div>
   );
 }

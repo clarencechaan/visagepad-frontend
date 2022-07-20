@@ -1,0 +1,131 @@
+.ProfileFriends {
+  width: 1186px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.263);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0 24px 0;
+}
+
+.ProfileFriends .top-bar {
+  display: flex;
+}
+
+.ProfileFriends .title {
+  font-family: "SFUIText-Semibold";
+  font-size: 20px;
+  color: black;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.ProfileFriends .title:hover {
+  text-decoration: underline;
+}
+
+.ProfileFriends .search-bar {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(240, 242, 245);
+  height: 36px;
+  width: 205px;
+  border-radius: 18px;
+  box-sizing: border-box;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.ProfileFriends .search-bar .icon {
+  color: gray;
+  font-size: 18px;
+}
+
+.ProfileFriends .search-bar input {
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  flex: 1;
+  font-size: 15px;
+  font-family: inherit;
+  padding: 0;
+  margin-left: 5px;
+}
+
+.ProfileFriends .search-bar input:focus {
+  outline: none;
+}
+
+.ProfileFriends .search-bar input::placeholder {
+  color: rgb(86, 86, 86);
+}
+
+.ProfileFriends .search-bar input:focus::placeholder {
+  color: rgb(145, 145, 145);
+}
+
+.ProfileFriends .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.ProfileFriends .friend-item {
+  height: 116px;
+  border: 1px solid rgb(243, 243, 243);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 16px;
+  column-gap: 16px;
+}
+
+.ProfileFriends .friend-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.ProfileFriends .friend-item img:hover {
+  filter: brightness(0.9);
+}
+
+.ProfileFriends .friend-item > a {
+  line-height: 0;
+}
+
+.ProfileFriends .friend-item .text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ProfileFriends .friend-item .text a {
+  text-decoration: none;
+}
+
+.ProfileFriends .friend-item .text a:hover {
+  text-decoration: underline;
+}
+
+.ProfileFriends .friend-item .full-name {
+  font-family: "SFUIText-Medium";
+  color: black;
+  font-size: 15px;
+}
+
+.ProfileFriends .friend-item .mutual-friend-count {
+  color: rgb(101, 103, 107);
+  font-size: 12px;
+}
+
+.ProfileFriends .friend-item .relationship {
+  margin-left: auto;
+}
