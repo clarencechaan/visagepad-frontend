@@ -294,13 +294,12 @@
   align-items: flex-start;
 }
 
-.Profile main .friends {
+.Profile main .friends-small {
   width: 490px;
-  max-height: 671px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.263);
-  padding: 12px 16px 0 16px;
+  padding: 16px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -308,17 +307,84 @@
   top: 132px;
 }
 
-.Profile .friends .top-bar {
-  margin-top: 3px;
+.Profile .friends-small .top-bar .upper {
+  display: flex;
+  align-items: center;
+  height: 24px;
 }
 
-.Profile .friends .title {
+.Profile .friends-small .title {
   font-family: "SFUIText-Semibold";
   font-size: 20px;
   text-decoration: none;
   color: black;
 }
 
-.Profile .friends .title:hover {
+.Profile .friends-small .title:hover {
+  text-decoration: underline;
+}
+
+.Profile .friends-small .friend-count {
+  font-size: 15px;
+  color: rgb(101, 103, 107);
+  margin-top: 2px;
+}
+
+.Profile .friends-small .all-friends-link {
+  justify-self: flex-end;
+  text-decoration: none;
+  color: rgb(24, 119, 242);
+  font-size: 15px;
+  transition: 0.2s;
+  padding: 7px 10px;
+  margin-left: auto;
+  margin-right: -4px;
+  border-radius: 5px;
+}
+
+.Profile .friends-small .all-friends-link:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.Profile .friends-small .all-friends-link:active {
+  background-color: rgb(230, 230, 230);
+}
+
+.Profile .friends-small .grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+  max-height: 573px;
+  overflow: hidden;
+}
+
+.Profile .friends-small .friend-item {
+  display: flex;
+  flex-direction: column;
+  height: 183px;
+}
+
+.Profile .friends-small .friend-item .pfp {
+  width: 145px;
+  height: 145px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.Profile .friends-small .friend-item .pfp:hover {
+  filter: brightness(0.9);
+}
+
+.Profile .friends-small .friend-item .full-name {
+  text-decoration: none;
+  font-size: 12px;
+  font-family: "SFUIText-Medium";
+  color: black;
+  margin-top: 2px;
+}
+
+.Profile .friends-small .friend-item .full-name:hover {
   text-decoration: underline;
 }

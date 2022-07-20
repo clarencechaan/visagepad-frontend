@@ -19,6 +19,19 @@ function Profile() {
     observer.observe(intersectionTriggerEl);
   }, []);
 
+  function friendsSmallItem() {
+    return (
+      <div className="friend-item">
+        <a href="">
+          <img src={profilePic} alt="" className="pfp" />
+        </a>
+        <a href="" className="full-name">
+          Clarence Chan
+        </a>
+      </div>
+    );
+  }
+
   return (
     <div className="Profile">
       <header>
@@ -97,11 +110,20 @@ function Profile() {
         </div>
       </nav>
       <main>
-        <div className="friends">
+        <div className="friends-small ">
           <div className="top-bar">
-            <a href="" className="title">
-              Friends
-            </a>
+            <div className="upper">
+              <a href="" className="title">
+                Friends
+              </a>
+              <a href="" className="all-friends-link">
+                See all friends
+              </a>
+            </div>
+            <div className="friend-count">41 friends</div>
+          </div>
+          <div className="grid">
+            {[...Array(9)].map((e) => friendsSmallItem())}
           </div>
         </div>
         <div className="profile-feed">
