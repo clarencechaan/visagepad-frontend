@@ -48,7 +48,7 @@ function ProfileFriends() {
           <input type="text" placeholder="Search" />
         </div>
       </div>
-      <div className="grid"> {[...Array(18)].map((e) => friendItem())}</div>
+      <div className="grid">{[...Array(17)].map((e) => friendItem())}</div>
     </div>
   );
 }
