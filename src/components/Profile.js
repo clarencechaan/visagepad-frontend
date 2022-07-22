@@ -1,6 +1,6 @@
 import "../styles/Profile.css";
 import profilePic from "../images/profile-pic.jpeg";
-import { UserPlus, UserMinus, Check } from "phosphor-react";
+import { UserPlus, UserMinus, Check, Camera } from "phosphor-react";
 import { useEffect, useRef } from "react";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFriends from "./ProfileFriends";
@@ -23,9 +23,24 @@ function Profile() {
     <div className="Profile">
       <header>
         <div className="header-content">
-          <div className="cover-photo"></div>
+          <div className="cover-photo">
+            <label htmlFor="cover-input" id="cover-label">
+              <img src="https://i.imgur.com/lpz9lAS.jpeg" alt="" />
+              <div htmlFor="cover-input" className="add-cover-btn">
+                <Camera className="icon" weight="bold" />
+                Add Cover Photo
+              </div>
+            </label>
+            <input type="file" id="cover-input" hidden />
+          </div>
           <div className="user">
-            <img src={profilePic} alt="" className="pfp" />
+            <label className="pfp-label">
+              <img src={profilePic} alt="" className="pfp" />
+              <div className="camera">
+                <Camera className="icon" weight="bold" />
+              </div>
+              <input type="file" hidden />
+            </label>
             <div className="info">
               <div className="full-name">Clarence Chan</div>
               <a href="" className="friend-count">
@@ -96,8 +111,8 @@ function Profile() {
           </button>
         </div>
       </nav>
-      {/* <ProfilePosts /> */}
-      <ProfileFriends />
+      <ProfilePosts />
+      {/* <ProfileFriends /> */}
     </div>
   );
 }

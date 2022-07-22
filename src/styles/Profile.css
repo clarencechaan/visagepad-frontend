@@ -50,6 +50,61 @@
   height: 463px;
   background: linear-gradient(rgb(240, 242, 245) 84%, rgb(109, 109, 109));
   border-radius: 0 0 8px 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.Profile .cover-photo label {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+}
+
+.Profile .cover-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+.Profile .cover-photo .add-cover-btn {
+  width: 159px;
+  height: 36px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 16px;
+  right: 32px;
+  border-radius: 6px;
+  font-family: "SFUIText-Medium";
+  font-size: 14px;
+  column-gap: 4px;
+  position: absolute;
+  z-index: 1;
+}
+
+.Profile .cover-photo .add-cover-btn:hover {
+  background-color: rgb(242, 242, 242);
+}
+
+.Profile .cover-photo .add-cover-btn:active {
+  background-color: rgb(229, 229, 228);
+  transform: scale(0.96);
+}
+
+.Profile .cover-photo .add-cover-btn .icon {
+  font-size: 18px;
+}
+
+.Profile .cover-photo img {
+  width: 100%;
+  height: 100%;
 }
 
 .Profile .user {
@@ -59,19 +114,63 @@
   display: flex;
 }
 
+.Profile .user .pfp-label {
+  align-self: flex-end;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  border-radius: 50%;
+  padding: 4px;
+  background-color: white;
+}
+
 .Profile .user img.pfp {
   width: 168px;
   height: 168px;
   border-radius: 50%;
   object-fit: cover;
-  align-self: flex-end;
-  border: 4px solid white;
+}
+
+.Profile .user img.pfp:hover {
+  filter: brightness(0.9);
+}
+
+.Profile .user img.pfp:active {
+  filter: brightness(0.8);
+  transform: scale(0.97);
+}
+
+.Profile .user .camera {
+  position: absolute;
+  right: 11px;
+  bottom: 11px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgb(228, 230, 235);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Profile .user .camera:hover {
+  background-color: rgb(216, 218, 222);
+}
+
+.Profile .user .camera:active {
+  background-color: rgb(203, 207, 211);
+  transform: scale(0.95);
+}
+
+.Profile .user .pfp-label .icon {
+  font-size: 23px;
 }
 
 .Profile .user .info {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   padding: 0 16px 14px 16px;
   box-sizing: border-box;
 }
@@ -103,17 +202,24 @@
   line-height: 0;
 }
 
+.Profile .user .friends-pfps a {
+  background-color: white;
+  padding: 2px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
 .Profile .user .friends-pfps img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid white;
   object-fit: cover;
   filter: brightness(1);
 }
 
-.Profile .user .friends-pfps img:hover {
-  filter: brightness(0.88);
+.Profile .user .friends-pfps img:active {
+  filter: brightness(0.8);
+  transform: scale(0.95);
 }
 
 .Profile .user .friends-pfps a:not(:first-child) {
