@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/ProfilePosts.css";
 import profilePic from "../images/profile-pic.jpeg";
 import Feed from "./Feed";
@@ -6,12 +7,12 @@ function ProfilePosts() {
   function friendsSmallItem() {
     return (
       <div className="friend-item">
-        <a href="">
+        <Link to="/profile/:userId">
           <img src={profilePic} alt="" className="pfp" />
-        </a>
-        <a href="" className="full-name">
+        </Link>
+        <Link to="/profile/:userId" className="full-name">
           Clarence Chan
-        </a>
+        </Link>
       </div>
     );
   }
@@ -21,12 +22,12 @@ function ProfilePosts() {
       <div className="friends-small ">
         <div className="top-bar">
           <div className="upper">
-            <a href="" className="title">
+            <Link to="/profile/:userId/friends" className="title">
               Friends
-            </a>
-            <a href="" className="all-friends-link">
+            </Link>
+            <Link to="/profile/:userId/friends" className="all-friends-link">
               See all friends
-            </a>
+            </Link>
           </div>
           <div className="friend-count">41 friends</div>
         </div>

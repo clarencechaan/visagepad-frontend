@@ -60,34 +60,34 @@ function Profile() {
             </label>
             <div className="info">
               <div className="full-name">Clarence Chan</div>
-              <a href="" className="friend-count">
+              <Link to="/profile/:userId/friends" className="friend-count">
                 41 friends
-              </a>
+              </Link>
               <div className="friends-pfps">
-                <a href="">
+                <Link to="/profile/:userId">
                   <img src={profilePic} alt="" />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/profile/:userId">
                   <img src={profilePic} alt="" />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/profile/:userId">
                   <img src={profilePic} alt="" />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/profile/:userId">
                   <img src={profilePic} alt="" />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/profile/:userId">
                   <img src={profilePic} alt="" />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/profile/:userId">
                   <img src={profilePic} alt="" />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/profile/:userId">
                   <img src={profilePic} alt="" />
-                </a>
-                <a href="">
+                </Link>
+                <Link to="/profile/:userId">
                   <img src={profilePic} alt="" />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="relationship">

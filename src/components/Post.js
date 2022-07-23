@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/Post.css";
 import profilePic from "../images/profile-pic.jpeg";
 import photo from "../images/photo-2.jpeg";
@@ -65,16 +66,16 @@ function Post() {
   return (
     <div className="Post">
       <div className="info-bar">
-        <a href="" className="author-profile-pic">
+        <Link to="/profile/:userId" className="author-profile-pic">
           <img src={profilePic} alt="" />
-        </a>
+        </Link>
         <div>
-          <a href="" className="full-name">
+          <Link to="/profile/:userId" className="full-name">
             Clarence Chan
-          </a>
-          <a href="" className="time-ago has-tooltip">
+          </Link>
+          <div href="" className="time-ago has-tooltip">
             11m
-          </a>
+          </div>
         </div>
         <div className="more-options">
           <button>
@@ -180,9 +181,9 @@ function Post() {
           <Comment />
         </div>
         <div className="comment-bar">
-          <a href="">
+          <Link to="/profile/:userId">
             <img src={profilePic} className="pfp-small" />
-          </a>
+          </Link>
           <div className="bubble">
             <textarea
               name="comment-input"

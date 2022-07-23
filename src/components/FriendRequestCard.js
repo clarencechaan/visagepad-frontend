@@ -1,16 +1,17 @@
+import { Link } from "react-router-dom";
 import "../styles/FriendRequestCard.css";
 import profilePic from "../images/profile-pic.jpeg";
 
 function FriendRequestCard() {
   return (
     <div className="FriendRequestCard">
-      <a href="" className="pfp-anchor">
+      <Link to="/profile/:userId" className="pfp-anchor">
         <img src={profilePic} alt="" className="pfp" />
-      </a>
+      </Link>
       <div className="details">
-        <a href="" className="full-name">
+        <Link to="/profile/:userId" className="full-name">
           Clarence Chan
-        </a>
+        </Link>
         <div className="mutual-friends">
           <div className="pfps">
             <img src={profilePic} alt="" className="mutual-pfp" />

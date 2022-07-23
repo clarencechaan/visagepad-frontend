@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/NewPostBtn.css";
 import profilePic from "../images/profile-pic.jpeg";
 import { useState } from "react";
@@ -12,9 +13,9 @@ function NewPostBtn() {
 
   return (
     <div className="NewPostBtn">
-      <a href="">
+      <Link to="/profile/:userId">
         <img src={profilePic} alt="" className="new-post-btn-pfp" />
-      </a>
+      </Link>
       <div className="new-post-form-container">
         <button
           type="button"

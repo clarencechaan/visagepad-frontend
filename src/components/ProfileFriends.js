@@ -1,4 +1,5 @@
 import "../styles/ProfileFriends.css";
+import { Link } from "react-router-dom";
 import { MagnifyingGlass, UserPlus, UserMinus, Check } from "phosphor-react";
 import profilePic from "../images/profile-pic.jpeg";
 
@@ -6,16 +7,16 @@ function ProfileFriends() {
   function friendItem() {
     return (
       <div className="friend-item">
-        <a href="">
+        <Link to="/profile/:userId">
           <img src={profilePic} alt="" />
-        </a>
+        </Link>
         <div className="text">
-          <a href="" className="full-name">
+          <Link to="/profile/:userId" className="full-name">
             Clarence Chan
-          </a>
-          <a href="" className="mutual-friend-count">
+          </Link>
+          <Link to="/profile/:userId/friends" className="mutual-friend-count">
             19 mutual friends
-          </a>
+          </Link>
         </div>
         <div className="relationship">
           <button className="add-friend-btn">

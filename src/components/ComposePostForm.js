@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/ComposePostForm.css";
 import Throbber from "./Throbber";
 import profilePic from "../images/profile-pic.jpeg";
@@ -109,9 +110,9 @@ function ComposePostForm({
           <div className="title">{editMode ? "Edit post" : "Create post"}</div>
         </div>
         <div className="author-bar">
-          <a href="">
+          <Link to="/profile/:userId">
             <img src={profilePic} alt="" className="pfp" />
-          </a>
+          </Link>
           <div className="text">
             <div className="surtitle">posting as</div>
             <div className="full-name">Clarence Chan</div>

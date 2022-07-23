@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/UserListItem.css";
 import profilePic from "../images/profile-pic.jpeg";
 import { UserPlus, UserMinus, Check } from "phosphor-react";
@@ -5,12 +6,12 @@ import { UserPlus, UserMinus, Check } from "phosphor-react";
 function UserListItem() {
   return (
     <div className="UserListItem">
-      <a href="">
+      <Link to="/profile/:userId">
         <img src={profilePic} alt="" className="pfp" />
-      </a>
-      <a href="" className="full-name">
+      </Link>
+      <Link to="/profile/:userId" className="full-name">
         Clarence Chan
-      </a>
+      </Link>
       <button className="add-friend-btn hidden">
         <UserPlus weight="fill" className="icon" />
         Add Friend

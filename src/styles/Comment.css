@@ -125,10 +125,6 @@
   transition-delay: 0.5s;
 }
 
-.Comment .comment-btns .time-ago:hover {
-  text-decoration: underline;
-}
-
 .Comment .more-options {
   display: flex;
   justify-content: center;

@@ -1,5 +1,5 @@
+import { Link } from "react-router-dom";
 import "../styles/Home.css";
-import NavBar from "./NavBar";
 import Feed from "./Feed";
 import ContactsSidebar from "./ContactsSidebar";
 import profilePic from "../images/profile-pic.jpeg";
@@ -8,10 +8,10 @@ function Home() {
   return (
     <div className="Home">
       <div className="sidebar">
-        <a href="" className="me-link">
+        <Link to="/profile/:userId" className="me-link">
           <img src={profilePic} alt="" />
           <div className="name">Clarence Chan</div>
-        </a>
+        </Link>
       </div>
       <div className="home-feed">
         <Feed />

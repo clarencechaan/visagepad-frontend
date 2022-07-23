@@ -59,10 +59,6 @@
   margin-top: 2px;
 }
 
-.Post .info-bar .time-ago:hover {
-  text-decoration: underline;
-}
-
 .Post .info-bar .time-ago::after {
   content: "Tuesday, July 5, 2022 at 6:19 PM";
   top: 18px;

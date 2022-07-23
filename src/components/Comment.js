@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/Comment.css";
 import profilePic from "../images/profile-pic.jpeg";
 import dots from "../images/dots.svg";
@@ -51,15 +52,15 @@ function Comment() {
 
   return (
     <div className="Comment">
-      <a href="">
+      <Link to="/profile/:userId">
         <img src={profilePic} className="pfp-small" alt="" />
-      </a>
+      </Link>
       <div className={"display" + (isEditing ? " hidden" : "")}>
         <div>
           <div className="bubble">
-            <a href="" className="author-full-name">
+            <Link to="/profile/:userId" className="author-full-name">
               Clarence Chan
-            </a>
+            </Link>
             <div className="message">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -109,9 +110,7 @@ function Comment() {
           >
             Like
           </button>
-          <a href="" className="time-ago has-tooltip">
-            24m
-          </a>
+          <div className="time-ago has-tooltip">24m</div>
         </div>
       </div>
       <div className={"editing" + (isEditing ? "" : " hidden")}>
