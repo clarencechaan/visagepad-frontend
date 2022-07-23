@@ -50,12 +50,14 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  border-bottom: 3px solid transparent;
+  min-height: 100%;
+  transition: 0.2s;
 }
 
 .NavBar .home-link.selected,
 .NavBar .friends-link.selected {
   border-bottom: 3px solid rgb(24, 119, 242);
-  height: 100%;
 }
 
 .NavBar .home-link.unselected,
@@ -86,7 +88,7 @@
   content: "Your profile";
 }
 
-.has-tooltip::after {
+.NavBar .has-tooltip::after {
   top: 60px;
 }
 

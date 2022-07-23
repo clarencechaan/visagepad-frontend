@@ -42,7 +42,7 @@ function ProfileFriends() {
   return (
     <div className="ProfileFriends">
       <div className="top-bar">
-        <button className="title">Friends</button>
+        <button className="title">All Friends</button>
         <div className="search-bar">
           <MagnifyingGlass className="icon" />
           <input type="text" placeholder="Search" />

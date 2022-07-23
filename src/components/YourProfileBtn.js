@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+import { SignOut } from "phosphor-react";
 import "../styles/NavBar.css";
 import "../styles/YourProfileBtn.css";
 import profilePic from "../images/profile-pic.jpeg";
-import { SignOut } from "phosphor-react";
+import { smoothScrollToTop } from "../scripts/scripts";
 
 function YourProfileBtn() {
   return (
@@ -11,10 +13,17 @@ function YourProfileBtn() {
       </button>
       <div className="window">
         <div className="user">
-          <a href="" className="link">
+          <Link
+            to="/profile/:userId"
+            className="link"
+            onClick={() => {
+              document.activeElement.blur();
+              smoothScrollToTop();
+            }}
+          >
             <img src={profilePic} alt="" />
             <div className="name">Clarence Chan</div>
-          </a>
+          </Link>
         </div>
         <a href="" className="log-out-link">
           <div className="icon">

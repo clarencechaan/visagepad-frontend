@@ -36,7 +36,12 @@ function Post() {
   }
 
   function focusCommentInput() {
-    commentInputRef.current.focus();
+    commentInputRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "center",
+    });
+    commentInputRef.current.focus({ preventScroll: true });
   }
 
   function handleLikeCountClicked() {
