@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setUser, setToken } from "../slices/meSlice";
 import "../styles/LogIn.css";
 import SignUpForm from "./SignUpForm";
 
 function LogIn() {
+  const me = useSelector((state) => state.me);
+  const dispatch = useDispatch();
   const [loginMessage, setLoginMessage] = useState("");
 
   async function login(username, password) {
+    console.log(me);
     const method = "POST";
     const url = process.env.REACT_APP_API_BASE_URL + "/auth/login";
     const headers = {
@@ -15,9 +20,9 @@ function LogIn() {
     const response = await fetch(url, { method, headers, body });
     const resObj = await response.json();
     if (resObj.user) {
-      console.log(resObj.user, resObj.token);
+      dispatch(setUser(resObj.user));
+      dispatch(setToken(resObj.token));
     } else {
-      console.log(resObj.info);
       setLoginMessage(resObj.info);
     }
   }
