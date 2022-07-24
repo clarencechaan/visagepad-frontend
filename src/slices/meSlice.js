@@ -10,9 +10,13 @@ export const meSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
+    clearMe: (state) => {
+      state.user = {};
+      state.token = "";
+    },
   },
 });
 
-export const { setUser, setToken } = meSlice.actions;
+export const { setUser, setToken, clearMe } = meSlice.actions;
 
 export default meSlice.reducer;

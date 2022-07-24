@@ -24,8 +24,11 @@
   font-size: 28px;
 }
 
-.LogIn > .window {
-  margin-left: 80px;
+.LogIn .window-container {
+  padding-left: 80px;
+}
+
+.LogIn .log-in-window {
   width: 396px;
   min-height: 300px;
   background-color: white;
@@ -35,10 +38,9 @@
   border-radius: 8px;
   box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
-  position: relative;
 }
 
-.LogIn > .window > form {
+.LogIn .log-in-window > form {
   display: flex;
   flex-direction: column;
 }
@@ -68,7 +70,7 @@
 }
 
 .LogIn .log-in-form .log-in-btn,
-.LogIn > .window .new-account-btn {
+.LogIn .log-in-window .new-account-btn {
   height: 48px;
   border: none;
   border-radius: 5px;
@@ -94,33 +96,31 @@
   transform: scale(0.97);
 }
 
-.LogIn .log-in-form .login-message {
-  position: absolute;
-  bottom: -32px;
-  left: 0;
+.LogIn .login-message {
+  margin-top: 16px;
   color: red;
 }
 
-.LogIn > .window .new-account-container {
+.LogIn .log-in-window .new-account-container {
   align-self: center;
 }
 
-.LogIn > .window .new-account-container:focus-within .SignUpForm {
+.LogIn .log-in-window .new-account-container:focus-within .SignUpForm {
   visibility: visible;
 }
 
-.LogIn > .window .new-account-btn {
+.LogIn .log-in-window .new-account-btn {
   background-color: rgb(66, 183, 42);
   color: white;
   font-size: 16px;
   padding: 0 20px;
 }
 
-.LogIn > .window .new-account-btn:hover {
+.LogIn .log-in-window .new-account-btn:hover {
   background-color: rgba(66, 183, 42, 0.9);
 }
 
-.LogIn > .window .new-account-btn:active {
+.LogIn .log-in-window .new-account-btn:active {
   background-color: rgba(66, 183, 42, 0.8);
   transform: scale(0.97);
 }

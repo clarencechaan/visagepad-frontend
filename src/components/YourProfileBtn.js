@@ -1,15 +1,28 @@
+import { useSelector, useDispatch } from "react-redux";
+import { clearMe } from "../slices/meSlice";
 import { Link } from "react-router-dom";
 import { SignOut } from "phosphor-react";
 import "../styles/NavBar.css";
 import "../styles/YourProfileBtn.css";
-import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
 import { smoothScrollToTop } from "../scripts/scripts";
 
 function YourProfileBtn() {
+  const me = useSelector((state) => state.me);
+  const dispatch = useDispatch();
+
+  function handleLogOutBtnClicked() {
+    // clear me from state
+    dispatch(clearMe());
+
+    // clear me from localstorage
+    localStorage.removeItem("me");
+  }
+
   return (
     <div className="YourProfileBtn" tabIndex={-1}>
       <button className="has-tooltip">
-        <img src={profilePic} alt="" />
+        <img src={me.user.pfp || blankUser} alt="" />
       </button>
       <div className="window">
         <div className="user">
@@ -21,16 +34,16 @@ function YourProfileBtn() {
               smoothScrollToTop();
             }}
           >
-            <img src={profilePic} alt="" />
-            <div className="name">Clarence Chan</div>
+            <img src={me.user.pfp || blankUser} alt="" />
+            <div className="name">{`${me.user.first_name} ${me.user.last_name}`}</div>
           </Link>
         </div>
-        <a href="" className="log-out-link">
+        <button className="log-out-btn" onClick={handleLogOutBtnClicked}>
           <div className="icon">
             <SignOut />
           </div>
           <span>Log Out</span>
-        </a>
+        </button>
       </div>
     </div>
   );

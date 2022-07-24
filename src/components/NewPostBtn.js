@@ -1,10 +1,12 @@
+import { useSelector } from "react-redux";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/NewPostBtn.css";
-import profilePic from "../images/profile-pic.jpeg";
-import { useState } from "react";
+import blankUser from "../images/blank-user.png";
 import ComposePostForm from "./ComposePostForm";
 
 function NewPostBtn() {
+  const me = useSelector((state) => state.me);
   const [newPostFormShown, setNewPostFormShown] = useState(false);
 
   function handleNewPostBtnClicked() {
@@ -14,7 +16,11 @@ function NewPostBtn() {
   return (
     <div className="NewPostBtn">
       <Link to="/profile/:userId">
-        <img src={profilePic} alt="" className="new-post-btn-pfp" />
+        <img
+          src={me.user.pfp || blankUser}
+          alt=""
+          className="new-post-btn-pfp"
+        />
       </Link>
       <div className="new-post-form-container">
         <button
@@ -22,7 +28,7 @@ function NewPostBtn() {
           className="new-post-btn"
           onClick={handleNewPostBtnClicked}
         >
-          What's on your mind, Clarence?
+          {`What's on your mind, ${me.user.first_name}?`}
         </button>
         <ComposePostForm
           setComposePostFormShown={setNewPostFormShown}
