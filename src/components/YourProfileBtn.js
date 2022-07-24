@@ -38,12 +38,12 @@ function YourProfileBtn() {
             <div className="name">{`${me.user.first_name} ${me.user.last_name}`}</div>
           </Link>
         </div>
-        <button className="log-out-btn" onClick={handleLogOutBtnClicked}>
+        <Link to="/" className="log-out-link" onClick={handleLogOutBtnClicked}>
           <div className="icon">
             <SignOut />
           </div>
           <span>Log Out</span>
-        </button>
+        </Link>
       </div>
     </div>
   );

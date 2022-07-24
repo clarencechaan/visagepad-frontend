@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../slices/meSlice";
 import "../styles/LogIn.css";
 import SignUpForm from "./SignUpForm";
 
 function LogIn() {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
 
   useEffect(() => {
@@ -19,21 +20,29 @@ function LogIn() {
   }, []);
 
   async function login(username, password) {
+    setIsLoading(true);
+
     const method = "POST";
     const url = process.env.REACT_APP_API_BASE_URL + "/auth/login";
     const headers = {
       "Content-Type": "application/json",
     };
     const body = JSON.stringify({ username, password });
-    const response = await fetch(url, { method, headers, body });
-    const resObj = await response.json();
-    if (resObj.user) {
-      dispatch(setUser(resObj.user));
-      dispatch(setToken(resObj.token));
-      saveMeToLocalStorage({ user: resObj.user, token: resObj.token });
-    } else {
-      setLoginMessage(resObj.info);
+    try {
+      const response = await fetch(url, { method, headers, body });
+      const resObj = await response.json();
+      if (resObj.user) {
+        dispatch(setUser(resObj.user));
+        dispatch(setToken(resObj.token));
+        saveMeToLocalStorage({ user: resObj.user, token: resObj.token });
+      } else {
+        setLoginMessage(resObj.info);
+      }
+    } catch (error) {
+      console.log("error", error);
     }
+
+    setIsLoading(false);
   }
 
   function handleFormSubmitted(e) {
@@ -67,7 +76,7 @@ function LogIn() {
         </div>
       </div>
       <div className="window-container">
-        <div className="log-in-window">
+        <div className={"log-in-window" + (isLoading ? " disabled" : "")}>
           <form
             action=""
             className="log-in-form"

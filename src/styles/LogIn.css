@@ -125,6 +125,14 @@
   transform: scale(0.97);
 }
 
+.LogIn .log-in-window.disabled {
+  pointer-events: none;
+}
+
+.LogIn .log-in-window.disabled > * {
+  opacity: 0.3;
+}
+
 .LogIn .divider {
   height: 1px;
   background-color: lightgray;

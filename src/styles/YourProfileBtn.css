@@ -66,12 +66,12 @@
 }
 
 .YourProfileBtn .window .user .link:hover,
-.YourProfileBtn .window .log-out-btn:hover {
+.YourProfileBtn .window .log-out-link:hover {
   background-color: rgb(243, 243, 243);
 }
 
 .YourProfileBtn .window .user .link:active,
-.YourProfileBtn .window .log-out-btn:active {
+.YourProfileBtn .window .log-out-link:active {
   background-color: rgb(229, 229, 229);
 }
 
@@ -90,20 +90,18 @@
   margin-left: 8px;
 }
 
-.YourProfileBtn .window .log-out-btn {
+.YourProfileBtn .window .log-out-link {
   color: black;
+  text-decoration: none;
   display: flex;
   align-items: center;
   margin: 4px 8px 8px 8px;
   padding: 6px 8px;
   box-sizing: border-box;
   border-radius: 8px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
 }
 
-.YourProfileBtn .window .log-out-btn .icon {
+.YourProfileBtn .window .log-out-link .icon {
   background-color: rgb(228, 230, 235);
   width: 36px;
   height: 36px;
@@ -114,7 +112,7 @@
   font-size: 22px;
 }
 
-.YourProfileBtn .window .log-out-btn span {
+.YourProfileBtn .window .log-out-link span {
   margin-left: 10px;
   font-family: "SFUIText-Regular";
 }
