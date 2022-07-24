@@ -8,21 +8,30 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import MyFriends from "./components/MyFriends";
 import Profile from "./components/Profile";
+import { useState } from "react";
 
 function App() {
+  const [me, setMe] = useState({});
+
+  // return Home or LogIn page depending on whether me object is empty
+  const index =
+    Object.keys(me).length === 0 ? (
+      <>
+        <LogIn />
+        <Footer />
+      </>
+    ) : (
+      <>
+        <NavBar />
+        <Home />
+      </>
+    );
+
   return (
     <div className="App">
       <ScrollToTop />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <NavBar />
-              <Home />
-            </>
-          }
-        />
+        <Route path="/" element={index} />
         <Route
           path="/my-friends"
           element={
