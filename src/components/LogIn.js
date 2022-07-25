@@ -1,22 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../slices/meSlice";
 import "../styles/LogIn.css";
 import SignUpForm from "./SignUpForm";
 
-function LogIn() {
+function LogIn({ fetchContacts }) {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
-
-  useEffect(() => {
-    // log in automatically if user found in localstorage
-    const localStorageMe = getMeFromLocalStorage();
-    if (localStorageMe) {
-      dispatch(setUser(localStorageMe.user));
-      dispatch(setToken(localStorageMe.token));
-    }
-  }, []);
 
   async function login(username, password) {
     setIsLoading(true);
@@ -33,6 +24,7 @@ function LogIn() {
       if (resObj.user) {
         dispatch(setUser(resObj.user));
         dispatch(setToken(resObj.token));
+        fetchContacts(resObj.user._id);
         saveMeToLocalStorage({ user: resObj.user, token: resObj.token });
       } else {
         setLoginMessage(resObj.info);
@@ -60,10 +52,6 @@ function LogIn() {
 
   function saveMeToLocalStorage(me) {
     localStorage.setItem("me", JSON.stringify(me));
-  }
-
-  function getMeFromLocalStorage() {
-    return JSON.parse(localStorage.getItem("me"));
   }
 
   return (

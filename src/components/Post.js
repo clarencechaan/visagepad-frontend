@@ -2,23 +2,40 @@ import { useSelector } from "react-redux";
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Post.css";
-import profilePic from "../images/profile-pic.jpeg";
 import blankUser from "../images/blank-user.png";
-import photo from "../images/photo-2.jpeg";
 import dots from "../images/dots.svg";
 import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
 import UserList from "./UserList";
 import ComposePostForm from "./ComposePostForm";
+import { useEffect } from "react";
 
-function Post() {
+function Post({ post }) {
   const me = useSelector((state) => state.me);
+  const [author, setAuthor] = useState({ first_name: "", last_name: "" });
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
   const [userListShowm, setUserListShown] = useState(false);
   const [editPostFormShown, setEditPostFormShown] = useState(false);
   const commentInputRef = useRef(null);
+
+  useEffect(() => {
+    fetchAuthor();
+  }, []);
+
+  async function fetchAuthor() {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${post.author}`;
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (resObj._id) {
+        setAuthor(resObj);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   function handleCommentCountClicked() {
     // show/hide comments section
@@ -70,11 +87,11 @@ function Post() {
     <div className="Post">
       <div className="info-bar">
         <Link to="/profile/:userId" className="author-profile-pic">
-          <img src={profilePic} alt="" />
+          <img src={author.pfp || blankUser} alt="" />
         </Link>
         <div>
           <Link to="/profile/:userId" className="full-name">
-            Clarence Chan
+            {`${author.first_name} ${author.last_name}`}
           </Link>
           <div href="" className="time-ago has-tooltip">
             11m
@@ -111,17 +128,12 @@ function Post() {
           />
         ) : null}
       </div>
-      <div className="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris. Lorem ipsum dolor sit
-        amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris.
-      </div>
-      <div className="photo-container">
-        <img src={photo} alt="" />
-      </div>
+      <div className="content">{post.content}</div>
+      {post.img_url ? (
+        <div className="photo-container">
+          <img src={post.img_url} alt="" />
+        </div>
+      ) : null}
       <div className="counts">
         <div className="like-count-container">
           <button

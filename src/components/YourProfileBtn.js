@@ -27,7 +27,7 @@ function YourProfileBtn() {
       <div className="window">
         <div className="user">
           <Link
-            to="/profile/:userId"
+            to={`/profile/${me.user._id}`}
             className="link"
             onClick={() => {
               document.activeElement.blur();

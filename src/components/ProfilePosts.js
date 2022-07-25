@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../styles/ProfilePosts.css";
 import profilePic from "../images/profile-pic.jpeg";
 import Feed from "./Feed";
 
 function ProfilePosts() {
+  const { userId } = useParams();
+
   function friendsSmallItem() {
     return (
       <div className="friend-item">
@@ -22,10 +24,13 @@ function ProfilePosts() {
       <div className="friends-small ">
         <div className="top-bar">
           <div className="upper">
-            <Link to="/profile/:userId/friends" className="title">
+            <Link to={`/profile/${userId}/friends`} className="title">
               Friends
             </Link>
-            <Link to="/profile/:userId/friends" className="all-friends-link">
+            <Link
+              to={`/profile/${userId}/friends`}
+              className="all-friends-link"
+            >
               See all friends
             </Link>
           </div>

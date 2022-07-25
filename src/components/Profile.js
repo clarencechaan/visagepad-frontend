@@ -1,6 +1,7 @@
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation, useParams } from "react-router-dom";
 import "../styles/Profile.css";
 import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
 import { UserPlus, UserMinus, Check, Camera } from "phosphor-react";
 import { useEffect, useRef, useState } from "react";
 import ProfilePosts from "./ProfilePosts";
@@ -9,7 +10,10 @@ import { smoothScrollToTop } from "../scripts/scripts";
 
 function Profile() {
   const { pathname } = useLocation();
+  const { userId } = useParams();
   const [selected, setSelected] = useState("");
+  const [user, setUser] = useState({ first_name: "", last_name: "" });
+  const [friendsList, setFriendsList] = useState([]);
   const navLinksRef = useRef(null);
   const intersectionTriggerRef = useRef(null);
 
@@ -21,7 +25,26 @@ function Profile() {
     );
 
     observer.observe(intersectionTriggerEl);
+
+    fetchUser();
   }, []);
+
+  useEffect(() => {
+    fetchUser();
+  }, [pathname]);
+
+  async function fetchUser() {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}`;
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (resObj._id) {
+        setUser(resObj);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   useEffect(() => {
     if (pathname.includes("friends")) {
@@ -37,7 +60,7 @@ function Profile() {
         <div className="header-content">
           <div className="cover-photo">
             <label htmlFor="cover-input" id="cover-label">
-              <img src="https://i.imgur.com/lpz9lAS.jpeg" alt="" />
+              <img src={user.cover} alt="" />
               <div htmlFor="cover-input" className="add-cover-btn">
                 <Camera className="icon" weight="bold" />
                 Add Cover Photo
@@ -52,15 +75,15 @@ function Profile() {
           </div>
           <div className="user">
             <label className="pfp-label">
-              <img src={profilePic} alt="" className="pfp" />
+              <img src={user.pfp || blankUser} alt="" className="pfp" />
               <div className="camera">
                 <Camera className="icon" weight="bold" />
               </div>
               <input type="file" accept="image/png, image/jpeg" hidden />
             </label>
             <div className="info">
-              <div className="full-name">Clarence Chan</div>
-              <Link to="/profile/:userId/friends" className="friend-count">
+              <div className="full-name">{`${user.first_name} ${user.last_name}`}</div>
+              <Link to={`/profile/${userId}/friends`} className="friend-count">
                 41 friends
               </Link>
               <div className="friends-pfps">
@@ -116,7 +139,7 @@ function Profile() {
         <div className="nav-content">
           <div className="nav-links" ref={navLinksRef}>
             <Link
-              to="/profile/:userId"
+              to={`/profile/${userId}`}
               className={
                 "posts-link" +
                 (selected === "posts" ? " selected" : " unselected")
@@ -125,7 +148,7 @@ function Profile() {
               Posts
             </Link>
             <Link
-              to="/profile/:userId/friends"
+              to={`/profile/${userId}/friends`}
               className={
                 "friends-link" +
                 (selected === "friends" ? " selected" : " unselected")
@@ -135,8 +158,8 @@ function Profile() {
             </Link>
           </div>
           <button className="user-jump-to-top-btn" onClick={smoothScrollToTop}>
-            <img src={profilePic} alt="" className="jump-pfp" />
-            <div className="jump-full-name">Clarence Chan</div>
+            <img src={user.pfp || blankUser} alt="" className="jump-pfp" />
+            <div className="jump-full-name">{`${user.first_name} ${user.last_name}`}</div>
           </button>
         </div>
       </nav>

@@ -2,21 +2,13 @@ import "../styles/Feed.css";
 import Post from "./Post";
 import NewPostBtn from "./NewPostBtn";
 
-function Feed() {
+function Feed({ feed }) {
   return (
     <div className="Feed">
       <NewPostBtn />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
-      <Post />
+      {feed.map((post) => (
+        <Post post={post} />
+      ))}
     </div>
   );
 }

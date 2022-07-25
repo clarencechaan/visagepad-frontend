@@ -1,6 +1,5 @@
 import "../styles/UserList.css";
 import { ThumbsUp } from "phosphor-react";
-import { useState } from "react";
 import UserListItem from "./UserListItem";
 
 function UserList({ setUserListShown }) {

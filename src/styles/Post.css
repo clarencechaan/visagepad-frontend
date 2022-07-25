@@ -40,6 +40,7 @@
   color: black;
   text-decoration: none;
   margin-top: 2px;
+  min-height: 17px;
 }
 
 .Post .info-bar a.full-name:hover {
