@@ -61,7 +61,7 @@
 }
 
 .Post .info-bar .time-ago::after {
-  content: "Tuesday, July 5, 2022 at 6:19 PM";
+  content: attr(data-descr);
   top: 18px;
 }
 
@@ -228,7 +228,7 @@
 }
 
 .Post .counts .comment-count::after {
-  content: "Clarence Chan";
+  content: attr(data-descr);
   top: 20px;
 }
 

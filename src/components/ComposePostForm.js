@@ -113,7 +113,7 @@ function ComposePostForm({
           <div className="title">{editMode ? "Edit post" : "Create post"}</div>
         </div>
         <div className="author-bar">
-          <Link to="/profile/:userId">
+          <Link to={`/profile/${me.user._id}`}>
             {media(me.user.pfp || blankUser, "pfp")}
           </Link>
           <div className="text">

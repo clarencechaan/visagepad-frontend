@@ -4,7 +4,7 @@
   column-gap: 6px;
 }
 
-.Comment .pfp-small {
+.Comment .media.pfp-small {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -117,7 +117,7 @@
 }
 
 .Comment .comment-btns .time-ago::after {
-  content: "Tuesday, July 5, 2022 at 6:19 PM";
+  content: attr(data-descr);
   top: 18px;
 }
 

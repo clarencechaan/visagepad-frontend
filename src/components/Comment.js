@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import "../styles/Comment.css";
-import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
 import dots from "../images/dots.svg";
 import { PencilSimple, Trash, ThumbsUp } from "phosphor-react";
 import { useState, useRef } from "react";
 import UserList from "./UserList";
+import { media, getTimeAgoShort, getLongDateTime } from "../scripts/scripts";
+import { useSelector } from "react-redux";
 
-function Comment() {
+function Comment({ comment }) {
+  const me = useSelector((state) => state.me);
   const textInputRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -50,22 +53,54 @@ function Comment() {
     setIsEditing(false);
   }
 
+  function isMe() {
+    return comment.author._id === me.user._id;
+  }
+
+  function moreOptions() {
+    if (isMe()) {
+      return (
+        <div className="more-options">
+          <button className="has-tooltip">
+            <img src={dots} alt="" />
+          </button>
+          <div className="dropdown" tabIndex={-1}>
+            <div className="triangle"></div>
+            <button onClick={handleEditBtnClicked}>
+              <PencilSimple className="icon" />
+              Edit comment
+            </button>
+            <button
+              onClick={(e) => {
+                e.target.blur();
+              }}
+            >
+              <Trash className="icon" />
+              Delete comment
+            </button>
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
   return (
     <div className="Comment">
-      <Link to="/profile/:userId">
-        <img src={profilePic} className="pfp-small" alt="" />
+      <Link to={`/profile/${comment.author._id}`}>
+        {media(comment.author.pfp || blankUser, "pfp-small")}
       </Link>
       <div className={"display" + (isEditing ? " hidden" : "")}>
         <div>
           <div className="bubble">
-            <Link to="/profile/:userId" className="author-full-name">
-              Clarence Chan
+            <Link
+              to={`/profile/${comment.author._id}`}
+              className="author-full-name"
+            >
+              {`${comment.author.first_name} ${comment.author.last_name}`}
             </Link>
-            <div className="message">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud.
-            </div>
+            <div className="message">{comment.message}</div>
             <div className="like-count-container">
               <button
                 className="like-count has-tooltip"
@@ -81,26 +116,7 @@ function Comment() {
               ) : null}
             </div>
           </div>
-          <div className="more-options">
-            <button className="has-tooltip">
-              <img src={dots} alt="" />
-            </button>
-            <div className="dropdown" tabIndex={-1}>
-              <div className="triangle"></div>
-              <button onClick={handleEditBtnClicked}>
-                <PencilSimple className="icon" />
-                Edit comment
-              </button>
-              <button
-                onClick={(e) => {
-                  e.target.blur();
-                }}
-              >
-                <Trash className="icon" />
-                Delete comment
-              </button>
-            </div>
-          </div>
+          {moreOptions()}
         </div>
         <div className="comment-btns">
           <button
@@ -110,7 +126,12 @@ function Comment() {
           >
             Like
           </button>
-          <div className="time-ago has-tooltip">24m</div>
+          <div
+            className="time-ago has-tooltip"
+            data-descr={getLongDateTime(comment.date)}
+          >
+            {getTimeAgoShort(comment.date)}
+          </div>
         </div>
       </div>
       <div className={"editing" + (isEditing ? "" : " hidden")}>

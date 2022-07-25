@@ -8,7 +8,7 @@ import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
 import UserList from "./UserList";
 import ComposePostForm from "./ComposePostForm";
-import { media } from "../scripts/scripts";
+import { media, getTimeAgo, getLongDateTime } from "../scripts/scripts";
 
 function Post({ post }) {
   const me = useSelector((state) => state.me);
@@ -17,7 +17,12 @@ function Post({ post }) {
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
   const [userListShown, setUserListShown] = useState(false);
   const [editPostFormShown, setEditPostFormShown] = useState(false);
+  const [comments, setComments] = useState([]);
   const commentInputRef = useRef(null);
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
 
   function handleCommentCountClicked() {
     // show/hide comments section
@@ -67,7 +72,7 @@ function Post({ post }) {
 
   function likeCount(likes) {
     if (likes.length === 0) {
-      return "";
+      return null;
     }
 
     let string = "";
@@ -85,7 +90,23 @@ function Post({ post }) {
       string += ` and ${likes.length - 2} others`;
     }
 
-    return string;
+    return (
+      <div className="like-count-container">
+        <button
+          className="like-count has-tooltip"
+          onClick={handleLikeCountClicked}
+          data-descr={likeCountDescr(likes)}
+        >
+          <div className="badge">
+            <ThumbsUp weight="fill" />
+          </div>
+          {string}
+        </button>
+        {userListShown ? (
+          <UserList setUserListShown={setUserListShown} />
+        ) : null}
+      </div>
+    );
   }
 
   function likeCountDescr(likes) {
@@ -102,6 +123,111 @@ function Post({ post }) {
     return string;
   }
 
+  function commentCount(comments) {
+    if (comments.length === 0) {
+      return null;
+    }
+
+    let string = "";
+    if (comments.length === 1) {
+      string = "1 comment";
+    } else {
+      string = comments.length + " comments";
+    }
+
+    return (
+      <button
+        className="comment-count has-tooltip"
+        onClick={handleCommentCountClicked}
+        data-descr={commentCountDescr(comments)}
+      >
+        {string}
+      </button>
+    );
+  }
+
+  function commentCountDescr(comments) {
+    let authorArr = [];
+    for (const comment of comments) {
+      if (!authorArr.includes(comment.author)) {
+        authorArr.push(comment.author);
+      }
+    }
+
+    let string = "";
+    for (let i = 0; i < authorArr.length && i < 9; i++) {
+      string += `${authorArr[i].first_name} ${authorArr[i].last_name}\u000D\u000A`;
+    }
+
+    if (authorArr.length >= 10) {
+      string += `and ${authorArr.length - 9} more...\u000D\u000A`;
+    }
+
+    return string;
+  }
+
+  async function fetchComments() {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}/comments`;
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (Array.isArray(resObj)) {
+        setComments(resObj);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  function commentsSection() {
+    const commentCount = comments.length;
+    const viewPreviousCommentsStr =
+      comments.length === 2
+        ? "View 1 previous comment"
+        : `View ${comments.length - 1} previous comments`;
+    const previousComments = comments.slice(0, commentCount - 1);
+    const latestComment = comments[commentCount - 1];
+
+    return (
+      <div className={"comments" + (commentsExpanded ? "" : " hidden")}>
+        <button
+          type="button"
+          className={
+            "view-prev-comments-btn" +
+            (viewingPrevComments || commentCount <= 1 ? " hidden" : "")
+          }
+          onClick={handleViewPrevCommentsClicked}
+        >
+          {viewPreviousCommentsStr}
+        </button>
+        <div>
+          <div className={"prev" + (viewingPrevComments ? "" : " hidden")}>
+            {previousComments.map((comment) => (
+              <Comment comment={comment} />
+            ))}
+          </div>
+          {latestComment ? <Comment comment={latestComment} /> : null}
+        </div>
+        <div className="comment-bar">
+          <Link to={`/profile/${me.user._id}`}>
+            {media(me.user.pfp || blankUser, "pfp-small")}
+          </Link>
+          <div className="bubble">
+            <textarea
+              name="comment-input"
+              id="comment-input"
+              ref={commentInputRef}
+              onChange={handleTextInputChanged}
+              minLength={1}
+              maxLength={1500}
+              placeholder="Write a comment..."
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="Post">
       <div className="info-bar">
@@ -112,8 +238,12 @@ function Post({ post }) {
           <Link to={`/profile/${post.author._id}`} className="full-name">
             {`${post.author.first_name} ${post.author.last_name}`}
           </Link>
-          <div href="" className="time-ago has-tooltip">
-            11m
+          <div
+            href=""
+            className="time-ago has-tooltip"
+            data-descr={getLongDateTime(post.date)}
+          >
+            {getTimeAgo(post.date)}
           </div>
         </div>
         <div className="more-options">
@@ -152,27 +282,8 @@ function Post({ post }) {
         <div className="photo-container">{media(post.img_url)}</div>
       ) : null}
       <div className="counts">
-        <div className="like-count-container">
-          <button
-            className="like-count has-tooltip"
-            onClick={handleLikeCountClicked}
-            data-descr={likeCountDescr(post.likes)}
-          >
-            <div className="badge">
-              <ThumbsUp weight="fill" />
-            </div>
-            {likeCount(post.likes)}
-          </button>
-          {userListShown ? (
-            <UserList setUserListShown={setUserListShown} />
-          ) : null}
-        </div>
-        <button
-          className="comment-count has-tooltip"
-          onClick={handleCommentCountClicked}
-        >
-          4 Comments
-        </button>
+        {likeCount(post.likes)}
+        {commentCount(comments)}
       </div>
       <div className="action-btns">
         <button
@@ -192,44 +303,7 @@ function Post({ post }) {
           Comment
         </button>
       </div>
-      <div className={"comments" + (commentsExpanded ? "" : " hidden")}>
-        <button
-          type="button"
-          className={
-            "view-prev-comments-btn" + (viewingPrevComments ? " hidden" : "")
-          }
-          onClick={handleViewPrevCommentsClicked}
-        >
-          View 9 previous comments
-        </button>
-        <div>
-          <div className={"prev" + (viewingPrevComments ? "" : " hidden")}>
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-            <Comment />
-          </div>
-          <Comment />
-        </div>
-        <div className="comment-bar">
-          <Link to={`/profile/${me.user._id}`}>
-            {media(me.user.pfp || blankUser, "pfp-small")}
-          </Link>
-          <div className="bubble">
-            <textarea
-              name="comment-input"
-              id="comment-input"
-              ref={commentInputRef}
-              onChange={handleTextInputChanged}
-              minLength={1}
-              maxLength={1500}
-              placeholder="Write a comment..."
-            />
-          </div>
-        </div>
-      </div>
+      {commentsSection()}
     </div>
   );
 }

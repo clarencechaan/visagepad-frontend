@@ -16,7 +16,7 @@ function NewPostBtn() {
 
   return (
     <div className="NewPostBtn">
-      <Link to="/profile/:userId">
+      <Link to={`/profile/${me.user._id}`}>
         {media(me.user.pfp || blankUser, "new-post-btn-pfp")}
       </Link>
       <div className="new-post-form-container">
