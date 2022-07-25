@@ -1,9 +1,10 @@
+import { useSelector } from "react-redux";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/ComposePostForm.css";
 import Throbber from "./Throbber";
-import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
 import { Image } from "phosphor-react";
-import { useRef, useState, useEffect } from "react";
 
 function ComposePostForm({
   setComposePostFormShown,
@@ -11,6 +12,7 @@ function ComposePostForm({
   postToEdit,
   hidden,
 }) {
+  const me = useSelector((state) => state.me);
   const textInputRef = useRef(null);
   const [post, setPost] = useState(postToEdit || {});
   const [isLoading, setIsLoading] = useState(false);
@@ -111,18 +113,18 @@ function ComposePostForm({
         </div>
         <div className="author-bar">
           <Link to="/profile/:userId">
-            <img src={profilePic} alt="" className="pfp" />
+            <img src={me.user.pfp || blankUser} alt="" className="pfp" />
           </Link>
           <div className="text">
             <div className="surtitle">posting as</div>
-            <div className="full-name">Clarence Chan</div>
+            <div className="full-name">{`${me.user.first_name} ${me.user.last_name}`}</div>
           </div>
         </div>
         <div className="content">
           <textarea
             name="post-content"
             className="post-content"
-            placeholder="What's on your mind, Clarence?"
+            placeholder={`What's on your mind, ${me.user.first_name}?`}
             maxLength={1500}
             ref={textInputRef}
             onChange={handleTextInputChanged}

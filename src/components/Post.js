@@ -1,15 +1,18 @@
+import { useSelector } from "react-redux";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Post.css";
 import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
 import photo from "../images/photo-2.jpeg";
 import dots from "../images/dots.svg";
 import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
 import UserList from "./UserList";
 import ComposePostForm from "./ComposePostForm";
-import { useState, useRef } from "react";
 
 function Post() {
+  const me = useSelector((state) => state.me);
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
@@ -182,7 +185,7 @@ function Post() {
         </div>
         <div className="comment-bar">
           <Link to="/profile/:userId">
-            <img src={profilePic} className="pfp-small" />
+            <img src={me.user.pfp || blankUser} className="pfp-small" />
           </Link>
           <div className="bubble">
             <textarea

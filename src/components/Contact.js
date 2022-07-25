@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import "../styles/Contact.css";
-import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
 
-function Contact() {
+function Contact({ user }) {
   return (
-    <Link to="/profile/:userId" className="Contact">
-      <img src={profilePic} alt="" className="pfp" />
-      <div className="full-name">Clarence Chan</div>
+    <Link to={`/profile/${user._id}`} className="Contact">
+      <img src={user.pfp || blankUser} alt="" className="pfp" />
+      <div className="full-name">{`${user.first_name} ${user.last_name}`}</div>
     </Link>
   );
 }

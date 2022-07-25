@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../slices/meSlice";
 import "../styles/LogIn.css";
