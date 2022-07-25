@@ -233,7 +233,7 @@
 }
 
 .Post .counts .like-count::after {
-  content: "6 likes";
+  content: attr(data-descr);
   top: 20px;
 }
 

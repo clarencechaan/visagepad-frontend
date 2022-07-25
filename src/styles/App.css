@@ -1,7 +1,3 @@
-html {
-  /* scroll-behavior: smooth; */
-}
-
 body,
 #root,
 .App {
@@ -22,4 +18,33 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+.has-tooltip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.has-tooltip::after {
+  position: absolute;
+  pointer-events: none;
+  color: rgb(228, 228, 228);
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.424);
+  background-color: rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s;
+  z-index: 1;
+  white-space: pre;
+  text-align: left;
+}
+
+.has-tooltip:hover::after {
+  visibility: visible;
+  opacity: 1;
 }

@@ -15,7 +15,7 @@ function Post({ post }) {
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
-  const [userListShowm, setUserListShown] = useState(false);
+  const [userListShown, setUserListShown] = useState(false);
   const [editPostFormShown, setEditPostFormShown] = useState(false);
   const commentInputRef = useRef(null);
 
@@ -63,6 +63,43 @@ function Post({ post }) {
 
   function handleEditBtnClicked() {
     setEditPostFormShown(true);
+  }
+
+  function likeCount(likes) {
+    if (likes.length === 0) {
+      return "";
+    }
+
+    let string = "";
+    if (likes.length >= 1) {
+      string += `${likes[0].first_name} ${likes[0].last_name}`;
+    }
+
+    if (likes.length >= 2) {
+      string += `, ${likes[1].first_name} ${likes[1].last_name}`;
+    }
+
+    if (likes.length === 3) {
+      string += " and 1 other";
+    } else if (likes.length > 3) {
+      string += ` and ${likes.length - 2} others`;
+    }
+
+    return string;
+  }
+
+  function likeCountDescr(likes) {
+    let string = "";
+
+    for (let i = 0; i < likes.length && i < 9; i++) {
+      string += `${likes[i].first_name} ${likes[i].last_name}\u000D\u000A`;
+    }
+
+    if (likes.length >= 10) {
+      string += `and ${likes.length - 9} more...\u000D\u000A`;
+    }
+
+    return string;
   }
 
   return (
@@ -119,13 +156,14 @@ function Post({ post }) {
           <button
             className="like-count has-tooltip"
             onClick={handleLikeCountClicked}
+            data-descr={likeCountDescr(post.likes)}
           >
             <div className="badge">
               <ThumbsUp weight="fill" />
             </div>
-            Clarence Chan and 5 others
+            {likeCount(post.likes)}
           </button>
-          {userListShowm ? (
+          {userListShown ? (
             <UserList setUserListShown={setUserListShown} />
           ) : null}
         </div>
