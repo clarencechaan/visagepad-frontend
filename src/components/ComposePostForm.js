@@ -5,6 +5,7 @@ import "../styles/ComposePostForm.css";
 import Throbber from "./Throbber";
 import blankUser from "../images/blank-user.png";
 import { Image } from "phosphor-react";
+import { media } from "../scripts/scripts";
 
 function ComposePostForm({
   setComposePostFormShown,
@@ -113,7 +114,7 @@ function ComposePostForm({
         </div>
         <div className="author-bar">
           <Link to="/profile/:userId">
-            <img src={me.user.pfp || blankUser} alt="" className="pfp" />
+            {media(me.user.pfp || blankUser, "pfp")}
           </Link>
           <div className="text">
             <div className="surtitle">posting as</div>

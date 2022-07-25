@@ -6,6 +6,7 @@ import "../styles/NavBar.css";
 import "../styles/YourProfileBtn.css";
 import blankUser from "../images/blank-user.png";
 import { smoothScrollToTop } from "../scripts/scripts";
+import { media } from "../scripts/scripts";
 
 function YourProfileBtn() {
   const me = useSelector((state) => state.me);
@@ -21,9 +22,7 @@ function YourProfileBtn() {
 
   return (
     <div className="YourProfileBtn" tabIndex={-1}>
-      <button className="has-tooltip">
-        <img src={me.user.pfp || blankUser} alt="" />
-      </button>
+      <button className="has-tooltip">{media(me.user.pfp || blankUser)}</button>
       <div className="window">
         <div className="user">
           <Link
@@ -34,7 +33,7 @@ function YourProfileBtn() {
               smoothScrollToTop();
             }}
           >
-            <img src={me.user.pfp || blankUser} alt="" />
+            {media(me.user.pfp || blankUser)}
             <div className="name">{`${me.user.first_name} ${me.user.last_name}`}</div>
           </Link>
         </div>

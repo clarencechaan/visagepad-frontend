@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Post.css";
 import blankUser from "../images/blank-user.png";
@@ -8,34 +8,16 @@ import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
 import UserList from "./UserList";
 import ComposePostForm from "./ComposePostForm";
-import { useEffect } from "react";
+import { media } from "../scripts/scripts";
 
 function Post({ post }) {
   const me = useSelector((state) => state.me);
-  const [author, setAuthor] = useState({ first_name: "", last_name: "" });
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
   const [userListShowm, setUserListShown] = useState(false);
   const [editPostFormShown, setEditPostFormShown] = useState(false);
   const commentInputRef = useRef(null);
-
-  useEffect(() => {
-    fetchAuthor();
-  }, []);
-
-  async function fetchAuthor() {
-    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${post.author}`;
-    try {
-      const response = await fetch(url);
-      const resObj = await response.json();
-      if (resObj._id) {
-        setAuthor(resObj);
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
 
   function handleCommentCountClicked() {
     // show/hide comments section
@@ -86,12 +68,12 @@ function Post({ post }) {
   return (
     <div className="Post">
       <div className="info-bar">
-        <Link to="/profile/:userId" className="author-profile-pic">
-          <img src={author.pfp || blankUser} alt="" />
+        <Link to={`/profile/${post.author._id}`} className="author-profile-pic">
+          {media(post.author.pfp || blankUser)}
         </Link>
         <div>
-          <Link to="/profile/:userId" className="full-name">
-            {`${author.first_name} ${author.last_name}`}
+          <Link to={`/profile/${post.author._id}`} className="full-name">
+            {`${post.author.first_name} ${post.author.last_name}`}
           </Link>
           <div href="" className="time-ago has-tooltip">
             11m
@@ -130,9 +112,7 @@ function Post({ post }) {
       </div>
       <div className="content">{post.content}</div>
       {post.img_url ? (
-        <div className="photo-container">
-          <img src={post.img_url} alt="" />
-        </div>
+        <div className="photo-container">{media(post.img_url)}</div>
       ) : null}
       <div className="counts">
         <div className="like-count-container">
@@ -196,8 +176,8 @@ function Post({ post }) {
           <Comment />
         </div>
         <div className="comment-bar">
-          <Link to="/profile/:userId">
-            <img src={me.user.pfp || blankUser} className="pfp-small" />
+          <Link to={`/profile/${me.user._id}`}>
+            {media(me.user.pfp || blankUser, "pfp-small")}
           </Link>
           <div className="bubble">
             <textarea

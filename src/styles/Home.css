@@ -35,7 +35,7 @@
   background-color: rgb(216, 217, 220);
 }
 
-.Home .me-link img {
+.Home .me-link .media {
   width: 36px;
   height: 36px;
   object-fit: cover;

@@ -56,6 +56,10 @@
   overflow: hidden;
 }
 
+.Profile.not-me .cover-photo {
+  pointer-events: none;
+}
+
 .Profile .cover-photo label {
   width: 100%;
   height: 100%;
@@ -64,7 +68,7 @@
   z-index: 0;
 }
 
-.Profile .cover-photo img {
+.Profile .cover-photo .media {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -102,11 +106,6 @@
   font-size: 18px;
 }
 
-.Profile .cover-photo img {
-  width: 100%;
-  height: 100%;
-}
-
 .Profile .user {
   height: 158px;
   padding: 0 32px 16px 32px;
@@ -124,18 +123,22 @@
   background-color: white;
 }
 
-.Profile .user img.pfp {
+.Profile.not-me .user .pfp-label {
+  pointer-events: none;
+}
+
+.Profile .user .media.pfp {
   width: 168px;
   height: 168px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.Profile .user img.pfp:hover {
+.Profile .user .media.pfp:hover {
   filter: brightness(0.9);
 }
 
-.Profile .user img.pfp:active {
+.Profile .user .media.pfp:active {
   filter: brightness(0.8);
   transform: scale(0.97);
 }
@@ -151,6 +154,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Profile.not-me .user .camera {
+  display: none;
 }
 
 .Profile .user .camera:hover {
@@ -187,6 +194,7 @@
   color: rgb(101, 103, 107);
   margin-top: 6px;
   text-decoration: none;
+  min-height: 19px;
 }
 
 .Profile .user .friend-count:hover {
@@ -209,7 +217,7 @@
   z-index: 0;
 }
 
-.Profile .user .friends-pfps img {
+.Profile .user .friends-pfps .media {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -217,7 +225,7 @@
   filter: brightness(1);
 }
 
-.Profile .user .friends-pfps img:active {
+.Profile .user .friends-pfps .media:active {
   filter: brightness(0.8);
   transform: scale(0.95);
 }
@@ -390,4 +398,5 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  object-fit: cover;
 }

@@ -1,19 +1,20 @@
 import { Link, useParams } from "react-router-dom";
 import "../styles/ProfilePosts.css";
-import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
 import Feed from "./Feed";
+import { media } from "../scripts/scripts";
 
-function ProfilePosts() {
+function ProfilePosts({ feed, friends }) {
   const { userId } = useParams();
 
-  function friendsSmallItem() {
+  function friendsSmallItem(user) {
     return (
       <div className="friend-item">
-        <Link to="/profile/:userId">
-          <img src={profilePic} alt="" className="pfp" />
+        <Link to={`/profile/${user._id}`}>
+          {media(user.pfp || blankUser, "pfp")}
         </Link>
-        <Link to="/profile/:userId" className="full-name">
-          Clarence Chan
+        <Link to={`/profile/${user._id}`} className="full-name">
+          {`${user.first_name} ${user.last_name}`}
         </Link>
       </div>
     );
@@ -34,14 +35,17 @@ function ProfilePosts() {
               See all friends
             </Link>
           </div>
-          <div className="friend-count">41 friends</div>
+          <div className="friend-count">
+            {friends.length !== 0 &&
+              (friends.length === 1 ? "1 friend" : friends.length + " friends")}
+          </div>
         </div>
         <div className="grid">
-          {[...Array(9)].map((e) => friendsSmallItem())}
+          {friends.slice(0, 9).map((user) => friendsSmallItem(user))}
         </div>
       </div>
       <div className="profile-feed">
-        <Feed />
+        <Feed feed={feed} />
       </div>
     </div>
   );

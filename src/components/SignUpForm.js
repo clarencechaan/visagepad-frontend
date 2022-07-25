@@ -33,7 +33,6 @@ function SignUpForm() {
     try {
       const signUpResponse = await fetch(signUpUrl, { method, headers, body });
       const signUpResObj = await signUpResponse.json();
-      console.log(signUpResObj);
       if (signUpResObj.userId) {
         // log in to API if user created
         const logInUrl = process.env.REACT_APP_API_BASE_URL + "/auth/login";

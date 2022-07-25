@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../styles/NewPostBtn.css";
 import blankUser from "../images/blank-user.png";
 import ComposePostForm from "./ComposePostForm";
+import { media } from "../scripts/scripts";
 
 function NewPostBtn() {
   const me = useSelector((state) => state.me);
@@ -16,11 +17,7 @@ function NewPostBtn() {
   return (
     <div className="NewPostBtn">
       <Link to="/profile/:userId">
-        <img
-          src={me.user.pfp || blankUser}
-          alt=""
-          className="new-post-btn-pfp"
-        />
+        {media(me.user.pfp || blankUser, "new-post-btn-pfp")}
       </Link>
       <div className="new-post-form-container">
         <button

@@ -27,7 +27,7 @@
   display: flex;
 }
 
-.Post .info-bar .author-profile-pic img {
+.Post .info-bar .author-profile-pic .media {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -184,7 +184,7 @@
   align-self: center;
 }
 
-.Post .photo-container img {
+.Post .photo-container .media {
   width: 100%;
   object-fit: contain;
 }

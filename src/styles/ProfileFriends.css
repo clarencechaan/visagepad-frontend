@@ -87,14 +87,14 @@
   column-gap: 16px;
 }
 
-.ProfileFriends .friend-item img {
+.ProfileFriends .friend-item .media {
   width: 80px;
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
 }
 
-.ProfileFriends .friend-item img:hover {
+.ProfileFriends .friend-item .media:hover {
   filter: brightness(0.9);
 }
 

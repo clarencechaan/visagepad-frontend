@@ -10,13 +10,13 @@
   padding: 0;
 }
 
-.YourProfileBtn > button img {
+.YourProfileBtn > button .media {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.YourProfileBtn > button:hover img {
+.YourProfileBtn > button:hover .media {
   filter: brightness(90%);
 }
 
@@ -75,7 +75,7 @@
   background-color: rgb(229, 229, 229);
 }
 
-.YourProfileBtn .window .user .link img {
+.YourProfileBtn .window .user .link .media {
   width: 36px;
   height: 36px;
   object-fit: cover;

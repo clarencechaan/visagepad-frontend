@@ -4,15 +4,18 @@ import profilePic from "../images/profile-pic.jpeg";
 import blankUser from "../images/blank-user.png";
 import { UserPlus, UserMinus, Check, Camera } from "phosphor-react";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFriends from "./ProfileFriends";
-import { smoothScrollToTop } from "../scripts/scripts";
+import { smoothScrollToTop, media } from "../scripts/scripts";
 
 function Profile() {
   const { pathname } = useLocation();
   const { userId } = useParams();
+  const notMe = useSelector((state) => state.me).user._id !== userId;
   const [selected, setSelected] = useState("");
   const [user, setUser] = useState({ first_name: "", last_name: "" });
+  const [profileFeed, setProfileFeed] = useState([]);
   const [friendsList, setFriendsList] = useState([]);
   const navLinksRef = useRef(null);
   const intersectionTriggerRef = useRef(null);
@@ -25,12 +28,18 @@ function Profile() {
     );
 
     observer.observe(intersectionTriggerEl);
-
-    fetchUser();
   }, []);
 
   useEffect(() => {
     fetchUser();
+    fetchFeed();
+    fetchFriends();
+
+    if (pathname.includes("friends")) {
+      setSelected("friends");
+    } else {
+      setSelected("posts");
+    }
   }, [pathname]);
 
   async function fetchUser() {
@@ -46,21 +55,39 @@ function Profile() {
     }
   }
 
-  useEffect(() => {
-    if (pathname.includes("friends")) {
-      setSelected("friends");
-    } else {
-      setSelected("posts");
+  async function fetchFeed() {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/posts`;
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (Array.isArray(resObj)) {
+        setProfileFeed(resObj);
+      }
+    } catch (error) {
+      console.log("error", error);
     }
-  }, [pathname]);
+  }
+
+  async function fetchFriends() {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/friends`;
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (Array.isArray(resObj)) {
+        setFriendsList(resObj);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   return (
-    <div className="Profile">
+    <div className={"Profile" + (notMe ? " not-me" : "")}>
       <header>
         <div className="header-content">
           <div className="cover-photo">
             <label htmlFor="cover-input" id="cover-label">
-              <img src={user.cover} alt="" />
+              {media(user.cover)}
               <div htmlFor="cover-input" className="add-cover-btn">
                 <Camera className="icon" weight="bold" />
                 Add Cover Photo
@@ -75,7 +102,7 @@ function Profile() {
           </div>
           <div className="user">
             <label className="pfp-label">
-              <img src={user.pfp || blankUser} alt="" className="pfp" />
+              {media(user.pfp || blankUser, "pfp")}
               <div className="camera">
                 <Camera className="icon" weight="bold" />
               </div>
@@ -84,33 +111,17 @@ function Profile() {
             <div className="info">
               <div className="full-name">{`${user.first_name} ${user.last_name}`}</div>
               <Link to={`/profile/${userId}/friends`} className="friend-count">
-                41 friends
+                {friendsList.length !== 0 &&
+                  (friendsList.length === 1
+                    ? "1 friend"
+                    : friendsList.length + " friends")}
               </Link>
               <div className="friends-pfps">
-                <Link to="/profile/:userId">
-                  <img src={profilePic} alt="" />
-                </Link>
-                <Link to="/profile/:userId">
-                  <img src={profilePic} alt="" />
-                </Link>
-                <Link to="/profile/:userId">
-                  <img src={profilePic} alt="" />
-                </Link>
-                <Link to="/profile/:userId">
-                  <img src={profilePic} alt="" />
-                </Link>
-                <Link to="/profile/:userId">
-                  <img src={profilePic} alt="" />
-                </Link>
-                <Link to="/profile/:userId">
-                  <img src={profilePic} alt="" />
-                </Link>
-                <Link to="/profile/:userId">
-                  <img src={profilePic} alt="" />
-                </Link>
-                <Link to="/profile/:userId">
-                  <img src={profilePic} alt="" />
-                </Link>
+                {friendsList.slice(0, 8).map((user) => (
+                  <Link to={`/profile/${user._id}`}>
+                    {media(user.pfp || blankUser)}
+                  </Link>
+                ))}
               </div>
             </div>
             <div className="relationship">
@@ -158,14 +169,20 @@ function Profile() {
             </Link>
           </div>
           <button className="user-jump-to-top-btn" onClick={smoothScrollToTop}>
-            <img src={user.pfp || blankUser} alt="" className="jump-pfp" />
+            {media(user.pfp || blankUser, "jump-pfp")}
             <div className="jump-full-name">{`${user.first_name} ${user.last_name}`}</div>
           </button>
         </div>
       </nav>
       <Routes>
-        <Route path="/" element={<ProfilePosts />} />
-        <Route path="/friends" element={<ProfileFriends />} />
+        <Route
+          path="/"
+          element={<ProfilePosts feed={profileFeed} friends={friendsList} />}
+        />
+        <Route
+          path="/friends"
+          element={<ProfileFriends friends={friendsList} />}
+        />
       </Routes>
     </div>
   );

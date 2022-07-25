@@ -1,18 +1,17 @@
 import "../styles/ProfileFriends.css";
 import { Link } from "react-router-dom";
 import { MagnifyingGlass, UserPlus, UserMinus, Check } from "phosphor-react";
-import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
+import { media, smoothScrollToTop } from "../scripts/scripts";
 
-function ProfileFriends() {
-  function friendItem() {
+function ProfileFriends({ friends }) {
+  function friendItem(user) {
     return (
       <div className="friend-item">
-        <Link to="/profile/:userId">
-          <img src={profilePic} alt="" />
-        </Link>
+        <Link to={`/profile/${user._id}`}>{media(user.pfp || blankUser)}</Link>
         <div className="text">
-          <Link to="/profile/:userId" className="full-name">
-            Clarence Chan
+          <Link to={`/profile/${user._id}`} className="full-name">
+            {`${user.first_name} ${user.last_name}`}
           </Link>
           <Link to="/profile/:userId/friends" className="mutual-friend-count">
             19 mutual friends
@@ -43,13 +42,15 @@ function ProfileFriends() {
   return (
     <div className="ProfileFriends">
       <div className="top-bar">
-        <button className="title">All Friends</button>
+        <button className="title" onClick={smoothScrollToTop}>
+          All Friends
+        </button>
         <div className="search-bar">
           <MagnifyingGlass className="icon" />
           <input type="text" placeholder="Search" />
         </div>
       </div>
-      <div className="grid">{[...Array(17)].map((e) => friendItem())}</div>
+      <div className="grid">{friends.map((user) => friendItem(user))}</div>
     </div>
   );
 }

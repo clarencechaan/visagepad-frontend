@@ -79,14 +79,14 @@
   height: 183px;
 }
 
-.ProfilePosts .friends-small .friend-item .pfp {
+.ProfilePosts .friends-small .friend-item .media.pfp {
   width: 145px;
   height: 145px;
   object-fit: cover;
   border-radius: 8px;
 }
 
-.ProfilePosts .friends-small .friend-item .pfp:hover {
+.ProfilePosts .friends-small .friend-item .media.pfp:hover {
   filter: brightness(0.9);
 }
 

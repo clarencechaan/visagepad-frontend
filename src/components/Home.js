@@ -5,6 +5,7 @@ import ContactsSidebar from "./ContactsSidebar";
 import blankUser from "../images/blank-user.png";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { media } from "../scripts/scripts";
 
 function Home({ homeFeed, setHomeFeed }) {
   const me = useSelector((state) => state.me);
@@ -33,7 +34,7 @@ function Home({ homeFeed, setHomeFeed }) {
     <div className="Home">
       <div className="sidebar">
         <Link to={`/profile/${me.user._id}`} className="me-link">
-          <img src={me.user.pfp || blankUser} alt="" />
+          {media(me.user.pfp || blankUser)}
           <div className="name">{`${me.user.first_name} ${me.user.last_name}`}</div>
         </Link>
       </div>
