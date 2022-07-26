@@ -17,7 +17,7 @@ function ProfileFriends({ friends }) {
       </div>
       <div className="grid">
         {friends.map((user) => (
-          <ProfileFriendItem user={user} />
+          <ProfileFriendItem user={user} key={user._id} />
         ))}
       </div>
     </div>

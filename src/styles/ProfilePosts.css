@@ -101,7 +101,3 @@
 .ProfilePosts .friends-small .friend-item .full-name:hover {
   text-decoration: underline;
 }
-
-.ProfilePosts .profile-feed {
-  padding-bottom: 60px;
-}

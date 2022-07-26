@@ -210,7 +210,7 @@ function Profile() {
               </Link>
               <div className="friends-pfps">
                 {friendsList.slice(0, 8).map((user) => (
-                  <Link to={`/profile/${user._id}`}>
+                  <Link to={`/profile/${user._id}`} key={user._id}>
                     {media(user.pfp || blankUser)}
                   </Link>
                 ))}
@@ -252,7 +252,13 @@ function Profile() {
       <Routes>
         <Route
           path="/"
-          element={<ProfilePosts feed={profileFeed} friends={friendsList} />}
+          element={
+            <ProfilePosts
+              feed={profileFeed}
+              friends={friendsList}
+              set={setProfileFeed}
+            />
+          }
         />
         <Route
           path="/friends"

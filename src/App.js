@@ -14,7 +14,6 @@ import Profile from "./components/Profile";
 function App() {
   const dispatch = useDispatch();
   const me = useSelector((state) => state.me);
-  const [homeFeed, setHomeFeed] = useState([]);
 
   useEffect(() => {
     getMeFromLocalStorage();
@@ -56,7 +55,7 @@ function App() {
     ) : (
       <>
         <NavBar />
-        <Home homeFeed={homeFeed} setHomeFeed={setHomeFeed} />
+        <Home />
       </>
     );
 

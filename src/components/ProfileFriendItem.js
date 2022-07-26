@@ -80,7 +80,7 @@ function ProfileFriendItem({ user }) {
         setRelationship(resObj.status);
       }
     } catch (error) {
-      if (!error.includes("DOMException: The user aborted a request.")) {
+      if (!error.toString().includes("The user aborted a request")) {
         console.log("error", error);
       }
     }
@@ -101,9 +101,7 @@ function ProfileFriendItem({ user }) {
         setMutualCount(resObj.length);
       }
     } catch (error) {
-      if (
-        !error.toString().includes("DOMException: The user aborted a request.")
-      ) {
+      if (!error.toString().includes("The user aborted a request")) {
         console.log("error", error);
       }
     }

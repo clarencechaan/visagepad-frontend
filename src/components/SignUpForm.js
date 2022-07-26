@@ -109,6 +109,7 @@ function SignUpForm() {
             placeholder="Password"
             minLength={1}
             maxLength={24}
+            autoComplete="off"
             required
           />
           <div className="sign-up-message">{signUpMessage}</div>

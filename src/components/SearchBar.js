@@ -38,7 +38,9 @@ function SearchBar() {
             <ArrowLeft className="arrow-left" />
           </button>
         </div>
-        <div className="results">{[...Array(12)].map((e) => resultItem())}</div>
+        <div className="results">
+          {/* {[...Array(12)].map((e) => resultItem())} */}
+        </div>
       </div>
     </div>
   );

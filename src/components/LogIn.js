@@ -85,6 +85,7 @@ function LogIn({ fetchContacts }) {
               minLength={1}
               maxLength={24}
               onChange={clearLoginMessage}
+              autoComplete="off"
               required
             />
             <button className="log-in-btn">Log In</button>

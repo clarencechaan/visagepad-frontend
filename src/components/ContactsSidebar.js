@@ -14,7 +14,7 @@ function ContactsSidebar() {
       <div className="title">Contacts</div>
       <div className="contacts">
         {sorted.map((user) => (
-          <Contact user={user} />
+          <Contact user={user} key={user._id} />
         ))}
       </div>
     </div>

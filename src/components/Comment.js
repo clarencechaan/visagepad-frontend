@@ -109,15 +109,15 @@ function Comment({ comment }) {
     }
   }
 
-  function userListDescr(user) {
+  function userListDescr(users) {
     let string = "";
 
-    for (let i = 0; i < user.length && i < 9; i++) {
-      string += `${user[i].first_name} ${user[i].last_name}\u000D\u000A`;
+    for (let i = 0; i < users.length && i < 9; i++) {
+      string += `${users[i].first_name} ${users[i].last_name}\u000D\u000A`;
     }
 
-    if (user.length >= 10) {
-      string += `and ${user.length - 9} more...\u000D\u000A`;
+    if (users.length >= 10) {
+      string += `and ${users.length - 9} more...\u000D\u000A`;
     }
 
     return string;

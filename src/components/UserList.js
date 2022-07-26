@@ -27,7 +27,11 @@ function UserList({ setUserListShown, users }) {
         </div>
         <div className="user-list">
           {users.map((user) => (
-            <UserListItem user={user} setUserListShown={setUserListShown} />
+            <UserListItem
+              user={user}
+              setUserListShown={setUserListShown}
+              key={user._id}
+            />
           ))}
         </div>
       </div>

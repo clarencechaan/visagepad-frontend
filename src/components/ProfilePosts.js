@@ -11,7 +11,7 @@ function ProfilePosts({ feed, friends }) {
 
   function friendsSmallItem(user) {
     return (
-      <div className="friend-item">
+      <div className="friend-item" key={user._id}>
         <Link to={`/profile/${user._id}`}>
           {media(user.pfp || blankUser, "pfp")}
         </Link>

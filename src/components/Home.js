@@ -3,11 +3,14 @@ import "../styles/Home.css";
 import Feed from "./Feed";
 import ContactsSidebar from "./ContactsSidebar";
 import blankUser from "../images/blank-user.png";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { media } from "../scripts/scripts";
 
-function Home({ homeFeed, setHomeFeed }) {
+function Home() {
+  const [homeFeed, setHomeFeed] = useState([]);
   const me = useSelector((state) => state.me);
+  const feedUrl = `${process.env.REACT_APP_API_BASE_URL}/api/my-feed/`;
 
   return (
     <div className="Home">
@@ -18,7 +21,7 @@ function Home({ homeFeed, setHomeFeed }) {
         </Link>
       </div>
       <div className="home-feed">
-        <Feed feed={homeFeed} setFeed={setHomeFeed} />
+        <Feed feed={homeFeed} setFeed={setHomeFeed} url={feedUrl} />
       </div>
       <ContactsSidebar />
     </div>
