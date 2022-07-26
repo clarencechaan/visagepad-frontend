@@ -1,6 +1,5 @@
 import { Routes, Route, Link, useLocation, useParams } from "react-router-dom";
 import "../styles/Profile.css";
-import profilePic from "../images/profile-pic.jpeg";
 import blankUser from "../images/blank-user.png";
 import { UserPlus, UserMinus, Check, Camera } from "phosphor-react";
 import { useEffect, useRef, useState } from "react";
@@ -10,15 +9,18 @@ import ProfileFriends from "./ProfileFriends";
 import { smoothScrollToTop, media } from "../scripts/scripts";
 
 function Profile() {
+  const me = useSelector((state) => state.me);
   const { pathname } = useLocation();
   const { userId } = useParams();
-  const notMe = useSelector((state) => state.me).user._id !== userId;
+  const notMe = me.user._id !== userId;
   const [selected, setSelected] = useState("");
   const [user, setUser] = useState({ first_name: "", last_name: "" });
   const [profileFeed, setProfileFeed] = useState([]);
   const [friendsList, setFriendsList] = useState([]);
   const navLinksRef = useRef(null);
   const intersectionTriggerRef = useRef(null);
+  const [relationship, setRelationship] = useState("");
+  const [prevPathname, setPrevPathname] = useState("");
 
   useEffect(() => {
     const intersectionTriggerEl = intersectionTriggerRef.current;
@@ -31,9 +33,19 @@ function Profile() {
   }, []);
 
   useEffect(() => {
+    // reset state if profile has changed
+    if (!prevPathname.includes(pathname) && !pathname.includes(prevPathname)) {
+      setUser({ first_name: "", last_name: "" });
+      setProfileFeed([]);
+      setFriendsList([]);
+      setRelationship("");
+    }
+    setPrevPathname(pathname);
+
     fetchUser();
     fetchFeed();
     fetchFriends();
+    fetchRelationship();
 
     if (pathname.includes("friends")) {
       setSelected("friends");
@@ -41,6 +53,11 @@ function Profile() {
       setSelected("posts");
     }
   }, [pathname]);
+
+  useEffect(() => {
+    fetchRelationship();
+    fetchFriends();
+  }, [me]);
 
   async function fetchUser() {
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}`;
@@ -69,9 +86,16 @@ function Profile() {
   }
 
   async function fetchFriends() {
+    if (!me.token) {
+      return;
+    }
+
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/friends`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { headers });
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
         setFriendsList(resObj);
@@ -79,6 +103,74 @@ function Profile() {
     } catch (error) {
       console.log("error", error);
     }
+  }
+
+  async function fetchRelationship() {
+    if (!me.token) {
+      return;
+    }
+
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/relationship`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+    try {
+      const response = await fetch(url, { headers });
+      const resObj = await response.json();
+      if (resObj.status) {
+        setRelationship(resObj.status);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  function relationshipBtn() {
+    let button1 = null;
+    let button2 = null;
+    if (relationship === "Self") {
+    } else if (relationship === "Friends") {
+      button1 = (
+        <div className="is-friend">
+          <Check weight="bold" className="icon" />
+          <label htmlFor="">Friends</label>
+        </div>
+      );
+      button2 = (
+        <button className="unfriend-btn">
+          <UserMinus weight="fill" className="icon" />
+          Unfriend
+        </button>
+      );
+    } else if (relationship === "Requesting") {
+      button1 = (
+        <button className="accept-request-btn">
+          <UserPlus weight="fill" className="icon" />
+          Accept Request
+        </button>
+      );
+    } else if (relationship === "Requestee") {
+      button1 = (
+        <button className="cancel-request-btn">
+          <UserMinus weight="fill" className="icon" />
+          Cancel Request
+        </button>
+      );
+    } else if (relationship === "None") {
+      button1 = (
+        <button className="add-friend-btn">
+          <UserPlus weight="fill" className="icon" />
+          Add Friend
+        </button>
+      );
+    }
+
+    return (
+      <div className="relationship-btn-container">
+        {button1}
+        {button2}
+      </div>
+    );
   }
 
   return (
@@ -124,24 +216,7 @@ function Profile() {
                 ))}
               </div>
             </div>
-            <div className="relationship">
-              <button className="add-friend-btn">
-                <UserPlus weight="fill" className="icon" />
-                Add Friend
-              </button>
-              <button className="cancel-request-btn hidden">
-                <UserMinus weight="fill" className="icon" />
-                Cancel request
-              </button>
-              <div className="is-friend hidden">
-                <Check weight="bold" className="icon" />
-                <label htmlFor="">Friends</label>
-              </div>
-              <button className="unfriend-btn hidden">
-                <UserMinus weight="fill" className="icon" />
-                Unfriend
-              </button>
-            </div>
+            {relationshipBtn()}
           </div>
         </div>
       </header>
@@ -181,7 +256,9 @@ function Profile() {
         />
         <Route
           path="/friends"
-          element={<ProfileFriends friends={friendsList} />}
+          element={
+            friendsList.length ? <ProfileFriends friends={friendsList} /> : null
+          }
         />
       </Routes>
     </div>

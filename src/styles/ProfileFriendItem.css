@@ -1,0 +1,53 @@
+.ProfileFriendItem {
+  height: 116px;
+  border: 1px solid rgb(243, 243, 243);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 16px;
+  column-gap: 16px;
+}
+
+.ProfileFriendItem .media {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.ProfileFriendItem .media:hover {
+  filter: brightness(0.9);
+}
+
+.ProfileFriendItem > a {
+  line-height: 0;
+}
+
+.ProfileFriendItem .text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ProfileFriendItem .text a {
+  text-decoration: none;
+}
+
+.ProfileFriendItem .text a:hover {
+  text-decoration: underline;
+}
+
+.ProfileFriendItem .full-name {
+  font-family: "SFUIText-Medium";
+  color: black;
+  font-size: 15px;
+}
+
+.ProfileFriendItem .mutual-friend-count {
+  color: rgb(101, 103, 107);
+  font-size: 12px;
+}
+
+.ProfileFriendItem .relationship-btn-container {
+  margin-left: auto;
+}

@@ -24,7 +24,7 @@ function LogIn({ fetchContacts }) {
       if (resObj.user) {
         dispatch(setUser(resObj.user));
         dispatch(setToken(resObj.token));
-        fetchContacts(resObj.user._id);
+        fetchContacts(resObj.user._id, resObj.token);
         saveMeToLocalStorage({ user: resObj.user, token: resObj.token });
       } else {
         setLoginMessage(resObj.info);

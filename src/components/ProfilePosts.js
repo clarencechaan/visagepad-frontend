@@ -3,8 +3,10 @@ import "../styles/ProfilePosts.css";
 import blankUser from "../images/blank-user.png";
 import Feed from "./Feed";
 import { media } from "../scripts/scripts";
+import { useSelector } from "react-redux";
 
 function ProfilePosts({ feed, friends }) {
+  const me = useSelector((state) => state.me);
   const { userId } = useParams();
 
   function friendsSmallItem(user) {
@@ -45,7 +47,7 @@ function ProfilePosts({ feed, friends }) {
         </div>
       </div>
       <div className="profile-feed">
-        <Feed feed={feed} />
+        <Feed feed={feed} newPostBtnHidden={userId !== me.user._id} />
       </div>
     </div>
   );

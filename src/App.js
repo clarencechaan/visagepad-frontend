@@ -26,14 +26,17 @@ function App() {
     if (localStorageMe) {
       dispatch(setUser(localStorageMe.user));
       dispatch(setToken(localStorageMe.token));
-      fetchContacts(localStorageMe.user._id);
+      fetchContacts(localStorageMe.user._id, localStorageMe.token);
     }
   }
 
-  async function fetchContacts(userId) {
+  async function fetchContacts(userId, token) {
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/friends`;
+    const headers = {
+      Authorization: "Bearer " + token,
+    };
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { headers });
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
         dispatch(setContacts(resObj));
@@ -81,12 +84,6 @@ function App() {
           }
         />
       </Routes>
-      {/* <LogIn />
-      <Footer /> */}
-      {/* <NavBar /> */}
-      {/* <Home /> */}
-      {/* <MyFriends /> */}
-      {/* <Profile /> */}
     </div>
   );
 }

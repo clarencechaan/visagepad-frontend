@@ -234,7 +234,7 @@
   margin-right: -8px;
 }
 
-.Profile .user .relationship {
+.Profile .user .relationship-btn-container {
   display: flex;
   align-items: flex-end;
   box-sizing: border-box;
@@ -242,7 +242,7 @@
   column-gap: 8px;
 }
 
-.Profile .relationship button {
+.Profile .relationship-btn-container button {
   margin-left: auto;
   height: 36px;
   padding: 0 12px;
@@ -257,31 +257,32 @@
   transition: 0.2s;
 }
 
-.Profile .relationship .add-friend-btn,
-.Profile .relationship .cancel-request-btn {
+.relationship-btn-container .add-friend-btn,
+.relationship-btn-container .cancel-request-btn,
+.relationship-btn-container .accept-request-btn {
   background-color: rgb(24, 119, 242);
   color: white;
 }
 
-.Profile .relationship .unfriend-btn {
+.Profile .relationship-btn-container .unfriend-btn {
   background-color: rgb(242, 24, 119);
   color: white;
 }
 
-.Profile .relationship button .icon {
+.Profile .relationship-btn-container button .icon {
   font-size: 18px;
 }
 
-.Profile .relationship button:hover {
+.Profile .relationship-btn-container button:hover {
   filter: brightness(0.95);
 }
 
-.Profile .relationship button:active {
+.Profile .relationship-btn-container button:active {
   filter: brightness(0.9);
   transform: scale(0.95);
 }
 
-.Profile .relationship .is-friend {
+.Profile .relationship-btn-container .is-friend {
   height: 34px;
   padding: 0 12px;
   display: flex;
@@ -295,7 +296,7 @@
   color: rgb(24, 119, 242);
 }
 
-.Profile .relationship .is-friend .icon {
+.Profile .relationship-btn-container .is-friend .icon {
   font-size: 18px;
 }
 

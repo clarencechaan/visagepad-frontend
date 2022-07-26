@@ -70,7 +70,9 @@ function Post({ post }) {
     setEditPostFormShown(true);
   }
 
-  function likeCount(likes) {
+  function likeCount() {
+    const likes = post.likes;
+
     if (likes.length === 0) {
       return null;
     }
@@ -95,7 +97,7 @@ function Post({ post }) {
         <button
           className="like-count has-tooltip"
           onClick={handleLikeCountClicked}
-          data-descr={likeCountDescr(likes)}
+          data-descr={userListDescr(likes)}
         >
           <div className="badge">
             <ThumbsUp weight="fill" />
@@ -103,27 +105,13 @@ function Post({ post }) {
           {string}
         </button>
         {userListShown ? (
-          <UserList setUserListShown={setUserListShown} />
+          <UserList setUserListShown={setUserListShown} users={post.likes} />
         ) : null}
       </div>
     );
   }
 
-  function likeCountDescr(likes) {
-    let string = "";
-
-    for (let i = 0; i < likes.length && i < 9; i++) {
-      string += `${likes[i].first_name} ${likes[i].last_name}\u000D\u000A`;
-    }
-
-    if (likes.length >= 10) {
-      string += `and ${likes.length - 9} more...\u000D\u000A`;
-    }
-
-    return string;
-  }
-
-  function commentCount(comments) {
+  function commentCount() {
     if (comments.length === 0) {
       return null;
     }
@@ -139,28 +127,22 @@ function Post({ post }) {
       <button
         className="comment-count has-tooltip"
         onClick={handleCommentCountClicked}
-        data-descr={commentCountDescr(comments)}
+        data-descr={userListDescr(comments.map((comment) => comment.author))}
       >
         {string}
       </button>
     );
   }
 
-  function commentCountDescr(comments) {
-    let authorArr = [];
-    for (const comment of comments) {
-      if (!authorArr.includes(comment.author)) {
-        authorArr.push(comment.author);
-      }
-    }
-
+  function userListDescr(user) {
     let string = "";
-    for (let i = 0; i < authorArr.length && i < 9; i++) {
-      string += `${authorArr[i].first_name} ${authorArr[i].last_name}\u000D\u000A`;
+
+    for (let i = 0; i < user.length && i < 9; i++) {
+      string += `${user[i].first_name} ${user[i].last_name}\u000D\u000A`;
     }
 
-    if (authorArr.length >= 10) {
-      string += `and ${authorArr.length - 9} more...\u000D\u000A`;
+    if (user.length >= 10) {
+      string += `and ${user.length - 9} more...\u000D\u000A`;
     }
 
     return string;
@@ -228,24 +210,9 @@ function Post({ post }) {
     );
   }
 
-  return (
-    <div className="Post">
-      <div className="info-bar">
-        <Link to={`/profile/${post.author._id}`} className="author-profile-pic">
-          {media(post.author.pfp || blankUser)}
-        </Link>
-        <div>
-          <Link to={`/profile/${post.author._id}`} className="full-name">
-            {`${post.author.first_name} ${post.author.last_name}`}
-          </Link>
-          <div
-            href=""
-            className="time-ago has-tooltip"
-            data-descr={getLongDateTime(post.date)}
-          >
-            {getTimeAgo(post.date)}
-          </div>
-        </div>
+  function moreOptions() {
+    if (post.author._id === me.user._id) {
+      return (
         <div className="more-options">
           <button>
             <img src={dots} alt="" />
@@ -266,6 +233,31 @@ function Post({ post }) {
             </button>
           </div>
         </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
+  return (
+    <div className="Post">
+      <div className="info-bar">
+        <Link to={`/profile/${post.author._id}`} className="author-profile-pic">
+          {media(post.author.pfp || blankUser)}
+        </Link>
+        <div>
+          <Link to={`/profile/${post.author._id}`} className="full-name">
+            {`${post.author.first_name} ${post.author.last_name}`}
+          </Link>
+          <div
+            href=""
+            className="time-ago has-tooltip"
+            data-descr={getLongDateTime(post.date)}
+          >
+            {getTimeAgo(post.date)}
+          </div>
+        </div>
+        {moreOptions()}
         {editPostFormShown ? (
           <ComposePostForm
             setComposePostFormShown={setEditPostFormShown}
@@ -282,8 +274,8 @@ function Post({ post }) {
         <div className="photo-container">{media(post.img_url)}</div>
       ) : null}
       <div className="counts">
-        {likeCount(post.likes)}
-        {commentCount(comments)}
+        {likeCount()}
+        {commentCount()}
       </div>
       <div className="action-btns">
         <button

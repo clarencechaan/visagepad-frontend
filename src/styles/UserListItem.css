@@ -10,6 +10,7 @@
   height: 40px;
   width: 40px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .UserListItem .full-name {
@@ -52,6 +53,10 @@
   transform: scale(0.95);
 }
 
+.UserListItem .relationship-btn-container {
+  margin-left: auto;
+}
+
 .UserListItem .is-friend {
   height: 34px;
   padding: 0 12px;
@@ -62,7 +67,6 @@
   font-size: 14px;
   border: 1px solid rgb(24, 119, 242);
   border-radius: 6px;
-  margin-left: auto;
   color: rgb(24, 119, 242);
 }
 

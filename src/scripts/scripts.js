@@ -10,7 +10,7 @@ function media(src, className) {
   return src && src.substring(src.length - 4) === ".mp4" ? (
     <video
       src={src}
-      autoplay="autoplay"
+      autoPlay="autoplay"
       muted
       loop
       className={className + " media"}
@@ -26,13 +26,17 @@ function getTimeAgo(date) {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
 
+  const yearType =
+    dateObj.getFullYear() === new Date().getFullYear() ? undefined : "numeric";
+
   let resultStr = "";
 
-  if (hours > 24) {
+  if (hours >= 24) {
     resultStr =
       dateObj.toLocaleDateString("en-US", {
         month: "long",
         day: "numeric",
+        year: yearType,
       }) +
       " at " +
       dateObj.toLocaleTimeString("en-US", {

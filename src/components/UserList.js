@@ -2,7 +2,7 @@ import "../styles/UserList.css";
 import { ThumbsUp } from "phosphor-react";
 import UserListItem from "./UserListItem";
 
-function UserList({ setUserListShown }) {
+function UserList({ setUserListShown, users }) {
   function handleCloseBtnClicked() {
     setUserListShown(false);
   }
@@ -15,7 +15,7 @@ function UserList({ setUserListShown }) {
             <div className="badge">
               <ThumbsUp weight="fill" />
             </div>
-            <div className="count">1</div>
+            <div className="count">{users.length}</div>
           </div>
           <button
             type="button"
@@ -26,28 +26,9 @@ function UserList({ setUserListShown }) {
           </button>
         </div>
         <div className="user-list">
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
-          <UserListItem />
+          {users.map((user) => (
+            <UserListItem user={user} setUserListShown={setUserListShown} />
+          ))}
         </div>
       </div>
     </div>

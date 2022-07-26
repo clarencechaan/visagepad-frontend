@@ -53,12 +53,8 @@ function Comment({ comment }) {
     setIsEditing(false);
   }
 
-  function isMe() {
-    return comment.author._id === me.user._id;
-  }
-
   function moreOptions() {
-    if (isMe()) {
+    if (comment.author._id === me.user._id) {
       return (
         <div className="more-options">
           <button className="has-tooltip">
@@ -86,6 +82,47 @@ function Comment({ comment }) {
     }
   }
 
+  function likeCount() {
+    if (comment.likes.length === 0) {
+      return null;
+    } else {
+      return (
+        <div className="like-count-container">
+          <button
+            className="like-count has-tooltip"
+            data-descr={userListDescr(comment.likes)}
+            onClick={handleLikeCountClicked}
+          >
+            <div className="badge">
+              <ThumbsUp weight="fill" />
+            </div>
+            <span>{comment.likes.length}</span>
+          </button>
+          {userListShowm ? (
+            <UserList
+              setUserListShown={setUserListShown}
+              users={comment.likes}
+            />
+          ) : null}
+        </div>
+      );
+    }
+  }
+
+  function userListDescr(user) {
+    let string = "";
+
+    for (let i = 0; i < user.length && i < 9; i++) {
+      string += `${user[i].first_name} ${user[i].last_name}\u000D\u000A`;
+    }
+
+    if (user.length >= 10) {
+      string += `and ${user.length - 9} more...\u000D\u000A`;
+    }
+
+    return string;
+  }
+
   return (
     <div className="Comment">
       <Link to={`/profile/${comment.author._id}`}>
@@ -101,20 +138,7 @@ function Comment({ comment }) {
               {`${comment.author.first_name} ${comment.author.last_name}`}
             </Link>
             <div className="message">{comment.message}</div>
-            <div className="like-count-container">
-              <button
-                className="like-count has-tooltip"
-                onClick={handleLikeCountClicked}
-              >
-                <div className="badge">
-                  <ThumbsUp weight="fill" />
-                </div>
-                <span>5</span>
-              </button>
-              {userListShowm ? (
-                <UserList setUserListShown={setUserListShown} />
-              ) : null}
-            </div>
+            {likeCount()}
           </div>
           {moreOptions()}
         </div>

@@ -4,31 +4,10 @@ import Feed from "./Feed";
 import ContactsSidebar from "./ContactsSidebar";
 import blankUser from "../images/blank-user.png";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import { media } from "../scripts/scripts";
 
 function Home({ homeFeed, setHomeFeed }) {
   const me = useSelector((state) => state.me);
-
-  useEffect(() => {
-    fetchFeed();
-  }, []);
-
-  async function fetchFeed() {
-    const url = process.env.REACT_APP_API_BASE_URL + "/api/my-feed";
-    const headers = {
-      Authorization: "Bearer " + me.token,
-    };
-    try {
-      const response = await fetch(url, { headers });
-      const resObj = await response.json();
-      if (Array.isArray(resObj)) {
-        setHomeFeed(resObj.slice(0, 10));
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
 
   return (
     <div className="Home">
@@ -39,7 +18,7 @@ function Home({ homeFeed, setHomeFeed }) {
         </Link>
       </div>
       <div className="home-feed">
-        <Feed feed={homeFeed} />
+        <Feed feed={homeFeed} setFeed={setHomeFeed} />
       </div>
       <ContactsSidebar />
     </div>
