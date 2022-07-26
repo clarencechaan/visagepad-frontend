@@ -15,7 +15,6 @@ function Profile() {
   const notMe = me.user._id !== userId;
   const [selected, setSelected] = useState("");
   const [user, setUser] = useState({ first_name: "", last_name: "" });
-  const [profileFeed, setProfileFeed] = useState([]);
   const [friendsList, setFriendsList] = useState([]);
   const navLinksRef = useRef(null);
   const intersectionTriggerRef = useRef(null);
@@ -33,26 +32,22 @@ function Profile() {
   }, []);
 
   useEffect(() => {
-    // reset state if profile has changed
-    if (!prevPathname.includes(pathname) && !pathname.includes(prevPathname)) {
-      setUser({ first_name: "", last_name: "" });
-      setProfileFeed([]);
-      setFriendsList([]);
-      setRelationship("");
-    }
-    setPrevPathname(pathname);
-
-    fetchUser();
-    fetchFeed();
-    fetchFriends();
-    fetchRelationship();
-
     if (pathname.includes("friends")) {
       setSelected("friends");
     } else {
       setSelected("posts");
     }
   }, [pathname]);
+
+  useEffect(() => {
+    // reset state if profile has changed
+    setUser({ first_name: "", last_name: "" });
+    setFriendsList([]);
+    setRelationship("");
+    fetchUser();
+    fetchFriends();
+    fetchRelationship();
+  }, [userId]);
 
   useEffect(() => {
     fetchRelationship();
@@ -66,19 +61,6 @@ function Profile() {
       const resObj = await response.json();
       if (resObj._id) {
         setUser(resObj);
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
-
-  async function fetchFeed() {
-    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/posts`;
-    try {
-      const response = await fetch(url);
-      const resObj = await response.json();
-      if (Array.isArray(resObj)) {
-        setProfileFeed(resObj);
       }
     } catch (error) {
       console.log("error", error);
@@ -249,24 +231,12 @@ function Profile() {
           </button>
         </div>
       </nav>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProfilePosts
-              feed={profileFeed}
-              friends={friendsList}
-              set={setProfileFeed}
-            />
-          }
-        />
-        <Route
-          path="/friends"
-          element={
-            friendsList.length ? <ProfileFriends friends={friendsList} /> : null
-          }
-        />
-      </Routes>
+      <div className={pathname.includes("friends") ? "hidden" : ""}>
+        <ProfilePosts friends={friendsList} />
+      </div>
+      <div className={!pathname.includes("friends") ? "hidden" : ""}>
+        <ProfileFriends friends={friendsList} />
+      </div>
     </div>
   );
 }

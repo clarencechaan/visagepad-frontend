@@ -4,10 +4,85 @@ import blankUser from "../images/blank-user.png";
 import Feed from "./Feed";
 import { media } from "../scripts/scripts";
 import { useSelector } from "react-redux";
+import { useState, useEffect, useRef } from "react";
 
-function ProfilePosts({ feed, friends }) {
+function ProfilePosts({ friends }) {
   const me = useSelector((state) => state.me);
   const { userId } = useParams();
+  const [profileFeed, setProfileFeed] = useState([]);
+  const [pageNumber, setPageNumber] = useState(null);
+  const nextPageTriggerRef = useRef(null);
+  const [reachedFeedEnd, setReachedFeedEnd] = useState(false);
+  const feedUrl = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/posts/`;
+
+  useEffect(() => {
+    startObserving();
+  }, []);
+
+  useEffect(() => {
+    if (pageNumber === 0) {
+      setPageNumber(1);
+      return;
+    } else if (pageNumber === null) {
+      return;
+    }
+
+    fetchNextPage(pageNumber);
+  }, [pageNumber]);
+
+  useEffect(() => {
+    console.log("url change");
+    setProfileFeed([]);
+    setPageNumber(0);
+    setReachedFeedEnd(false);
+  }, [feedUrl]);
+
+  function startObserving() {
+    const nextPageTrigger = nextPageTriggerRef.current;
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (each, index) {
+          if (each.isIntersecting) {
+            console.log("TRIGGGGGGGER");
+            setPageNumber((prev) => prev + 1);
+          }
+        });
+      },
+      { rootMargin: "800px" }
+    );
+
+    observer.observe(nextPageTrigger);
+  }
+
+  async function fetchNextPage(pageNumber) {
+    if (!me.token || !feedUrl || reachedFeedEnd) {
+      return;
+    }
+    console.log("fetching: ", pageNumber, me.token, feedUrl);
+    const nextPageUrl = feedUrl + pageNumber;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+    try {
+      const response = await fetch(nextPageUrl, { headers });
+      const resObj = await response.json();
+      if (Array.isArray(resObj)) {
+        setProfileFeed((prev) => {
+          let newFeed = [...prev];
+          newFeed = newFeed.slice(0, (pageNumber - 1) * 3);
+          newFeed = [...newFeed, ...resObj];
+          return newFeed;
+        });
+        if (resObj.length < 3) {
+          setReachedFeedEnd(true);
+        }
+        console.log(resObj);
+        console.log(reachedFeedEnd);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   function friendsSmallItem(user) {
     return (
@@ -20,6 +95,15 @@ function ProfilePosts({ feed, friends }) {
         </Link>
       </div>
     );
+  }
+
+  function setPfComments(postId, comments) {
+    setProfileFeed((prev) => {
+      let newProfileFeed = [...prev];
+      const idx = newProfileFeed.findIndex((post) => post._id === postId);
+      newProfileFeed[idx] = { ...newProfileFeed[idx], comments };
+      return newProfileFeed;
+    });
   }
 
   return (
@@ -47,7 +131,12 @@ function ProfilePosts({ feed, friends }) {
         </div>
       </div>
       <div className="profile-feed">
-        <Feed feed={feed} newPostBtnHidden={userId !== me.user._id} />
+        <Feed
+          feed={profileFeed}
+          newPostBtnHidden={userId !== me.user._id}
+          setPfComments={setPfComments}
+        />
+        <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>
     </div>
   );

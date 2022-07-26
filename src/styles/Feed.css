@@ -3,10 +3,5 @@
   flex-direction: column;
   align-items: center;
   row-gap: 16px;
-  min-height: 1800px;
   padding-bottom: 130px;
-}
-
-.Feed .next-page-trigger {
-  margin-top: auto;
 }

@@ -10,14 +10,14 @@ import UserList from "./UserList";
 import ComposePostForm from "./ComposePostForm";
 import { media, getTimeAgo, getLongDateTime } from "../scripts/scripts";
 
-function Post({ post }) {
+function Post({ post, setHfComments, setPfComments }) {
   const me = useSelector((state) => state.me);
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
   const [userListShown, setUserListShown] = useState(false);
   const [editPostFormShown, setEditPostFormShown] = useState(false);
-  const [comments, setComments] = useState([]);
+  const comments = post.comments;
   const commentInputRef = useRef(null);
 
   useEffect(() => {
@@ -112,7 +112,7 @@ function Post({ post }) {
   }
 
   function commentCount() {
-    if (comments.length === 0) {
+    if (!Array.isArray(comments) || comments.length === 0) {
       return null;
     }
 
@@ -149,12 +149,17 @@ function Post({ post }) {
   }
 
   async function fetchComments() {
+    if (Array.isArray(comments)) {
+      return;
+    }
+    console.log("fetching comments");
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}/comments`;
     try {
       const response = await fetch(url);
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
-        setComments(resObj);
+        setPfComments && setPfComments(post._id, resObj);
+        setHfComments && setHfComments(post._id, resObj);
       }
     } catch (error) {
       console.log("error", error);
@@ -162,6 +167,10 @@ function Post({ post }) {
   }
 
   function commentsSection() {
+    if (!Array.isArray(comments)) {
+      return;
+    }
+
     const commentCount = comments.length;
     const viewPreviousCommentsStr =
       comments.length === 2

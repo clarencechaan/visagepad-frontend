@@ -3,14 +3,79 @@ import "../styles/Home.css";
 import Feed from "./Feed";
 import ContactsSidebar from "./ContactsSidebar";
 import blankUser from "../images/blank-user.png";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { media } from "../scripts/scripts";
 
-function Home() {
-  const [homeFeed, setHomeFeed] = useState([]);
+function Home({ homeFeed, setHomeFeed, pageNumber, setPageNumber }) {
   const me = useSelector((state) => state.me);
+  const [reachedFeedEnd, setReachedFeedEnd] = useState(false);
+  const nextPageTriggerRef = useRef(null);
   const feedUrl = `${process.env.REACT_APP_API_BASE_URL}/api/my-feed/`;
+
+  useEffect(() => {
+    startObserving();
+  }, []);
+
+  useEffect(() => {
+    fetchNextPage(pageNumber);
+  }, [pageNumber]);
+
+  function startObserving() {
+    const nextPageTrigger = nextPageTriggerRef.current;
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (each, index) {
+          if (each.isIntersecting) {
+            console.log("TRIGGGGGGGER");
+
+            setPageNumber((prev) => prev + 1);
+          }
+        });
+      },
+      { rootMargin: "800px" }
+    );
+
+    observer.observe(nextPageTrigger);
+  }
+
+  async function fetchNextPage(pageNumber) {
+    if (!me.token || !feedUrl || reachedFeedEnd) {
+      return;
+    }
+    console.log("fetching: ", pageNumber, me.token, feedUrl);
+
+    const nextPageUrl = feedUrl + pageNumber;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+    try {
+      const response = await fetch(nextPageUrl, { headers });
+      const resObj = await response.json();
+      if (Array.isArray(resObj)) {
+        setHomeFeed((prev) => {
+          let newFeed = [...prev];
+          newFeed = newFeed.slice(0, (pageNumber - 1) * 3);
+          newFeed = [...newFeed, ...resObj];
+          return newFeed;
+        });
+        if (resObj.length < 3) {
+          setReachedFeedEnd(true);
+        }
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  function setHfComments(postId, comments) {
+    setHomeFeed((prev) => {
+      let newHomeFeed = [...prev];
+      const idx = newHomeFeed.findIndex((post) => post._id === postId);
+      newHomeFeed[idx] = { ...newHomeFeed[idx], comments };
+      return newHomeFeed;
+    });
+  }
 
   return (
     <div className="Home">
@@ -21,7 +86,8 @@ function Home() {
         </Link>
       </div>
       <div className="home-feed">
-        <Feed feed={homeFeed} setFeed={setHomeFeed} url={feedUrl} />
+        <Feed feed={homeFeed} url={feedUrl} setHfComments={setHfComments} />
+        <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>
       <ContactsSidebar />
     </div>

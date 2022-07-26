@@ -14,6 +14,8 @@ import Profile from "./components/Profile";
 function App() {
   const dispatch = useDispatch();
   const me = useSelector((state) => state.me);
+  const [homeFeed, setHomeFeed] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     getMeFromLocalStorage();
@@ -45,44 +47,34 @@ function App() {
     }
   }
 
-  // return Home or LogIn page depending on whether me object is empty
-  const index =
-    Object.keys(me.user).length === 0 ? (
-      <>
-        <LogIn fetchContacts={fetchContacts} />
-        <Footer />
-      </>
-    ) : (
-      <>
-        <NavBar />
-        <Home />
-      </>
-    );
-
   return (
     <div className="App">
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={index} />
-        <Route
-          path="/my-friends"
-          element={
-            <>
-              <NavBar />
-              <MyFriends />
-            </>
-          }
-        />
-        <Route
-          path="/profile/:userId/*"
-          element={
-            <>
-              <NavBar />
-              <Profile />
-            </>
-          }
-        />
-      </Routes>
+      {Object.keys(me.user).length === 0 ? (
+        <>
+          <LogIn fetchContacts={fetchContacts} />
+          <Footer />
+        </>
+      ) : (
+        <>
+          <NavBar />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  homeFeed={homeFeed}
+                  setHomeFeed={setHomeFeed}
+                  pageNumber={pageNumber}
+                  setPageNumber={setPageNumber}
+                />
+              }
+            />
+            <Route path="/my-friends" element={<MyFriends />} />
+            <Route path="/profile/:userId/*" element={<Profile />} />
+          </Routes>
+        </>
+      )}
     </div>
   );
 }
