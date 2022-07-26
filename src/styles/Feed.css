@@ -4,4 +4,5 @@
   align-items: center;
   row-gap: 16px;
   padding-bottom: 130px;
+  min-height: 725px;
 }

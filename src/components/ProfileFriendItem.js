@@ -87,6 +87,9 @@ function ProfileFriendItem({ user }) {
   }
 
   async function fetchMutualsCount() {
+    if (me.user._id === user._id) {
+      return;
+    }
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${user._id}/mutuals`;
     const headers = {
       Authorization: "Bearer " + me.token,
