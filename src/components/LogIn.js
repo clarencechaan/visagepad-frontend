@@ -8,9 +8,13 @@ function LogIn({ fetchContacts }) {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
+  const [signUpFormShown, setSignUpFormShown] = useState(false);
 
-  async function login(username, password) {
+  async function login(form) {
     setIsLoading(true);
+
+    const username = form[0].value;
+    const password = form[1].value;
 
     const method = "POST";
     const url = process.env.REACT_APP_API_BASE_URL + "/auth/login";
@@ -33,17 +37,13 @@ function LogIn({ fetchContacts }) {
       console.log("error", error);
     }
 
+    form[1].value = "";
     setIsLoading(false);
   }
 
   function handleFormSubmitted(e) {
     e.preventDefault();
-
-    const username = e.target[0].value;
-    const password = e.target[1].value;
-    e.target.reset();
-
-    login(username, password);
+    login(e.target);
   }
 
   function clearLoginMessage() {
@@ -52,6 +52,10 @@ function LogIn({ fetchContacts }) {
 
   function saveMeToLocalStorage(me) {
     localStorage.setItem("me", JSON.stringify(me));
+  }
+
+  function handleNewAccountBtnClicked() {
+    setSignUpFormShown(true);
   }
 
   return (
@@ -76,6 +80,7 @@ function LogIn({ fetchContacts }) {
               minLength={1}
               maxLength={24}
               onChange={clearLoginMessage}
+              disabled={isLoading}
               required
             />
             <input
@@ -86,23 +91,31 @@ function LogIn({ fetchContacts }) {
               maxLength={24}
               onChange={clearLoginMessage}
               autoComplete="off"
+              disabled={isLoading}
               required
             />
-            <button className="log-in-btn">Log In</button>
+            <button className="log-in-btn" disabled={isLoading}>
+              Log In
+            </button>
           </form>
-          <a href="" className="fb connect">
+          <a className="fb connect" href={isLoading ? null : ""}>
             Log In with Facebook
           </a>
           <div className="divider" />
-          <div className="new-account-container">
-            <button type="button" className="new-account-btn">
-              Create new account
-            </button>
-            <SignUpForm />
-          </div>
+          <button
+            type="button"
+            className="new-account-btn"
+            onClick={handleNewAccountBtnClicked}
+            disabled={isLoading}
+          >
+            Create new account
+          </button>
         </div>
         <div className="login-message">{loginMessage}</div>
       </div>
+      {signUpFormShown ? (
+        <SignUpForm setSignUpFormShown={setSignUpFormShown} />
+      ) : null}
     </div>
   );
 }

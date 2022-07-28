@@ -200,11 +200,16 @@
   font-family: "SFUIText-Medium";
   font-size: 15px;
   border-radius: 6px;
-  backdrop-filter: brightness(0);
+  transition: 0.2s;
 }
 
 .ComposePostForm form .done-btn:hover {
-  background-color: rgba(24, 119, 242, 0.9);
+  filter: brightness(0.95);
+}
+
+.ComposePostForm form .done-btn:active {
+  filter: brightness(0.9);
+  transform: scale(0.98);
 }
 
 .ComposePostForm form .done-btn:disabled {
