@@ -8,9 +8,14 @@ import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
 import UserList from "./UserList";
 import ComposePostForm from "./ComposePostForm";
-import { media, getTimeAgo, getLongDateTime } from "../scripts/scripts";
+import {
+  media,
+  getTimeAgo,
+  getLongDateTime,
+  getUsersTooltipContent,
+} from "../scripts/scripts";
 
-function Post({ post, setHfComments, setPfComments }) {
+function Post({ post, setFeedComments }) {
   const me = useSelector((state) => state.me);
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
@@ -97,7 +102,7 @@ function Post({ post, setHfComments, setPfComments }) {
         <button
           className="like-count has-tooltip"
           onClick={handleLikeCountClicked}
-          data-descr={userListDescr(likes)}
+          data-descr={getUsersTooltipContent(likes)}
         >
           <div className="badge">
             <ThumbsUp weight="fill" />
@@ -127,39 +132,26 @@ function Post({ post, setHfComments, setPfComments }) {
       <button
         className="comment-count has-tooltip"
         onClick={handleCommentCountClicked}
-        data-descr={userListDescr(comments.map((comment) => comment.author))}
+        data-descr={getUsersTooltipContent(
+          comments.map((comment) => comment.author)
+        )}
       >
         {string}
       </button>
     );
   }
 
-  function userListDescr(users) {
-    let string = "";
-
-    for (let i = 0; i < users.length && i < 9; i++) {
-      string += `${users[i].first_name} ${users[i].last_name}\u000D\u000A`;
-    }
-
-    if (users.length >= 10) {
-      string += `and ${users.length - 9} more...\u000D\u000A`;
-    }
-
-    return string;
-  }
-
   async function fetchComments() {
     if (Array.isArray(comments)) {
       return;
     }
-    console.log("fetching comments");
+
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}/comments`;
     try {
       const response = await fetch(url);
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
-        setPfComments && setPfComments(post._id, resObj);
-        setHfComments && setHfComments(post._id, resObj);
+        setFeedComments(post._id, resObj);
       }
     } catch (error) {
       console.log("error", error);

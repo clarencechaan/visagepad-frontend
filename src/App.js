@@ -15,7 +15,6 @@ function App() {
   const dispatch = useDispatch();
   const me = useSelector((state) => state.me);
   const [homeFeed, setHomeFeed] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     getMeFromLocalStorage();
@@ -61,14 +60,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={
-                <Home
-                  homeFeed={homeFeed}
-                  setHomeFeed={setHomeFeed}
-                  pageNumber={pageNumber}
-                  setPageNumber={setPageNumber}
-                />
-              }
+              element={<Home homeFeed={homeFeed} setHomeFeed={setHomeFeed} />}
             />
             <Route path="/my-friends" element={<MyFriends />} />
             <Route path="/profile/:userId/*" element={<Profile />} />

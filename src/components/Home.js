@@ -7,9 +7,10 @@ import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { media } from "../scripts/scripts";
 
-function Home({ homeFeed, setHomeFeed, pageNumber, setPageNumber }) {
+function Home({ homeFeed, setHomeFeed }) {
   const me = useSelector((state) => state.me);
   const [reachedFeedEnd, setReachedFeedEnd] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
   const nextPageTriggerRef = useRef(null);
   const feedUrl = `${process.env.REACT_APP_API_BASE_URL}/api/my-feed/`;
 
@@ -27,23 +28,22 @@ function Home({ homeFeed, setHomeFeed, pageNumber, setPageNumber }) {
       function (entries) {
         entries.forEach(function (each, index) {
           if (each.isIntersecting) {
-            console.log("TRIGGGGGGGER");
-
+            console.log("triggered");
             setPageNumber((prev) => prev + 1);
           }
         });
       },
-      { rootMargin: "800px" }
+      { rootMargin: "400px" }
     );
 
     observer.observe(nextPageTrigger);
   }
 
   async function fetchNextPage(pageNumber) {
+    console.log("call fetch on ", pageNumber);
     if (!me.token || !feedUrl || reachedFeedEnd) {
       return;
     }
-    console.log("fetching: ", pageNumber, me.token, feedUrl);
 
     const nextPageUrl = feedUrl + pageNumber;
     const headers = {
@@ -55,8 +55,11 @@ function Home({ homeFeed, setHomeFeed, pageNumber, setPageNumber }) {
       if (Array.isArray(resObj)) {
         setHomeFeed((prev) => {
           let newFeed = [...prev];
-          newFeed = newFeed.slice(0, (pageNumber - 1) * 3);
-          newFeed = [...newFeed, ...resObj];
+          const idx = (pageNumber - 1) * 3;
+          newFeed[idx] = { ...newFeed[idx], ...resObj[0] };
+          newFeed[idx + 1] = { ...newFeed[idx + 1], ...resObj[1] };
+          newFeed[idx + 2] = { ...newFeed[idx + 2], ...resObj[2] };
+          console.log("setting new feed", newFeed);
           return newFeed;
         });
         if (resObj.length < 3) {
@@ -68,7 +71,7 @@ function Home({ homeFeed, setHomeFeed, pageNumber, setPageNumber }) {
     }
   }
 
-  function setHfComments(postId, comments) {
+  function setFeedComments(postId, comments) {
     setHomeFeed((prev) => {
       let newHomeFeed = [...prev];
       const idx = newHomeFeed.findIndex((post) => post._id === postId);
@@ -86,7 +89,11 @@ function Home({ homeFeed, setHomeFeed, pageNumber, setPageNumber }) {
         </Link>
       </div>
       <div className="home-feed">
-        <Feed feed={homeFeed} url={feedUrl} setHfComments={setHfComments} />
+        <Feed
+          feed={homeFeed.slice(0, pageNumber * 3)}
+          url={feedUrl}
+          setFeedComments={setFeedComments}
+        />
         <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>
       <ContactsSidebar />

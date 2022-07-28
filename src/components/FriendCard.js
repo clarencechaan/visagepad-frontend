@@ -12,7 +12,7 @@ function FriendCard() {
         <Link to="/profile/:userId" className="full-name">
           Clarence Chan
         </Link>
-        <div className="mutual-friends">
+        <div className="mutual-friends has-tooltip">
           <div className="pfps">
             <img src={profilePic} alt="" className="mutual-pfp" />
             <img src={profilePic} alt="" className="mutual-pfp" />

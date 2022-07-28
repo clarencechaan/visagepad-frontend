@@ -1,7 +1,6 @@
 .FriendCard {
   width: 200px;
   background-color: white;
-  overflow: hidden;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -14,6 +13,7 @@
 }
 
 .FriendCard img.pfp {
+  border-radius: 8px 8px 0 0;
   width: 200px;
   height: 200px;
   object-fit: cover;
@@ -41,9 +41,17 @@
 .FriendCard .mutual-friends {
   display: flex;
   align-items: center;
+  align-self: flex-start;
   color: rgb(101, 103, 107);
   font-size: 13px;
   margin-top: 4px;
+  cursor: pointer;
+}
+
+.FriendCard .mutual-friends::after {
+  content: "Clarence Chan";
+  top: 22px;
+  right: 0;
 }
 
 .FriendCard .mutual-friends .pfps {

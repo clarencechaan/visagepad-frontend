@@ -5,7 +5,12 @@ import dots from "../images/dots.svg";
 import { PencilSimple, Trash, ThumbsUp } from "phosphor-react";
 import { useState, useRef } from "react";
 import UserList from "./UserList";
-import { media, getTimeAgoShort, getLongDateTime } from "../scripts/scripts";
+import {
+  media,
+  getTimeAgoShort,
+  getLongDateTime,
+  getUsersTooltipContent,
+} from "../scripts/scripts";
 import { useSelector } from "react-redux";
 
 function Comment({ comment }) {
@@ -90,7 +95,7 @@ function Comment({ comment }) {
         <div className="like-count-container">
           <button
             className="like-count has-tooltip"
-            data-descr={userListDescr(comment.likes)}
+            data-descr={getUsersTooltipContent(comment.likes)}
             onClick={handleLikeCountClicked}
           >
             <div className="badge">
@@ -107,20 +112,6 @@ function Comment({ comment }) {
         </div>
       );
     }
-  }
-
-  function userListDescr(users) {
-    let string = "";
-
-    for (let i = 0; i < users.length && i < 9; i++) {
-      string += `${users[i].first_name} ${users[i].last_name}\u000D\u000A`;
-    }
-
-    if (users.length >= 10) {
-      string += `and ${users.length - 9} more...\u000D\u000A`;
-    }
-
-    return string;
   }
 
   return (

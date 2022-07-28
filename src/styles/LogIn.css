@@ -75,7 +75,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  backdrop-filter: brightness(0);
+  transition: 0.2s;
 }
 
 .LogIn .log-in-form .log-in-btn {
@@ -88,12 +88,12 @@
 }
 
 .LogIn .log-in-form .log-in-btn:hover {
-  background-color: rgba(24, 119, 242, 0.9);
+  filter: brightness(0.95);
 }
 
 .LogIn .log-in-form .log-in-btn:active {
-  background-color: rgba(24, 119, 242, 0.8);
-  transform: scale(0.97);
+  filter: brightness(0.9);
+  transform: scale(0.98);
 }
 
 .LogIn .login-message {
@@ -117,12 +117,12 @@
 }
 
 .LogIn .log-in-window .new-account-btn:hover {
-  background-color: rgba(66, 183, 42, 0.9);
+  filter: brightness(0.95);
 }
 
 .LogIn .log-in-window .new-account-btn:active {
-  background-color: rgba(66, 183, 42, 0.8);
-  transform: scale(0.97);
+  filter: brightness(0.9);
+  transform: scale(0.98);
 }
 
 .LogIn .log-in-window.disabled {
@@ -158,16 +158,16 @@ a.fb {
   height: 48px;
   box-sizing: border-box;
   font-size: 18px;
-  backdrop-filter: brightness(0);
+  transition: 0.2s;
 }
 
 a.fb:hover {
-  background-color: rgba(58, 90, 151, 0.9);
+  filter: brightness(0.95);
 }
 
 a.fb:active {
-  background-color: rgba(58, 90, 151, 0.8);
-  transform: scale(0.97);
+  filter: brightness(0.9);
+  transform: scale(0.98);
 }
 
 .connect:before {

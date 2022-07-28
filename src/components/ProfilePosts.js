@@ -31,7 +31,6 @@ function ProfilePosts({ friends }) {
   }, [pageNumber]);
 
   useEffect(() => {
-    console.log("url change");
     setProfileFeed([]);
     setPageNumber(0);
     setReachedFeedEnd(false);
@@ -43,7 +42,6 @@ function ProfilePosts({ friends }) {
       function (entries) {
         entries.forEach(function (each, index) {
           if (each.isIntersecting) {
-            console.log("TRIGGGGGGGER");
             setPageNumber((prev) => prev + 1);
           }
         });
@@ -58,7 +56,7 @@ function ProfilePosts({ friends }) {
     if (!me.token || !feedUrl || reachedFeedEnd) {
       return;
     }
-    console.log("fetching: ", pageNumber, me.token, feedUrl);
+
     const nextPageUrl = feedUrl + pageNumber;
     const headers = {
       Authorization: "Bearer " + me.token,
@@ -76,8 +74,6 @@ function ProfilePosts({ friends }) {
         if (resObj.length < 3) {
           setReachedFeedEnd(true);
         }
-        console.log(resObj);
-        console.log(reachedFeedEnd);
       }
     } catch (error) {
       console.log("error", error);
@@ -97,7 +93,7 @@ function ProfilePosts({ friends }) {
     );
   }
 
-  function setPfComments(postId, comments) {
+  function setFeedComments(postId, comments) {
     setProfileFeed((prev) => {
       let newProfileFeed = [...prev];
       const idx = newProfileFeed.findIndex((post) => post._id === postId);
@@ -134,7 +130,7 @@ function ProfilePosts({ friends }) {
         <Feed
           feed={profileFeed}
           newPostBtnHidden={userId !== me.user._id}
-          setPfComments={setPfComments}
+          setFeedComments={setFeedComments}
         />
         <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>
