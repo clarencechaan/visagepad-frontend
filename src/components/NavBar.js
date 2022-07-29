@@ -9,7 +9,7 @@ import friendsSelected from "../images/friends-selected.svg";
 import friendsUnselected from "../images/friends-unselected.svg";
 import { smoothScrollToTop } from "../scripts/scripts";
 
-function NavBar() {
+function NavBar({ setHomeFeed, setFriendRequests }) {
   const { pathname } = useLocation();
   const [selected, setSelected] = useState("");
 
@@ -65,7 +65,10 @@ function NavBar() {
         {friendsLink}
       </div>
       <div className="right third">
-        <YourProfileBtn />
+        <YourProfileBtn
+          setHomeFeed={setHomeFeed}
+          setFriendRequests={setFriendRequests}
+        />
       </div>
     </nav>
   );

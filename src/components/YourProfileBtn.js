@@ -8,13 +8,17 @@ import blankUser from "../images/blank-user.png";
 import { smoothScrollToTop } from "../scripts/scripts";
 import { media } from "../scripts/scripts";
 
-function YourProfileBtn() {
+function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
   const me = useSelector((state) => state.me);
   const dispatch = useDispatch();
 
   function handleLogOutBtnClicked() {
     // clear me from state
     dispatch(clearMe());
+
+    // clear home feed and friend requests
+    setHomeFeed([]);
+    setFriendRequests([]);
 
     // clear me from localstorage
     localStorage.removeItem("me");

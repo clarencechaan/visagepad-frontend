@@ -28,7 +28,6 @@ function Home({ homeFeed, setHomeFeed }) {
       function (entries) {
         entries.forEach(function (each, index) {
           if (each.isIntersecting) {
-            console.log("triggered");
             setPageNumber((prev) => prev + 1);
           }
         });
@@ -54,12 +53,18 @@ function Home({ homeFeed, setHomeFeed }) {
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
         setHomeFeed((prev) => {
+          console.log("prev: ", prev);
+          console.log("resObj: ", resObj);
           let newFeed = [...prev];
-          const idx = (pageNumber - 1) * 3;
-          newFeed[idx] = { ...newFeed[idx], ...resObj[0] };
-          newFeed[idx + 1] = { ...newFeed[idx + 1], ...resObj[1] };
-          newFeed[idx + 2] = { ...newFeed[idx + 2], ...resObj[2] };
-          console.log("setting new feed", newFeed);
+          for (let i = 0; i <= 3; i++) {
+            const idx = (pageNumber - 1) * 3 + i;
+            const newPost = resObj[i];
+            if (!newPost) {
+              break;
+            } else {
+              newFeed[idx] = { ...newFeed[idx], ...newPost };
+            }
+          }
           return newFeed;
         });
         if (resObj.length < 3) {
@@ -74,7 +79,7 @@ function Home({ homeFeed, setHomeFeed }) {
   function setFeedComments(postId, comments) {
     setHomeFeed((prev) => {
       let newHomeFeed = [...prev];
-      const idx = newHomeFeed.findIndex((post) => post._id === postId);
+      const idx = newHomeFeed.findIndex((post) => post && post._id === postId);
       newHomeFeed[idx] = { ...newHomeFeed[idx], comments };
       return newHomeFeed;
     });

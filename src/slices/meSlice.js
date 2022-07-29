@@ -16,6 +16,7 @@ export const meSlice = createSlice({
     clearMe: (state) => {
       state.user = {};
       state.token = "";
+      state.contacts = [];
     },
   },
 });
