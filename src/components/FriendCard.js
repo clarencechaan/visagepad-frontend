@@ -1,24 +1,43 @@
 import { Link } from "react-router-dom";
-import "../styles/FriendCard.css";
-import profilePic from "../images/profile-pic.jpeg";
+import blankUser from "../images/blank-user.png";
+import { media } from "../scripts/scripts";
+import { useState, useEffect } from "react";
+import { getUsersTooltipContent } from "../scripts/scripts";
 
-function FriendCard() {
+function FriendCard({ user, fetchMutuals }) {
+  const [mutuals, setMutuals] = useState([]);
+
+  useEffect(() => {
+    fetchMutuals(user, setMutuals);
+  }, []);
+
   return (
     <div className="FriendCard">
-      <Link to="/profile/:userId" className="pfp-anchor">
-        <img src={profilePic} alt="" className="pfp" />
+      <Link to={`/profile/${user._id}`} className="pfp-anchor">
+        {media(user.pfp || blankUser, "pfp")}
       </Link>
       <div className="details">
-        <Link to="/profile/:userId" className="full-name">
-          Clarence Chan
+        <Link to={`/profile/${user._id}`} className="full-name">
+          {`${user.first_name} ${user.last_name}`}
         </Link>
-        <div className="mutual-friends has-tooltip">
-          <div className="pfps">
-            <img src={profilePic} alt="" className="mutual-pfp" />
-            <img src={profilePic} alt="" className="mutual-pfp" />
+        <Link
+          to={`/profile/${user._id}/friends`}
+          className="mutual-friends has-tooltip"
+          data-descr={getUsersTooltipContent(mutuals)}
+        >
+          {/* <div className="pfps">
+            {mutuals
+              .slice(0, 2)
+              .map((user) => media(user.pfp || blankUser, "mutual-pfp"))}
+          </div> */}
+          <div className="count">
+            {mutuals.length
+              ? `${mutuals.length} mutual friend${
+                  mutuals.length > 1 ? "s" : ""
+                }`
+              : null}
           </div>
-          <div className="count">24 mutual friends</div>
-        </div>
+        </Link>
       </div>
     </div>
   );

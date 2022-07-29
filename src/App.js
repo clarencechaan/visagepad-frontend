@@ -62,7 +62,10 @@ function App() {
               path="/"
               element={<Home homeFeed={homeFeed} setHomeFeed={setHomeFeed} />}
             />
-            <Route path="/my-friends" element={<MyFriends />} />
+            <Route
+              path="/friends"
+              element={<MyFriends fetchContacts={fetchContacts} />}
+            />
             <Route path="/profile/:userId/*" element={<Profile />} />
           </Routes>
         </>

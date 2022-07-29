@@ -16,8 +16,8 @@ function NavBar() {
   useEffect(() => {
     if (pathname === "/") {
       setSelected("home");
-    } else if (pathname === "/my-friends") {
-      setSelected("my-friends");
+    } else if (pathname === "/friends") {
+      setSelected("friends");
     } else {
       setSelected("");
     }
@@ -38,15 +38,15 @@ function NavBar() {
 
   const friendsLink = (
     <Link
-      to="/my-friends"
+      to="/friends"
       className={
         "friends-link has-tooltip" +
-        (selected === "my-friends" ? " selected" : " unselected")
+        (selected === "friends" ? " selected" : " unselected")
       }
       onClick={smoothScrollToTop}
     >
       <img
-        src={selected === "my-friends" ? friendsSelected : friendsUnselected}
+        src={selected === "friends" ? friendsSelected : friendsUnselected}
         alt=""
       />
     </Link>

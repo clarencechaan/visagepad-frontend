@@ -1,6 +1,6 @@
-.FriendRequestCard {
+.FriendRequestCard,
+.FriendCard {
   width: 200px;
-  height: 350px;
   background-color: white;
   border-radius: 8px;
   display: flex;
@@ -9,18 +9,25 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.231);
 }
 
-.FriendRequestCard a.pfp-anchor {
+.FriendRequestCard {
+  height: 350px;
+}
+
+.FriendRequestCard a.pfp-anchor,
+.FriendCard a.pfp-anchor {
   line-height: 0;
 }
 
-.FriendRequestCard img.pfp {
+.FriendRequestCard .media.pfp,
+.FriendCard .media.pfp {
   border-radius: 8px 8px 0 0;
   width: 200px;
   height: 200px;
   object-fit: cover;
 }
 
-.FriendRequestCard .details {
+.FriendRequestCard .details,
+.FriendCard .details {
   box-sizing: border-box;
   padding: 12px;
   display: flex;
@@ -28,18 +35,22 @@
   flex: 1;
 }
 
-.FriendRequestCard .full-name {
+.FriendRequestCard .full-name,
+.FriendCard .full-name {
   font-size: 15px;
   font-family: "SFUIText-Medium";
   text-decoration: none;
   color: black;
+  align-self: flex-start;
 }
 
-.FriendRequestCard .full-name:hover {
+.FriendRequestCard .full-name:hover,
+.FriendCard .full-name:hover {
   text-decoration: underline;
 }
 
-.FriendRequestCard .mutual-friends {
+.FriendRequestCard .mutual-friends,
+.FriendCard .mutual-friends {
   display: flex;
   align-items: center;
   color: rgb(101, 103, 107);
@@ -47,20 +58,24 @@
   margin-top: 4px;
   cursor: pointer;
   align-self: flex-start;
+  text-decoration: none;
 }
 
-.FriendRequestCard .mutual-friends::after {
-  content: "Clarence Chan";
+.FriendRequestCard .mutual-friends::after,
+.FriendCard .mutual-friends::after {
+  content: attr(data-descr);
   top: 22px;
-  right: 0;
+  left: 0;
 }
 
-.FriendRequestCard .mutual-friends .pfps {
+.FriendRequestCard .mutual-friends .pfps,
+.FriendCard .mutual-friends .pfps {
   display: flex;
   align-items: center;
 }
 
-.FriendRequestCard .mutual-friends img.mutual-pfp {
+.FriendRequestCard .mutual-friends .media.mutual-pfp,
+.FriendCard .mutual-friends .media.mutual-pfp {
   width: 16px;
   height: 16px;
   object-fit: cover;
@@ -69,16 +84,14 @@
   position: relative;
 }
 
-.FriendRequestCard .mutual-friends img.mutual-pfp:first-child {
+.FriendRequestCard .mutual-friends .media.mutual-pfp:first-child,
+.FriendCard .mutual-friends .media.mutual-pfp:first-child {
   z-index: 1;
 }
 
-.FriendRequestCard .mutual-friends img.mutual-pfp:nth-child(2) {
+.FriendRequestCard .mutual-friends .media.mutual-pfp:nth-child(2),
+.FriendCard .mutual-friends .media.mutual-pfp:nth-child(2) {
   margin-left: -8px;
-}
-
-.FriendRequestCard .mutual-friends .count {
-  margin-left: 3px;
 }
 
 .FriendRequestCard button {
