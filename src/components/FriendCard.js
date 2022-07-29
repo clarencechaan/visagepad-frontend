@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
 import blankUser from "../images/blank-user.png";
 import { media } from "../scripts/scripts";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getUsersTooltipContent } from "../scripts/scripts";
 
-function FriendCard({ user, fetchMutuals }) {
+function FriendCard({ user }) {
   const [mutuals, setMutuals] = useState([]);
-
-  useEffect(() => {
-    fetchMutuals(user, setMutuals);
-  }, []);
 
   return (
     <div className="FriendCard">

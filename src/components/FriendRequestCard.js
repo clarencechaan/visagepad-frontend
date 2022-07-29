@@ -2,15 +2,47 @@ import { Link } from "react-router-dom";
 import "../styles/FriendRequestCard.css";
 import blankUser from "../images/blank-user.png";
 import { media } from "../scripts/scripts";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { getUsersTooltipContent } from "../scripts/scripts";
+import { useSelector } from "react-redux";
 
-function FriendRequestCard({ user, fetchMutuals }) {
-  const [mutuals, setMutuals] = useState([]);
+function FriendRequestCard({ user, setFriendRequests }) {
+  const me = useSelector((state) => state.me);
+  const mutuals = user.mutuals || [];
 
   useEffect(() => {
     fetchMutuals(user, setMutuals);
   }, []);
+
+  async function fetchMutuals(user, setMutuals) {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${user._id}/mutuals`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+    try {
+      const response = await fetch(url, {
+        headers,
+        // signal: fetchController.signal,
+      });
+      const resObj = await response.json();
+      if (Array.isArray(resObj)) {
+        setMutuals(resObj);
+      }
+    } catch (error) {
+      if (!error.toString().includes("The user aborted a request")) {
+        console.log("error", error);
+      }
+    }
+  }
+
+  function setMutuals(fetchedMutuals) {
+    setFriendRequests((prev) => {
+      let newFriendRequests = [...prev];
+      const idx = prev.findIndex((u) => u._id === user._id);
+      newFriendRequests[idx].mutuals = fetchedMutuals;
+      return newFriendRequests;
+    });
+  }
 
   return (
     <div className="FriendRequestCard">

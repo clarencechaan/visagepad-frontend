@@ -41,7 +41,14 @@
   font-family: "SFUIText-Medium";
   text-decoration: none;
   color: black;
+}
+
+.FriendRequestCard .full-name {
   align-self: flex-start;
+}
+
+.FriendCard .full-name {
+  align-self: center;
 }
 
 .FriendRequestCard .full-name:hover,

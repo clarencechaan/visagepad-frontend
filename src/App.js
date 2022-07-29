@@ -15,6 +15,7 @@ function App() {
   const dispatch = useDispatch();
   const me = useSelector((state) => state.me);
   const [homeFeed, setHomeFeed] = useState([]);
+  const [friendRequests, setFriendRequests] = useState([]);
 
   useEffect(() => {
     getMeFromLocalStorage();
@@ -64,7 +65,13 @@ function App() {
             />
             <Route
               path="/friends"
-              element={<MyFriends fetchContacts={fetchContacts} />}
+              element={
+                <MyFriends
+                  fetchContacts={fetchContacts}
+                  friendRequests={friendRequests}
+                  setFriendRequests={setFriendRequests}
+                />
+              }
             />
             <Route path="/profile/:userId/*" element={<Profile />} />
           </Routes>
