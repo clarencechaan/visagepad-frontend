@@ -1,0 +1,40 @@
+.SearchResultItem {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.SearchResultItem:hover {
+  background-color: rgb(227, 228, 229);
+}
+
+.SearchResultItem .media {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.SearchResultItem .text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+}
+
+.SearchResultItem .full-name {
+  font-family: "SFUIText-Medium";
+  color: black;
+}
+
+.SearchResultItem .full-name .match {
+  font-family: "SFUIText-Light";
+}
+
+.SearchResultItem .relationship {
+  color: gray;
+  font-size: 12px;
+}

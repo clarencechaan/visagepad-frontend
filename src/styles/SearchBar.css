@@ -120,39 +120,10 @@
   margin-bottom: 8px;
 }
 
-.SearchBar .result-item {
-  min-height: 52px;
+.SearchBar .no-results {
+  height: 52px;
   display: flex;
   align-items: center;
-  padding: 0 6px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  text-decoration: none;
-}
-
-.SearchBar .result-item:hover {
-  background-color: rgb(227, 228, 229);
-}
-
-.SearchBar .result-item img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.SearchBar .result-item .text {
-  display: flex;
-  flex-direction: column;
-  margin-left: 12px;
-}
-
-.SearchBar .result-item .full-name {
-  font-family: "SFUIText-Medium";
-  color: black;
-}
-
-.SearchBar .result-item .relationship {
-  color: gray;
-  font-size: 12px;
+  justify-content: center;
+  color: rgb(138, 141, 145);
 }

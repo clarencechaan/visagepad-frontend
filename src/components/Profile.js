@@ -12,14 +12,13 @@ function Profile() {
   const me = useSelector((state) => state.me);
   const { pathname } = useLocation();
   const { userId } = useParams();
-  const notMe = me.user._id !== userId;
+  const isMe = me.user._id === userId;
   const [selected, setSelected] = useState("");
   const [user, setUser] = useState({ first_name: "", last_name: "" });
   const [friendsList, setFriendsList] = useState([]);
   const navLinksRef = useRef(null);
   const intersectionTriggerRef = useRef(null);
   const [relationship, setRelationship] = useState("");
-  const [prevPathname, setPrevPathname] = useState("");
 
   useEffect(() => {
     const intersectionTriggerEl = intersectionTriggerRef.current;
@@ -156,16 +155,18 @@ function Profile() {
   }
 
   return (
-    <div className={"Profile" + (notMe ? " not-me" : "")}>
+    <div className={"Profile" + (isMe ? "" : " not-me")}>
       <header>
         <div className="header-content">
           <div className="cover-photo">
             <label htmlFor="cover-input" id="cover-label">
               {media(user.cover)}
-              <div htmlFor="cover-input" className="add-cover-btn">
-                <Camera className="icon" weight="bold" />
-                Add Cover Photo
-              </div>
+              {isMe && !user.cover ? (
+                <div htmlFor="cover-input" className="add-cover-btn">
+                  <Camera className="icon" weight="bold" />
+                  Add Cover Photo
+                </div>
+              ) : null}
             </label>
             <input
               type="file"

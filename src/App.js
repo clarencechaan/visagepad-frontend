@@ -25,7 +25,6 @@ function App() {
     // log in automatically if user found in localstorage
     const localStorageMe = JSON.parse(localStorage.getItem("me"));
     if (localStorageMe) {
-      console.log(localStorageMe);
       dispatch(setUser(localStorageMe.user));
       dispatch(setToken(localStorageMe.token));
       fetchContacts(localStorageMe.user._id, localStorageMe.token);

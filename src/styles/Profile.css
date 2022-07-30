@@ -90,7 +90,7 @@
   font-size: 14px;
   column-gap: 4px;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 
 .Profile .cover-photo .add-cover-btn:hover {

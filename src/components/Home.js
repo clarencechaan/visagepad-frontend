@@ -39,7 +39,6 @@ function Home({ homeFeed, setHomeFeed }) {
   }
 
   async function fetchNextPage(pageNumber) {
-    console.log("call fetch on ", pageNumber);
     if (!me.token || !feedUrl || reachedFeedEnd) {
       return;
     }
@@ -53,8 +52,6 @@ function Home({ homeFeed, setHomeFeed }) {
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
         setHomeFeed((prev) => {
-          console.log("prev: ", prev);
-          console.log("resObj: ", resObj);
           let newFeed = [...prev];
           for (let i = 0; i <= 3; i++) {
             const idx = (pageNumber - 1) * 3 + i;

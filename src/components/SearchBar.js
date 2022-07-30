@@ -1,30 +1,57 @@
-import { Link } from "react-router-dom";
 import "../styles/SearchBar.css";
 import { MagnifyingGlass, ArrowLeft } from "phosphor-react";
-import profilePic from "../images/profile-pic.jpeg";
+import SearchResultItem from "./SearchResultItem";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function SearchBar() {
-  function resultItem() {
-    return (
-      <Link
-        to="/profile/:userId"
-        className="result-item"
-        onClick={() => {
-          document.activeElement.blur();
-        }}
-      >
-        <img src={profilePic} alt="" />
-        <div className="text">
-          <div className="full-name">Clarence Chan</div>
-          <div className="relationship">Friend</div>
-        </div>
-      </Link>
-    );
+  const [query, setQuery] = useState("");
+  const [resultItems, setResultItems] = useState([]);
+
+  useEffect(() => {
+    if (query.length === 0) {
+      setResultItems([]);
+    } else {
+      fetchResults();
+    }
+  }, [query]);
+
+  async function fetchResults() {
+    const terms = normalize(query).split(" ");
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/search-users/${query}`;
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (Array.isArray(resObj)) {
+        setResultItems(
+          resObj.sort((a, b) =>
+            normalize(a.first_name).substring(0, terms[0].length) === terms[0]
+              ? -1
+              : 1
+          )
+        );
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  function handleInputChanged(e) {
+    setQuery(e.target.value);
+  }
+
+  function normalize(str) {
+    return str.trim().toLowerCase();
   }
 
   return (
     <div className="SearchBar" tabIndex={-1}>
-      <input type="text" placeholder="Search VisagePad" />
+      <input
+        type="text"
+        placeholder="Search VisagePad"
+        value={query}
+        onChange={handleInputChanged}
+      />
       <MagnifyingGlass className="magnifying-glass" />
       <div className="window">
         <div className="top-bar">
@@ -39,7 +66,13 @@ function SearchBar() {
           </button>
         </div>
         <div className="results">
-          {/* {[...Array(12)].map((e) => resultItem())} */}
+          {resultItems.length ? (
+            resultItems.map((user) => (
+              <SearchResultItem user={user} query={query} key={user._id} />
+            ))
+          ) : (
+            <div className="no-results">No results found</div>
+          )}
         </div>
       </div>
     </div>
