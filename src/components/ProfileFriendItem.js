@@ -7,10 +7,11 @@ import { Check, UserMinus, UserPlus } from "phosphor-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-function ProfileFriendItem({ user }) {
+function ProfileFriendItem({ user, query }) {
   const me = useSelector((state) => state.me);
   const [relationship, setRelationship] = useState("");
   const [mutualCount, setMutualCount] = useState(0);
+  const [isShown, setIsShown] = useState(true);
   let fetchController = new AbortController();
   let abortFetchEnabled = false;
 
@@ -28,6 +29,29 @@ function ProfileFriendItem({ user }) {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const firstName = normalize(user.first_name);
+    const lastName = normalize(user.last_name);
+    const terms = normalize(query).split(" ");
+
+    const userMatches =
+      (firstName.substring(0, terms[0].length) === terms[0] ||
+        lastName.substring(0, terms[0].length) === terms[0]) &&
+      (!terms[1] ||
+        firstName.substring(0, terms[1].length) === terms[1] ||
+        lastName.substring(0, terms[1].length) === terms[1]);
+
+    if (userMatches) {
+      setIsShown(true);
+    } else {
+      setIsShown(false);
+    }
+  }, [query]);
+
+  function normalize(str) {
+    return str.trim().replace(/  +/g, " ").toLowerCase();
+  }
 
   function relationshipBtn() {
     let button = null;
@@ -111,7 +135,7 @@ function ProfileFriendItem({ user }) {
   }
 
   return (
-    <div className="ProfileFriendItem">
+    <div className={"ProfileFriendItem" + (isShown ? "" : " hidden")}>
       <Link to={`/profile/${user._id}`}>{media(user.pfp || blankUser)}</Link>
       <div className="text">
         <Link to={`/profile/${user._id}`} className="full-name">
