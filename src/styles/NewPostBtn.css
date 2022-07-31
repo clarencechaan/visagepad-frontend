@@ -1,5 +1,5 @@
 .NewPostBtn {
-  width: 680px;
+  width: min(100%, 680px);
   height: 62px;
   background-color: white;
   border-radius: 8px;

@@ -11,8 +11,9 @@ function ProfilePosts({ friends }) {
   const { userId } = useParams();
   const [profileFeed, setProfileFeed] = useState([]);
   const [pageNumber, setPageNumber] = useState(null);
-  const nextPageTriggerRef = useRef(null);
   const [reachedFeedEnd, setReachedFeedEnd] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const nextPageTriggerRef = useRef(null);
   const feedUrl = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/posts/`;
 
   useEffect(() => {
@@ -57,6 +58,8 @@ function ProfilePosts({ friends }) {
       return;
     }
 
+    setIsLoading(true);
+
     const nextPageUrl = feedUrl + pageNumber;
     const headers = {
       Authorization: "Bearer " + me.token,
@@ -78,6 +81,10 @@ function ProfilePosts({ friends }) {
     } catch (error) {
       console.log("error", error);
     }
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }
 
   function friendsSmallItem(user) {
@@ -131,6 +138,7 @@ function ProfilePosts({ friends }) {
           feed={profileFeed}
           newPostBtnHidden={userId !== me.user._id}
           setFeedComments={setFeedComments}
+          isLoading={isLoading}
         />
         <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>

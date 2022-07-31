@@ -47,23 +47,19 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
     <div className="MyFriends">
       <div className="friend-requests">
         <div className="title">Friend Requests</div>
-        <div className="friend-request-cards">
-          {friendRequests.map((friendReq) => (
-            <FriendRequestCard
-              user={friendReq}
-              setFriendRequests={setFriendRequests}
-            />
-          ))}
-        </div>
+        {friendRequests.map((friendReq) => (
+          <FriendRequestCard
+            user={friendReq}
+            setFriendRequests={setFriendRequests}
+          />
+        ))}
+        <div className="divider"></div>
       </div>
-      <div className="divider"></div>
       <div className="friends">
         <div className="title">Friends</div>
-        <div className="friend-cards">
-          {me.contacts.map((user) => (
-            <FriendCard user={user} />
-          ))}
-        </div>
+        {me.contacts.map((user) => (
+          <FriendCard user={user} />
+        ))}
       </div>
     </div>
   );

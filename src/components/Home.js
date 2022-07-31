@@ -11,6 +11,7 @@ function Home({ homeFeed, setHomeFeed }) {
   const me = useSelector((state) => state.me);
   const [reachedFeedEnd, setReachedFeedEnd] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const nextPageTriggerRef = useRef(null);
   const feedUrl = `${process.env.REACT_APP_API_BASE_URL}/api/my-feed/`;
 
@@ -43,6 +44,8 @@ function Home({ homeFeed, setHomeFeed }) {
       return;
     }
 
+    setIsLoading(true);
+
     const nextPageUrl = feedUrl + pageNumber;
     const headers = {
       Authorization: "Bearer " + me.token,
@@ -71,6 +74,8 @@ function Home({ homeFeed, setHomeFeed }) {
     } catch (error) {
       console.log("error", error);
     }
+
+    setIsLoading(false);
   }
 
   function setFeedComments(postId, comments) {
@@ -95,6 +100,7 @@ function Home({ homeFeed, setHomeFeed }) {
           feed={homeFeed.slice(0, pageNumber * 3)}
           url={feedUrl}
           setFeedComments={setFeedComments}
+          isLoading={isLoading}
         />
         <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>

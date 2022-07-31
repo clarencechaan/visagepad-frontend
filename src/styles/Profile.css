@@ -43,10 +43,11 @@
 .Profile header .header-content {
   display: flex;
   flex-direction: column;
+  width: min(100%, 1250px);
 }
 
 .Profile .cover-photo {
-  width: 1250px;
+  max-width: 1250px;
   height: 463px;
   background: linear-gradient(rgb(240, 242, 245) 84%, rgb(109, 109, 109));
   border-radius: 0 0 8px 8px;
@@ -304,6 +305,8 @@
   background-color: white;
   height: 60px;
   width: 100%;
+  padding: 0 32px;
+  box-sizing: border-box;
   position: sticky;
   top: 55px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
@@ -400,4 +403,13 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.Profile .profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 32px;
+  width: 100%;
+  box-sizing: border-box;
 }

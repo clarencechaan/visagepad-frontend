@@ -1,5 +1,5 @@
 .ProfilePosts {
-  width: 1186px;
+  width: min(100%, 1186px);
   display: flex;
   column-gap: 16px;
   padding-top: 16px;
@@ -17,6 +17,7 @@
   flex-direction: column;
   position: sticky;
   top: 132px;
+  margin-bottom: 16px;
 }
 
 .ProfilePosts .friends-small .top-bar .upper {
@@ -100,4 +101,8 @@
 
 .ProfilePosts .friends-small .friend-item .full-name:hover {
   text-decoration: underline;
+}
+
+.ProfilePosts .profile-feed {
+  flex: 1;
 }

@@ -1,37 +1,37 @@
 .MyFriends {
-  width: 1042px;
   flex: 1;
-  align-self: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 0 32px;
 }
 
 .MyFriends .title {
   font-size: 20px;
   font-family: "SFUIText-Semibold";
   margin-bottom: 16px;
+  grid-column: 1 / -1;
 }
 
-.MyFriends .friend-requests {
+.MyFriends .friend-requests,
+.MyFriends .friends {
+  width: min(100%, 1042px);
   margin-top: 34px;
-  padding-bottom: 24px;
-}
-
-.MyFriends .friend-request-cards,
-.MyFriends .friend-cards {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(202px, max-content));
+  justify-content: center;
   gap: 8px;
-  flex-wrap: wrap;
-}
-
-.MyFriends .divider {
-  height: 1px;
-  background-color: lightgray;
-  width: calc(100% + 40px);
-  align-self: center;
 }
 
 .MyFriends .friends {
+  padding-bottom: 24px;
+}
+
+.MyFriends .divider {
+  grid-column: 1 / -1;
+  height: 1px;
+  background-color: lightgray;
+  width: min(calc(100% + 40px), 1082px);
+  margin-left: -20px;
   margin-top: 24px;
-  margin-bottom: 60px;
 }

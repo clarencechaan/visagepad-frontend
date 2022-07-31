@@ -2,13 +2,24 @@ import "../styles/Feed.css";
 import Post from "./Post";
 import NewPostBtn from "./NewPostBtn";
 
-function Feed({ feed, newPostBtnHidden, setFeedComments }) {
+function Feed({ feed, newPostBtnHidden, setFeedComments, isLoading }) {
   return (
     <div className="Feed">
       {newPostBtnHidden ? null : <NewPostBtn />}
-      {feed.map((post, idx) => (
-        <Post post={post} key={post._id} setFeedComments={setFeedComments} />
-      ))}
+      {feed.length || isLoading ? (
+        feed.map(
+          (post, idx) =>
+            post && (
+              <Post
+                post={post}
+                key={post._id}
+                setFeedComments={setFeedComments}
+              />
+            )
+        )
+      ) : (
+        <div className="no-posts-msg">No posts found</div>
+      )}
     </div>
   );
 }

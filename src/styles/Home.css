@@ -50,4 +50,7 @@
 .Home .home-feed {
   flex: 1;
   padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

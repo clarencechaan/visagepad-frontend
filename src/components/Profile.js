@@ -232,10 +232,18 @@ function Profile() {
           </button>
         </div>
       </nav>
-      <div className={pathname.includes("friends") ? "hidden" : ""}>
+      <div
+        className={
+          "profile-content" + (pathname.includes("friends") ? " hidden" : "")
+        }
+      >
         <ProfilePosts friends={friendsList} />
       </div>
-      <div className={!pathname.includes("friends") ? "hidden" : ""}>
+      <div
+        className={
+          "profile-content" + (!pathname.includes("friends") ? " hidden" : "")
+        }
+      >
         <ProfileFriends friends={friendsList} />
       </div>
     </div>
