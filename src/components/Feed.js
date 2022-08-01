@@ -1,6 +1,7 @@
 import "../styles/Feed.css";
 import Post from "./Post";
 import NewPostBtn from "./NewPostBtn";
+import SpinThrobber from "./SpinThrobber";
 
 function Feed({ feed, newPostBtnHidden, setFeedComments, isLoading }) {
   return (
@@ -20,6 +21,7 @@ function Feed({ feed, newPostBtnHidden, setFeedComments, isLoading }) {
       ) : (
         <div className="no-posts-msg">No posts found</div>
       )}
+      {isLoading ? <SpinThrobber className="hidden" /> : null}
     </div>
   );
 }

@@ -16,7 +16,11 @@
   box-sizing: border-box;
 }
 
-.contacts {
+.ContactsSidebar .contacts {
   box-sizing: border-box;
   padding: 8px 0;
+}
+
+.ContactsSidebar .no-contacts-msg {
+  padding-left: 8px;
 }

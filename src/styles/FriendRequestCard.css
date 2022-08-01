@@ -41,6 +41,14 @@
   font-family: "SFUIText-Medium";
   text-decoration: none;
   color: black;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.FriendCard .full-name {
+  text-align: center;
 }
 
 .FriendRequestCard .full-name {

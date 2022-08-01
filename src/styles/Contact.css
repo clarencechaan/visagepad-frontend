@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   padding-left: 8px;
+  padding-right: 16px;
   text-decoration: none;
   border-radius: 8px;
 }
@@ -27,4 +28,8 @@
   margin-left: 12px;
   color: black;
   font-family: "SFUIText-Regular";
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

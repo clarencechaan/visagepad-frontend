@@ -78,7 +78,7 @@
   padding: 14px 16px 26px 16px;
 }
 
-.SignUpForm .Throbber {
+.SignUpForm .DotsThrobber {
   position: absolute;
   top: 50%;
   left: 0;

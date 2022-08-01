@@ -63,6 +63,9 @@
   text-decoration: none;
   transition: background-color 0.2s;
   height: 66px;
+  max-width: 100%;
+  padding-right: 12px;
+  box-sizing: border-box;
 }
 
 .YourProfileBtn .window .user .link:hover,
@@ -88,6 +91,9 @@
   font-family: "SFUIText-Semibold";
   font-size: 15px;
   margin-left: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .YourProfileBtn .window .log-out-link {

@@ -16,6 +16,7 @@ function Profile() {
   const [selected, setSelected] = useState("");
   const [user, setUser] = useState({ first_name: "", last_name: "" });
   const [friendsList, setFriendsList] = useState([]);
+  const [friendsIsLoading, setFriendsIsLoading] = useState(false);
   const navLinksRef = useRef(null);
   const intersectionTriggerRef = useRef(null);
   const [relationship, setRelationship] = useState("");
@@ -71,6 +72,8 @@ function Profile() {
       return;
     }
 
+    setFriendsIsLoading(true);
+
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/friends`;
     const headers = {
       Authorization: "Bearer " + me.token,
@@ -84,6 +87,8 @@ function Profile() {
     } catch (error) {
       console.log("error", error);
     }
+
+    setFriendsIsLoading(false);
   }
 
   async function fetchRelationship() {
@@ -237,14 +242,20 @@ function Profile() {
           "profile-content" + (pathname.includes("friends") ? " hidden" : "")
         }
       >
-        <ProfilePosts friends={friendsList} />
+        <ProfilePosts
+          friends={friendsList}
+          friendsIsLoading={friendsIsLoading}
+        />
       </div>
       <div
         className={
           "profile-content" + (!pathname.includes("friends") ? " hidden" : "")
         }
       >
-        <ProfileFriends friends={friendsList} />
+        <ProfileFriends
+          friends={friendsList}
+          friendsIsLoading={friendsIsLoading}
+        />
       </div>
     </div>
   );

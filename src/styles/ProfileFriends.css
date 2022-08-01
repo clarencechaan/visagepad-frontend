@@ -76,3 +76,9 @@
   gap: 6px;
   margin-top: 16px;
 }
+
+.ProfileFriends .no-friends-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 96px;
+}

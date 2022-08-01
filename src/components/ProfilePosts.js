@@ -6,7 +6,7 @@ import { media } from "../scripts/scripts";
 import { useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 
-function ProfilePosts({ friends }) {
+function ProfilePosts({ friends, friendsIsLoading }) {
   const me = useSelector((state) => state.me);
   const { userId } = useParams();
   const [profileFeed, setProfileFeed] = useState([]);
@@ -130,7 +130,11 @@ function ProfilePosts({ friends }) {
           </div>
         </div>
         <div className="grid">
-          {friends.slice(0, 9).map((user) => friendsSmallItem(user))}
+          {friends.length || friendsIsLoading ? (
+            friends.slice(0, 9).map((user) => friendsSmallItem(user))
+          ) : (
+            <div className="no-friends-msg">No friends found</div>
+          )}
         </div>
       </div>
       <div className="profile-feed">

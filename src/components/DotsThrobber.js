@@ -1,8 +1,8 @@
-import "../styles/Throbber.css";
+import "../styles/DotsThrobber.css";
 
-function Throbber() {
+function DotsThrobber() {
   return (
-    <div className="Throbber">
+    <div className="DotsThrobber">
       <div className="dot"></div>
       <div className="dot"></div>
       <div className="dot"></div>
@@ -12,4 +12,4 @@ function Throbber() {
   );
 }
 
-export default Throbber;
+export default DotsThrobber;

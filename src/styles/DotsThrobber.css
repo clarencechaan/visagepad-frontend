@@ -1,8 +1,8 @@
-.Throbber {
+.DotsThrobber {
   display: flex;
 }
 
-.Throbber .dot {
+.DotsThrobber .dot {
   position: relative;
   width: 0.8em;
   height: 0.8em;
@@ -10,7 +10,7 @@
   border-radius: 50%;
 }
 
-.Throbber .dot::before {
+.DotsThrobber .dot::before {
   position: absolute;
   content: "";
   width: 100%;
@@ -20,43 +20,43 @@
   animation: wave 1s ease-out infinite;
 }
 
-.Throbber .dot:nth-child(1) {
+.DotsThrobber .dot:nth-child(1) {
   background: #7ef9ff;
 }
 
-.Throbber .dot:nth-child(1)::before {
+.DotsThrobber .dot:nth-child(1)::before {
   animation-delay: 0.1s;
 }
 
-.Throbber .dot:nth-child(2) {
+.DotsThrobber .dot:nth-child(2) {
   background: #89cff0;
 }
 
-.Throbber .dot:nth-child(2)::before {
+.DotsThrobber .dot:nth-child(2)::before {
   animation-delay: 0.2s;
 }
 
-.Throbber .dot:nth-child(3) {
+.DotsThrobber .dot:nth-child(3) {
   background: #4682b4;
 }
 
-.Throbber .dot:nth-child(3)::before {
+.DotsThrobber .dot:nth-child(3)::before {
   animation-delay: 0.3s;
 }
 
-.Throbber .dot:nth-child(4) {
+.DotsThrobber .dot:nth-child(4) {
   background: #0f52ba;
 }
 
-.Throbber .dot:nth-child(4)::before {
+.DotsThrobber .dot:nth-child(4)::before {
   animation-delay: 0.4s;
 }
 
-.Throbber .dot:nth-child(5) {
+.DotsThrobber .dot:nth-child(5) {
   background: #000080;
 }
 
-.Throbber .dot:nth-child(5)::before {
+.DotsThrobber .dot:nth-child(5)::before {
   animation-delay: 0.5s;
 }
 

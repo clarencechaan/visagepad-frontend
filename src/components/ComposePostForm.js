@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/ComposePostForm.css";
-import Throbber from "./Throbber";
+import DotsThrobber from "./DotsThrobber";
 import blankUser from "../images/blank-user.png";
 import { Image } from "phosphor-react";
 import { media } from "../scripts/scripts";
@@ -147,7 +147,7 @@ function ComposePostForm({
             </label>
           ) : (
             <div className="photo-preview-container">
-              {isLoading ? <Throbber /> : null}
+              {isLoading ? <DotsThrobber /> : null}
               <div className={isLoading ? "hidden" : ""}>
                 <img
                   src={post.imgUrl}

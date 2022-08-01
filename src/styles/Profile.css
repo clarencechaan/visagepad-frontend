@@ -181,12 +181,18 @@
   align-items: flex-start;
   padding: 0 16px 14px 16px;
   box-sizing: border-box;
+  flex: 1;
+  overflow: hidden;
 }
 
 .Profile .user .full-name {
   font-family: "SFUIText-Semibold";
   font-size: 30px;
   margin-top: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .Profile .user .friend-count {

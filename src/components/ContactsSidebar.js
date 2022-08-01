@@ -3,9 +3,9 @@ import "../styles/ContactsSidebar.css";
 import Contact from "./Contact";
 
 function ContactsSidebar() {
-  const contacts = useSelector((state) => state.me.contacts);
+  const me = useSelector((state) => state.me);
 
-  const sorted = [...contacts].sort((a, b) =>
+  const sorted = [...me.contacts].sort((a, b) =>
     a.first_name > b.first_name ? 1 : -1
   );
 
@@ -13,9 +13,11 @@ function ContactsSidebar() {
     <div className="ContactsSidebar">
       <div className="title">Contacts</div>
       <div className="contacts">
-        {sorted.map((user) => (
-          <Contact user={user} key={user._id} />
-        ))}
+        {sorted.length ? (
+          sorted.map((user) => <Contact user={user} key={user._id} />)
+        ) : (
+          <div className="no-contacts-msg">No contacts found</div>
+        )}
       </div>
     </div>
   );

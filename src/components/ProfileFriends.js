@@ -4,7 +4,7 @@ import { smoothScrollToTop } from "../scripts/scripts";
 import ProfileFriendItem from "./ProfileFriendItem";
 import { useState } from "react";
 
-function ProfileFriends({ friends }) {
+function ProfileFriends({ friends, friendsIsLoading }) {
   const [query, setQuery] = useState("");
 
   function handleInputChanged(e) {
@@ -28,9 +28,13 @@ function ProfileFriends({ friends }) {
         </div>
       </div>
       <div className="grid">
-        {friends.map((user) => (
-          <ProfileFriendItem user={user} key={user._id} query={query} />
-        ))}
+        {friends.length || friendsIsLoading ? (
+          friends.map((user) => (
+            <ProfileFriendItem user={user} key={user._id} query={query} />
+          ))
+        ) : (
+          <div className="no-friends-msg">No friends found</div>
+        )}
       </div>
     </div>
   );

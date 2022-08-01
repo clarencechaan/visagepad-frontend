@@ -27,6 +27,7 @@ function App() {
     if (localStorageMe) {
       dispatch(setUser(localStorageMe.user));
       dispatch(setToken(localStorageMe.token));
+      dispatch(setContacts(localStorageMe.contacts));
       fetchContacts(localStorageMe.user._id, localStorageMe.token);
     }
   }
@@ -41,16 +42,22 @@ function App() {
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
         dispatch(setContacts(resObj));
+        saveContactsToLocalStorage(resObj);
       }
     } catch (error) {
       console.log("error", error);
     }
   }
 
+  function saveContactsToLocalStorage(contacts) {
+    const me = JSON.parse(localStorage.getItem("me"));
+    localStorage.setItem("me", JSON.stringify({ ...me, contacts }));
+  }
+
   return (
     <div className="App">
       <ScrollToTop />
-      {Object.keys(me.user).length === 0 ? (
+      {me.token.length === 0 ? (
         <>
           <LogIn fetchContacts={fetchContacts} />
           <Footer />

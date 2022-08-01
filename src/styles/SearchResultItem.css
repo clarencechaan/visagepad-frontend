@@ -23,11 +23,15 @@
   display: flex;
   flex-direction: column;
   margin-left: 12px;
+  overflow: hidden;
 }
 
 .SearchResultItem .full-name {
   font-family: "SFUIText-Medium";
   color: black;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .SearchResultItem .full-name .match {

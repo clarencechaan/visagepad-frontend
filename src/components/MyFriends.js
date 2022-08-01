@@ -2,16 +2,20 @@ import "../styles/MyFriends.css";
 import FriendRequestCard from "./FriendRequestCard";
 import FriendCard from "./FriendCard";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import SpinThrobber from "./SpinThrobber";
 
 function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
   const me = useSelector((state) => state.me);
+  const [reqsIsLoading, setReqsIsLoading] = useState(false);
 
   useEffect(() => {
     fetchFriendRequests();
   }, []);
 
   async function fetchFriendRequests() {
+    setReqsIsLoading(true);
+
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/friend-requests`;
     const headers = {
       Authorization: "Bearer " + me.token,
@@ -41,25 +45,39 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
     } catch (error) {
       console.log("error", error);
     }
+
+    setReqsIsLoading(false);
+  }
+
+  let reqsToShow = null;
+
+  if (reqsIsLoading) {
+    reqsToShow = <SpinThrobber />;
+  } else if (friendRequests.length) {
+    reqsToShow = friendRequests.map((friendReq) => (
+      <FriendRequestCard
+        user={friendReq}
+        setFriendRequests={setFriendRequests}
+      />
+    ));
+  } else {
+    reqsToShow = <div className="no-reqs-msg">You have no friend requests</div>;
   }
 
   return (
     <div className="MyFriends">
       <div className="friend-requests">
         <div className="title">Friend Requests</div>
-        {friendRequests.map((friendReq) => (
-          <FriendRequestCard
-            user={friendReq}
-            setFriendRequests={setFriendRequests}
-          />
-        ))}
+        {reqsToShow}
         <div className="divider"></div>
       </div>
       <div className="friends">
         <div className="title">Friends</div>
-        {me.contacts.map((user) => (
-          <FriendCard user={user} />
-        ))}
+        {me.contacts.length ? (
+          me.contacts.map((user) => <FriendCard user={user} />)
+        ) : (
+          <div className="no-friends-msg">Start adding friends now!</div>
+        )}
       </div>
     </div>
   );
