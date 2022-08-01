@@ -21,7 +21,7 @@ function Feed({ feed, newPostBtnHidden, setFeedComments, isLoading }) {
       ) : (
         <div className="no-posts-msg">No posts found</div>
       )}
-      {isLoading ? <SpinThrobber className="hidden" /> : null}
+      {isLoading ? <SpinThrobber /> : null}
     </div>
   );
 }

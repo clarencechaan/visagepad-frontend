@@ -71,7 +71,9 @@ function SearchBar() {
               <SearchResultItem user={user} query={query} key={user._id} />
             ))
           ) : (
-            <div className="no-results">No results found</div>
+            <div className="no-results">
+              {!query ? "Start typing to find friends!" : "No results found"}
+            </div>
           )}
         </div>
       </div>

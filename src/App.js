@@ -16,6 +16,7 @@ function App() {
   const me = useSelector((state) => state.me);
   const [homeFeed, setHomeFeed] = useState([]);
   const [friendRequests, setFriendRequests] = useState([]);
+  const [peopleYouMayKnow, setPeopleYouMayKnow] = useState([]);
 
   useEffect(() => {
     getMeFromLocalStorage();
@@ -54,6 +55,22 @@ function App() {
     localStorage.setItem("me", JSON.stringify({ ...me, contacts }));
   }
 
+  async function fetchPeopleYouMayKnow(token) {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/people-may-know`;
+    const headers = {
+      Authorization: "Bearer " + token,
+    };
+    try {
+      const response = await fetch(url, { headers });
+      const resObj = await response.json();
+      if (Array.isArray(resObj)) {
+        setPeopleYouMayKnow(resObj.slice(0, 14));
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
   return (
     <div className="App">
       <ScrollToTop />
@@ -71,7 +88,14 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Home homeFeed={homeFeed} setHomeFeed={setHomeFeed} />}
+              element={
+                <Home
+                  homeFeed={homeFeed}
+                  setHomeFeed={setHomeFeed}
+                  fetchPeopleYouMayKnow={fetchPeopleYouMayKnow}
+                  peopleYouMayKnow={peopleYouMayKnow}
+                />
+              }
             />
             <Route
               path="/friends"

@@ -4,6 +4,10 @@ function smoothScrollToTop() {
 
 // return video or img depending on filetype
 function media(src, className) {
+  if (!src) {
+    return null;
+  }
+
   if (!className) {
     className = "";
   }

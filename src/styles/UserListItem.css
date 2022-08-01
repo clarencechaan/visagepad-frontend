@@ -22,7 +22,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  flex: 1;
 }
 
 .UserListItem .full-name:hover {
@@ -32,6 +31,7 @@
 .UserListItem button {
   margin-left: auto;
   height: 36px;
+  width: max-content;
   padding: 0 12px;
   border: none;
   cursor: pointer;

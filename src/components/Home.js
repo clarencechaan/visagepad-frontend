@@ -2,12 +2,18 @@ import { Link } from "react-router-dom";
 import "../styles/Home.css";
 import Feed from "./Feed";
 import ContactsSidebar from "./ContactsSidebar";
+import Contact from "./Contact";
 import blankUser from "../images/blank-user.png";
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { media } from "../scripts/scripts";
 
-function Home({ homeFeed, setHomeFeed }) {
+function Home({
+  homeFeed,
+  setHomeFeed,
+  fetchPeopleYouMayKnow,
+  peopleYouMayKnow,
+}) {
   const me = useSelector((state) => state.me);
   const [reachedFeedEnd, setReachedFeedEnd] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
@@ -17,6 +23,11 @@ function Home({ homeFeed, setHomeFeed }) {
 
   useEffect(() => {
     startObserving();
+
+    if (!peopleYouMayKnow.length) {
+      // fetch only on first load
+      fetchPeopleYouMayKnow(me.token);
+    }
   }, []);
 
   useEffect(() => {
@@ -94,6 +105,14 @@ function Home({ homeFeed, setHomeFeed }) {
           {media(me.user.pfp || blankUser)}
           <div className="name">{`${me.user.first_name} ${me.user.last_name}`}</div>
         </Link>
+        <div className="people-you-may-know">
+          <div className="title">People you may know</div>
+          <div className="contacts">
+            {peopleYouMayKnow.map((user) => (
+              <Contact user={user} />
+            ))}
+          </div>
+        </div>
       </div>
       <div className="home-feed">
         <Feed

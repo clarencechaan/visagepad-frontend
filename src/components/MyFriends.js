@@ -15,7 +15,10 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
   }, []);
 
   async function fetchFriendRequests() {
-    setReqsIsLoading(true);
+    if (!friendRequests.length) {
+      // show Throbber on first fetch only
+      setReqsIsLoading(true);
+    }
 
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/friend-requests`;
     const headers = {
@@ -77,7 +80,9 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
         {me.contacts.length ? (
           me.contacts.map((user) => <FriendCard user={user} />)
         ) : (
-          <div className="no-friends-msg">Start adding friends now!</div>
+          <div className="no-friends-msg">
+            No friends found. Start adding friends now!
+          </div>
         )}
       </div>
     </div>
