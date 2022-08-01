@@ -23,10 +23,6 @@
   flex-direction: column;
 }
 
-.Post:last-child {
-  margin-bottom: 16px;
-}
-
 .Post .info-bar {
   display: flex;
 }

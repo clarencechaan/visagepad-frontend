@@ -6,10 +6,10 @@ body,
 
 body {
   margin: 0;
+  background-color: rgb(240, 242, 245);
 }
 
 .App {
-  background-color: rgb(240, 242, 245);
   display: flex;
   flex-direction: column;
   font-family: "SFUIText-Light";

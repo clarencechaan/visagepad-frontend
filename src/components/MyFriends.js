@@ -11,6 +11,7 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
 
   useEffect(() => {
     fetchFriendRequests();
+    fetchContacts(me.user._id, me.token);
   }, []);
 
   async function fetchFriendRequests() {
