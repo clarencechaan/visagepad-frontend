@@ -3,10 +3,16 @@ import Post from "./Post";
 import NewPostBtn from "./NewPostBtn";
 import SpinThrobber from "./SpinThrobber";
 
-function Feed({ feed, newPostBtnHidden, setFeedComments, isLoading }) {
+function Feed({
+  feed,
+  newPostBtnHidden,
+  setFeedComments,
+  isLoading,
+  setHomeFeed,
+}) {
   return (
     <div className="Feed">
-      {newPostBtnHidden ? null : <NewPostBtn />}
+      {newPostBtnHidden ? null : <NewPostBtn setHomeFeed={setHomeFeed} />}
       {feed.length || isLoading ? (
         feed.map(
           (post, idx) =>

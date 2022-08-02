@@ -11,7 +11,7 @@ function ComposePostForm({
   setComposePostFormShown,
   editMode,
   postToEdit,
-  hidden,
+  setHomeFeed,
 }) {
   const me = useSelector((state) => state.me);
   const textInputRef = useRef(null);
@@ -22,14 +22,10 @@ function ComposePostForm({
     if (editMode && postToEdit && postToEdit.imgUrl) {
       setIsLoading(true);
     }
-  }, []);
 
-  useEffect(() => {
-    if (!hidden) {
-      focusTextInput();
-      resizeTextInput();
-    }
-  }, [hidden]);
+    focusTextInput();
+    resizeTextInput();
+  }, []);
 
   async function uploadImage(file) {
     const CLIENT_ID = "f78d31a8887d509";
@@ -99,9 +95,59 @@ function ComposePostForm({
     setPost((prev) => ({ ...prev, content: e.target.value }));
   }
 
+  async function handleFormSubmitted(e) {
+    e.preventDefault();
+    try {
+      const postId = await uploadPost();
+      const fetchedPost = await fetchNewPost(postId);
+      setHomeFeed((prev) => {
+        const newHomeFeed = [...prev];
+        newHomeFeed.unshift(fetchedPost);
+        return newHomeFeed;
+      });
+      setComposePostFormShown(false);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function uploadPost() {
+    const method = "POST";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${me.user._id}/posts`;
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + me.token,
+    };
+    const body = JSON.stringify(post);
+
+    try {
+      const response = await fetch(url, { headers, method, body });
+      const resObj = await response.json();
+      if (resObj.postId) {
+        return resObj.postId;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function fetchNewPost(postId) {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${postId}`;
+
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (resObj._id) {
+        return resObj;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
   return (
-    <div className={"ComposePostForm" + (hidden ? " hidden" : "")}>
-      <form action="">
+    <div className="ComposePostForm">
+      <form action="" onSubmit={handleFormSubmitted}>
         <button
           type="button"
           className="close-btn"
@@ -169,7 +215,6 @@ function ComposePostForm({
           )}
         </div>
         <button
-          type="button"
           className={"done-btn"}
           disabled={!post.content}
           onClick={editMode ? () => {} : () => {}}

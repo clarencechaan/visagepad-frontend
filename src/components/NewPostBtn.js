@@ -6,7 +6,7 @@ import blankUser from "../images/blank-user.png";
 import ComposePostForm from "./ComposePostForm";
 import { media } from "../scripts/scripts";
 
-function NewPostBtn() {
+function NewPostBtn({ setHomeFeed }) {
   const me = useSelector((state) => state.me);
   const [newPostFormShown, setNewPostFormShown] = useState(false);
 
@@ -27,10 +27,12 @@ function NewPostBtn() {
         >
           {`What's on your mind, ${me.user.first_name}?`}
         </button>
-        <ComposePostForm
-          setComposePostFormShown={setNewPostFormShown}
-          hidden={!newPostFormShown}
-        />
+        {newPostFormShown ? (
+          <ComposePostForm
+            setComposePostFormShown={setNewPostFormShown}
+            setHomeFeed={setHomeFeed}
+          />
+        ) : null}
       </div>
     </div>
   );

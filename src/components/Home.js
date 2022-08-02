@@ -120,6 +120,7 @@ function Home({
           url={feedUrl}
           setFeedComments={setFeedComments}
           isLoading={isLoading}
+          setHomeFeed={setHomeFeed}
         />
         <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>
