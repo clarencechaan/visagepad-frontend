@@ -112,7 +112,9 @@ function ComposePostForm({
         await uploadEditedPost();
         const fetchedPost = await fetchPost(post._id);
         setFeed((prev) => {
-          const idx = prev.findIndex((feedPost) => feedPost._id === post._id);
+          const idx = prev.findIndex(
+            (feedPost) => feedPost && feedPost._id === post._id
+          );
           let newFeed = [...prev];
           if (idx >= 0) {
             newFeed[idx] = fetchedPost;

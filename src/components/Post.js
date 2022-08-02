@@ -23,6 +23,7 @@ function Post({ post, setFeedComments, setFeed }) {
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
   const [userListShown, setUserListShown] = useState(false);
   const [editPostFormShown, setEditPostFormShown] = useState(false);
+  const [confirmDeletePopupShown, setConfirmDeletePopupShown] = useState(false);
   const comments = post.comments;
   const commentInputRef = useRef(null);
 
@@ -74,6 +75,44 @@ function Post({ post, setFeedComments, setFeed }) {
 
   function handleEditBtnClicked() {
     setEditPostFormShown(true);
+  }
+
+  function handleDropdownDeleteBtnClicked(e) {
+    e.target.blur();
+    setConfirmDeletePopupShown(true);
+  }
+
+  async function deletePost() {
+    const postDidDelete = await fetchDeletePost();
+    if (postDidDelete) {
+      setFeed((prev) => {
+        const idx = prev.findIndex(
+          (feedPost) => feedPost && feedPost._id === post._id
+        );
+        // const newFeed = [...prev.slice(0, idx), ...prev.slice(idx + 1)];
+        let newFeed = [...prev];
+        newFeed[idx] = null;
+        return newFeed;
+      });
+    }
+  }
+
+  async function fetchDeletePost() {
+    const method = "DELETE";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+
+    try {
+      const response = await fetch(url, { headers, method });
+      const resObj = await response.json();
+      if ((resObj.msg = "Post successfully deleted.")) {
+        return true;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   function likeCount() {
@@ -225,11 +264,7 @@ function Post({ post, setFeedComments, setFeed }) {
               <PencilSimple className="icon" />
               Edit post
             </button>
-            <button
-              onClick={(e) => {
-                e.target.blur();
-              }}
-            >
+            <button onClick={handleDropdownDeleteBtnClicked}>
               <Trash className="icon" />
               Delete post
             </button>
@@ -241,8 +276,51 @@ function Post({ post, setFeedComments, setFeed }) {
     }
   }
 
+  function closeConfirmDeletePopup() {
+    setConfirmDeletePopupShown(false);
+  }
+
+  async function handleConfirmDeleteBtnClicked() {
+    await deletePost();
+    closeConfirmDeletePopup();
+  }
+
   return (
     <div className="Post">
+      {confirmDeletePopupShown ? (
+        <div className="confirm-delete-popup">
+          <div className="window">
+            <div className="title-bar">
+              <button
+                type="button"
+                className="close-btn"
+                onClick={closeConfirmDeletePopup}
+              >
+                ✕
+              </button>
+              <div className="title">Delete this post?</div>
+            </div>
+            <div className="content">
+              Are you sure you want to delete this post forever? This action
+              cannot be undone.
+              <div className="delete-btns">
+                <button
+                  className="cancel-btn"
+                  onClick={closeConfirmDeletePopup}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="confirm-btn"
+                  onClick={handleConfirmDeleteBtnClicked}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <div className="info-bar">
         <Link
           to={`/profile/${post.author._id}`}

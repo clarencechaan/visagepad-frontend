@@ -101,7 +101,9 @@ function ProfilePosts({ friends, friendsIsLoading }) {
   function setFeedComments(postId, comments) {
     setProfileFeed((prev) => {
       let newProfileFeed = [...prev];
-      const idx = newProfileFeed.findIndex((post) => post._id === postId);
+      const idx = newProfileFeed.findIndex(
+        (post) => post && post._id === postId
+      );
       newProfileFeed[idx] = { ...newProfileFeed[idx], comments };
       return newProfileFeed;
     });
