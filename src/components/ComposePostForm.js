@@ -19,7 +19,7 @@ function ComposePostForm({
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (editMode && postToEdit && postToEdit.imgUrl) {
+    if (editMode && postToEdit && postToEdit.img_url) {
       setIsLoading(true);
     }
 
@@ -65,11 +65,11 @@ function ComposePostForm({
 
     setIsLoading(true);
     const imgUrlResponse = await uploadImage(e.target.files[0]);
-    setPost((prev) => ({ ...prev, imgUrl: imgUrlResponse }));
+    setPost((prev) => ({ ...prev, img_url: imgUrlResponse }));
   }
 
   function handleRemovePhotoBtnClicked() {
-    setPost((prev) => ({ ...prev, imgUrl: "" }));
+    setPost((prev) => ({ ...prev, img_url: "" }));
   }
 
   function handleCloseFormBtnClicked() {
@@ -214,7 +214,7 @@ function ComposePostForm({
             onChange={handleTextInputChanged}
             value={post.content}
           />
-          {!post.imgUrl && !isLoading ? (
+          {!post.img_url && !isLoading ? (
             <label className="photo-picker-label">
               <div className="prompt">
                 <Image weight="fill" className="icon" />
@@ -233,7 +233,7 @@ function ComposePostForm({
               {isLoading ? <DotsThrobber /> : null}
               <div className={isLoading ? "hidden" : ""}>
                 <img
-                  src={post.imgUrl}
+                  src={post.img_url}
                   alt=""
                   className="photo-preview"
                   onLoad={() => {
@@ -253,7 +253,7 @@ function ComposePostForm({
         </div>
         <button
           className={"done-btn"}
-          disabled={!post.content}
+          disabled={!post.content || isLoading}
           onClick={editMode ? () => {} : () => {}}
         >
           {editMode ? "Save" : "Post"}

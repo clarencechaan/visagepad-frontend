@@ -11,6 +11,10 @@ function ProfileFriends({ friends, friendsIsLoading }) {
     setQuery(e.target.value);
   }
 
+  const sorted = [...friends].sort((a, b) =>
+    a.first_name > b.first_name ? 1 : -1
+  );
+
   return (
     <div className="ProfileFriends">
       <div className="top-bar">
@@ -29,7 +33,7 @@ function ProfileFriends({ friends, friendsIsLoading }) {
       </div>
       <div className="grid">
         {friends.length || friendsIsLoading ? (
-          friends.map((user) => (
+          sorted.map((user) => (
             <ProfileFriendItem user={user} key={user._id} query={query} />
           ))
         ) : (
