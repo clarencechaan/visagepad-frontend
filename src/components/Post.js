@@ -252,7 +252,7 @@ function Post({ post, setFeedComments, setFeed }) {
   }
 
   function moreOptions() {
-    if (post.author._id === me.user._id) {
+    if (post && post.author && post.author._id === me.user._id) {
       return (
         <div className="more-options">
           <button>

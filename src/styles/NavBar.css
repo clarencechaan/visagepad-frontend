@@ -48,12 +48,10 @@
 .NavBar .home-link,
 .NavBar .friends-link {
   width: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border-bottom: 3px solid transparent;
   height: 100%;
+  box-sizing: border-box;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 
 .NavBar .home-link.selected,
@@ -61,39 +59,38 @@
   border-bottom: 3px solid rgb(24, 119, 242);
 }
 
-.NavBar .home-link.unselected,
-.NavBar .friends-link.unselected {
+.NavBar .home-link .img-container,
+.NavBar .friends-link .img-container {
   height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px;
-  transition: background-color 0.2s;
+  width: 100%;
 }
 
-.NavBar .home-link.unselected:hover,
-.NavBar .friends-link.unselected:hover {
+.NavBar .home-link.unselected .img-container:hover,
+.NavBar .friends-link.unselected .img-container:hover {
   background-color: rgb(245, 246, 247);
 }
 
-.NavBar .home-link.unselected:active,
-.NavBar .friends-link.unselected:active {
+.NavBar .home-link.unselected .img-container:active,
+.NavBar .friends-link.unselected .img-container:active {
   background-color: rgb(232, 232, 232);
 }
 
 .NavBar .home-link::after {
   content: "Home";
+  top: 55px;
 }
 
 .NavBar .friends-link::after {
   content: "Friends";
+  top: 55px;
 }
 
-.NavBar .YourProfileBtn > button::after {
+.NavBar .YourProfileBtn > button:not(:focus-within)::after {
   content: "Your profile";
-}
-
-.NavBar .has-tooltip::after {
-  top: 60px;
-}
-
-.NavBar .YourProfileBtn > button::after {
-  right: 8px;
+  top: 51px;
+  right: -8px;
 }

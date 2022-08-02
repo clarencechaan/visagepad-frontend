@@ -59,7 +59,7 @@ function Comment({ comment }) {
   }
 
   function moreOptions() {
-    if (comment.author._id === me.user._id) {
+    if (comment && comment.author && comment.author._id === me.user._id) {
       return (
         <div className="more-options">
           <button className="has-tooltip">

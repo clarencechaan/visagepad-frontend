@@ -38,7 +38,7 @@ function FriendRequestCard({ user, setFriendRequests }) {
   function setMutuals(fetchedMutuals) {
     setFriendRequests((prev) => {
       let newFriendRequests = [...prev];
-      const idx = prev.findIndex((u) => u._id === user._id);
+      const idx = prev.findIndex((u) => u && u._id === user._id);
       newFriendRequests[idx].mutuals = fetchedMutuals;
       return newFriendRequests;
     });

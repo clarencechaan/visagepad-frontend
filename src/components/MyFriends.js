@@ -32,7 +32,7 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
           let newFriendRequests = [...prev];
           for (const fetchedFr of resObj) {
             const idx = newFriendRequests.findIndex(
-              (user) => user._id === fetchedFr._id
+              (user) => user && user._id === fetchedFr._id
             );
             if (idx !== -1) {
               newFriendRequests[idx] = {

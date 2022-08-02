@@ -12,7 +12,7 @@ function Profile() {
   const me = useSelector((state) => state.me);
   const { pathname } = useLocation();
   const { userId } = useParams();
-  const isMe = me.user._id === userId;
+  const isMe = me && me.user && me.user._id === userId;
   const [selected, setSelected] = useState("");
   const [user, setUser] = useState({ first_name: "", last_name: "" });
   const [friendsList, setFriendsList] = useState([]);

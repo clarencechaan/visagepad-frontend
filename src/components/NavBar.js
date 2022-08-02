@@ -32,7 +32,9 @@ function NavBar({ setHomeFeed, setFriendRequests }) {
       }
       onClick={smoothScrollToTop}
     >
-      <img src={selected === "home" ? homeSelected : homeUnselected} alt="" />
+      <div className="img-container">
+        <img src={selected === "home" ? homeSelected : homeUnselected} alt="" />
+      </div>
     </Link>
   );
 
@@ -45,10 +47,12 @@ function NavBar({ setHomeFeed, setFriendRequests }) {
       }
       onClick={smoothScrollToTop}
     >
-      <img
-        src={selected === "friends" ? friendsSelected : friendsUnselected}
-        alt=""
-      />
+      <div className="img-container">
+        <img
+          src={selected === "friends" ? friendsSelected : friendsUnselected}
+          alt=""
+        />
+      </div>
     </Link>
   );
 
