@@ -13,6 +13,7 @@ import {
   getTimeAgo,
   getLongDateTime,
   getUsersTooltipContent,
+  smoothScrollToTop,
 } from "../scripts/scripts";
 
 function Post({ post, setFeedComments }) {
@@ -192,7 +193,7 @@ function Post({ post, setFeedComments }) {
           {latestComment ? <Comment comment={latestComment} /> : null}
         </div>
         <div className="comment-bar">
-          <Link to={`/profile/${me.user._id}`}>
+          <Link to={`/profile/${me.user._id}`} onClick={smoothScrollToTop}>
             {media(me.user.pfp || blankUser, "pfp-small")}
           </Link>
           <div className="bubble">
@@ -243,11 +244,19 @@ function Post({ post, setFeedComments }) {
   return (
     <div className="Post">
       <div className="info-bar">
-        <Link to={`/profile/${post.author._id}`} className="author-profile-pic">
+        <Link
+          to={`/profile/${post.author._id}`}
+          className="author-profile-pic"
+          onClick={smoothScrollToTop}
+        >
           {media(post.author.pfp || blankUser)}
         </Link>
         <div>
-          <Link to={`/profile/${post.author._id}`} className="full-name">
+          <Link
+            to={`/profile/${post.author._id}`}
+            className="full-name"
+            onClick={smoothScrollToTop}
+          >
             {`${post.author.first_name} ${post.author.last_name}`}
           </Link>
           <div
