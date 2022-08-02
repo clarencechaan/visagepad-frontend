@@ -6,7 +6,7 @@ import blankUser from "../images/blank-user.png";
 import ComposePostForm from "./ComposePostForm";
 import { media } from "../scripts/scripts";
 
-function NewPostBtn({ setHomeFeed }) {
+function NewPostBtn({ setFeed }) {
   const me = useSelector((state) => state.me);
   const [newPostFormShown, setNewPostFormShown] = useState(false);
 
@@ -30,7 +30,7 @@ function NewPostBtn({ setHomeFeed }) {
         {newPostFormShown ? (
           <ComposePostForm
             setComposePostFormShown={setNewPostFormShown}
-            setHomeFeed={setHomeFeed}
+            setFeed={setFeed}
           />
         ) : null}
       </div>

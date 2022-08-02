@@ -11,7 +11,7 @@ function ComposePostForm({
   setComposePostFormShown,
   editMode,
   postToEdit,
-  setHomeFeed,
+  setFeed,
 }) {
   const me = useSelector((state) => state.me);
   const textInputRef = useRef(null);
@@ -98,20 +98,35 @@ function ComposePostForm({
   async function handleFormSubmitted(e) {
     e.preventDefault();
     try {
-      const postId = await uploadPost();
-      const fetchedPost = await fetchNewPost(postId);
-      setHomeFeed((prev) => {
-        const newHomeFeed = [...prev];
-        newHomeFeed.unshift(fetchedPost);
-        return newHomeFeed;
-      });
-      setComposePostFormShown(false);
+      // new post
+      if (!editMode) {
+        const postId = await uploadNewPost();
+        const fetchedPost = await fetchPost(postId);
+        setFeed((prev) => {
+          let newFeed = [...prev];
+          newFeed.unshift(fetchedPost);
+          return newFeed;
+        });
+        setComposePostFormShown(false);
+      } else {
+        await uploadEditedPost();
+        const fetchedPost = await fetchPost(post._id);
+        setFeed((prev) => {
+          const idx = prev.findIndex((feedPost) => feedPost._id === post._id);
+          let newFeed = [...prev];
+          if (idx >= 0) {
+            newFeed[idx] = fetchedPost;
+          }
+          return newFeed;
+        });
+        setComposePostFormShown(false);
+      }
     } catch (error) {
       console.log("error", error);
     }
   }
 
-  async function uploadPost() {
+  async function uploadNewPost() {
     const method = "POST";
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${me.user._id}/posts`;
     const headers = {
@@ -131,7 +146,29 @@ function ComposePostForm({
     }
   }
 
-  async function fetchNewPost(postId) {
+  async function uploadEditedPost() {
+    const method = "PUT";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}`;
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + me.token,
+    };
+    const body = JSON.stringify(post);
+
+    try {
+      const response = await fetch(url, { headers, method, body });
+      const resObj = await response.json();
+      if (resObj.msg === "Post successfully edited.") {
+        return true;
+      } else {
+        throw new Error(resObj.msg);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function fetchPost(postId) {
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${postId}`;
 
     try {

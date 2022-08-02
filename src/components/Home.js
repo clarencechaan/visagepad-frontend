@@ -17,7 +17,7 @@ function Home({
   const me = useSelector((state) => state.me);
   const [reachedFeedEnd, setReachedFeedEnd] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(0);
   const nextPageTriggerRef = useRef(null);
   const feedUrl = `${process.env.REACT_APP_API_BASE_URL}/api/my-feed/`;
 
@@ -44,7 +44,7 @@ function Home({
           }
         });
       },
-      { rootMargin: "400px" }
+      { rootMargin: "200px" }
     );
 
     observer.observe(nextPageTrigger);
@@ -55,7 +55,7 @@ function Home({
       return;
     }
 
-    setIsLoading(true);
+    setIsLoading((prev) => prev + 1);
 
     const nextPageUrl = feedUrl + pageNumber;
     const headers = {
@@ -86,7 +86,7 @@ function Home({
       console.log("error", error);
     }
 
-    setIsLoading(false);
+    setIsLoading((prev) => prev - 1);
   }
 
   function setFeedComments(postId, comments) {
@@ -120,7 +120,7 @@ function Home({
           url={feedUrl}
           setFeedComments={setFeedComments}
           isLoading={isLoading}
-          setHomeFeed={setHomeFeed}
+          setFeed={setHomeFeed}
         />
         <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>

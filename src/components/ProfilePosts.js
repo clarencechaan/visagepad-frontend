@@ -47,7 +47,7 @@ function ProfilePosts({ friends, friendsIsLoading }) {
           }
         });
       },
-      { rootMargin: "800px" }
+      { rootMargin: "200px" }
     );
 
     observer.observe(nextPageTrigger);
@@ -58,7 +58,7 @@ function ProfilePosts({ friends, friendsIsLoading }) {
       return;
     }
 
-    setIsLoading(true);
+    setIsLoading((prev) => prev + 1);
 
     const nextPageUrl = feedUrl + pageNumber;
     const headers = {
@@ -82,9 +82,7 @@ function ProfilePosts({ friends, friendsIsLoading }) {
       console.log("error", error);
     }
 
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+    setIsLoading((prev) => prev - 1);
   }
 
   function friendsSmallItem(user) {
@@ -143,6 +141,7 @@ function ProfilePosts({ friends, friendsIsLoading }) {
           newPostBtnHidden={userId !== me.user._id}
           setFeedComments={setFeedComments}
           isLoading={isLoading}
+          setFeed={setProfileFeed}
         />
         <div className="next-page-trigger" ref={nextPageTriggerRef}></div>
       </div>

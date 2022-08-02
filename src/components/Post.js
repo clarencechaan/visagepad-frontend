@@ -16,7 +16,7 @@ import {
   smoothScrollToTop,
 } from "../scripts/scripts";
 
-function Post({ post, setFeedComments }) {
+function Post({ post, setFeedComments, setFeed }) {
   const me = useSelector((state) => state.me);
   const [commentsExpanded, setCommentsExpanded] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
@@ -272,10 +272,8 @@ function Post({ post, setFeedComments }) {
           <ComposePostForm
             setComposePostFormShown={setEditPostFormShown}
             editMode={true}
-            postToEdit={{
-              content: "ABC DEF GHI.",
-              imgUrl: "https://i.imgur.com/VCYws7K.jpg",
-            }}
+            postToEdit={post}
+            setFeed={setFeed}
           />
         ) : null}
       </div>

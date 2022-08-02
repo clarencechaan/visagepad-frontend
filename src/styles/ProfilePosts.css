@@ -3,7 +3,6 @@
   display: flex;
   column-gap: 16px;
   padding-top: 16px;
-  padding-bottom: 48px;
   align-items: flex-start;
 }
 
@@ -18,6 +17,7 @@
   flex-direction: column;
   position: sticky;
   top: 132px;
+  margin-bottom: 48px;
 }
 
 .ProfilePosts .friends-small .top-bar .upper {
