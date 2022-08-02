@@ -58,11 +58,6 @@ function FriendRequestCard({ user, setFriendRequests }) {
           className="mutual-friends has-tooltip"
           data-descr={getUsersTooltipContent(mutuals)}
         >
-          {/* <div className="pfps">
-            {mutuals
-              .slice(0, 2)
-              .map((user) => media(user.pfp || blankUser, "mutual-pfp"))}
-          </div> */}
           <div className="count">
             {mutuals.length
               ? `${mutuals.length} mutual friend${

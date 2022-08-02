@@ -109,7 +109,7 @@ function Home({
           <div className="title">People you may know</div>
           <div className="contacts">
             {peopleYouMayKnow.map((user) => (
-              <Contact user={user} />
+              <Contact user={user} key={user._id} />
             ))}
           </div>
         </div>

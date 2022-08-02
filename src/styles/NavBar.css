@@ -22,6 +22,8 @@
 .NavBar .middle.third {
   justify-content: center;
   column-gap: 8px;
+  display: flex;
+  box-sizing: border-box;
 }
 
 .NavBar .right.third {
@@ -51,8 +53,7 @@
   justify-content: center;
   box-sizing: border-box;
   border-bottom: 3px solid transparent;
-  min-height: 100%;
-  transition: 0.2s;
+  height: 100%;
 }
 
 .NavBar .home-link.selected,
@@ -64,6 +65,7 @@
 .NavBar .friends-link.unselected {
   height: 48px;
   border-radius: 8px;
+  transition: background-color 0.2s;
 }
 
 .NavBar .home-link.unselected:hover,

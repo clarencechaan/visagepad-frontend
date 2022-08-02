@@ -62,6 +62,7 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
       <FriendRequestCard
         user={friendReq}
         setFriendRequests={setFriendRequests}
+        key={friendReq._id}
       />
     ));
   } else {
@@ -78,7 +79,7 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
       <div className="friends">
         <div className="title">Friends</div>
         {me.contacts.length ? (
-          me.contacts.map((user) => <FriendCard user={user} />)
+          me.contacts.map((user) => <FriendCard user={user} key={user._id} />)
         ) : (
           <div className="no-friends-msg">
             No friends found. Start adding friends now!
