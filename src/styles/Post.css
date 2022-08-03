@@ -13,6 +13,7 @@
 }
 
 .Post {
+  min-height: 190px;
   width: min(100%, 680px);
   background-color: white;
   border-radius: 8px;
@@ -179,9 +180,9 @@
   justify-content: center;
   background-color: lightgray;
   margin-top: 12px;
-  border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
+  margin-bottom: -1px;
   align-self: center;
+  z-index: 0;
 }
 
 .Post .photo-container .media {
@@ -191,6 +192,7 @@
 
 .Post .counts {
   margin-top: 12px;
+  margin-bottom: 12px;
   display: flex;
 }
 
@@ -238,13 +240,13 @@
 }
 
 .Post .action-btns {
-  margin-top: 12px;
   border-top: 1px solid lightgray;
   display: flex;
   padding: 4px;
   box-sizing: border-box;
   height: 44px;
   column-gap: 4px;
+  margin-top: auto;
 }
 
 .Post .action-btns button {

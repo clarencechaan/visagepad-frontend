@@ -359,10 +359,13 @@ function Post({ post, setFeedComments, setFeed }) {
       {post.img_url ? (
         <div className="photo-container">{media(post.img_url)}</div>
       ) : null}
-      <div className="counts">
-        {likeCount()}
-        {commentCount()}
-      </div>
+      {(post && post.likes && post.likes.length) ||
+      (comments && comments.length) ? (
+        <div className="counts">
+          {likeCount()}
+          {commentCount()}
+        </div>
+      ) : null}
       <div className="action-btns">
         <button
           type="button"

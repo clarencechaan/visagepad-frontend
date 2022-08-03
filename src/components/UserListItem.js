@@ -26,7 +26,7 @@ function UserListItem({ user, setUserListShown }) {
       button = (
         <div className="is-friend">
           <Check weight="bold" className="icon" />
-          <label htmlFor="">Friends</label>
+          <label htmlFor="">Friend</label>
         </div>
       );
     } else if (relationship === "Requesting") {

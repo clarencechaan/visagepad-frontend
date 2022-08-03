@@ -119,7 +119,7 @@ function Profile() {
       button1 = (
         <div className="is-friend">
           <Check weight="bold" className="icon" />
-          <label htmlFor="">Friends</label>
+          <label htmlFor="">Friend</label>
         </div>
       );
       button2 = (
