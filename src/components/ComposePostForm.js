@@ -117,7 +117,7 @@ function ComposePostForm({
           );
           let newFeed = [...prev];
           if (idx >= 0) {
-            newFeed[idx] = fetchedPost;
+            newFeed[idx] = { ...newFeed[idx], ...fetchedPost };
           }
           return newFeed;
         });

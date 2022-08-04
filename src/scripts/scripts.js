@@ -101,7 +101,7 @@ function getTimeAgoShort(date) {
   } else if (hours >= 1) {
     resultStr = hours + "h";
   } else if (minutes >= 1) {
-    resultStr = minutes + "min";
+    resultStr = minutes + "m";
   } else {
     resultStr = "just now";
   }
@@ -112,12 +112,19 @@ function getTimeAgoShort(date) {
 function getUsersTooltipContent(users) {
   let string = "";
 
-  for (let i = 0; i < users.length && i < 9; i++) {
-    string += `${users[i].first_name} ${users[i].last_name}\u000D\u000A`;
+  let uniqueUsers = [];
+  for (const user of users) {
+    if (!uniqueUsers.some((unique) => unique._id === user._id)) {
+      uniqueUsers.push(user);
+    }
   }
 
-  if (users.length >= 10) {
-    string += `and ${users.length - 9} more...\u000D\u000A`;
+  for (let i = 0; i < uniqueUsers.length && i < 9; i++) {
+    string += `${uniqueUsers[i].first_name} ${uniqueUsers[i].last_name}\u000D\u000A`;
+  }
+
+  if (uniqueUsers.length >= 10) {
+    string += `and ${uniqueUsers.length - 9} more...\u000D\u000A`;
   }
 
   return string;

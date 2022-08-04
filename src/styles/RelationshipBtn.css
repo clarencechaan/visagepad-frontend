@@ -1,0 +1,66 @@
+.RelationshipBtn {
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+  column-gap: 8px;
+  margin-left: auto;
+}
+
+.RelationshipBtn button {
+  margin-left: auto;
+  height: 36px;
+  padding: 0 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-family: "SFUIText-Medium";
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  transition: 0.2s;
+}
+
+.RelationshipBtn .add-friend-btn,
+.RelationshipBtn .cancel-request-btn,
+.RelationshipBtn .accept-request-btn {
+  background-color: rgb(24, 119, 242);
+  color: white;
+}
+
+.RelationshipBtn .unfriend-btn {
+  background-color: rgb(242, 24, 119);
+  color: white;
+}
+
+.RelationshipBtn button .icon {
+  font-size: 18px;
+}
+
+.RelationshipBtn button:hover {
+  filter: brightness(0.95);
+}
+
+.RelationshipBtn button:active {
+  filter: brightness(0.9);
+  transform: scale(0.95);
+}
+
+.RelationshipBtn .is-friend {
+  height: 34px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  font-family: "SFUIText-Medium";
+  font-size: 14px;
+  border: 1px solid rgb(24, 119, 242);
+  border-radius: 6px;
+  margin-left: auto;
+  color: rgb(24, 119, 242);
+}
+
+.RelationshipBtn .is-friend .icon {
+  font-size: 18px;
+}

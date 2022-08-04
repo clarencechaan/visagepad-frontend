@@ -1,11 +1,12 @@
-import { Routes, Route, Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "../styles/Profile.css";
 import blankUser from "../images/blank-user.png";
-import { UserPlus, UserMinus, Check, Camera } from "phosphor-react";
+import { Camera } from "phosphor-react";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFriends from "./ProfileFriends";
+import RelationshipBtn from "./RelationshipBtn";
 import { smoothScrollToTop, media } from "../scripts/scripts";
 
 function Profile() {
@@ -111,54 +112,6 @@ function Profile() {
     }
   }
 
-  function relationshipBtn() {
-    let button1 = null;
-    let button2 = null;
-    if (relationship === "Self") {
-    } else if (relationship === "Friends") {
-      button1 = (
-        <div className="is-friend">
-          <Check weight="bold" className="icon" />
-          <label htmlFor="">Friend</label>
-        </div>
-      );
-      button2 = (
-        <button className="unfriend-btn">
-          <UserMinus weight="fill" className="icon" />
-          Unfriend
-        </button>
-      );
-    } else if (relationship === "Requesting") {
-      button1 = (
-        <button className="accept-request-btn">
-          <UserPlus weight="fill" className="icon" />
-          Accept Request
-        </button>
-      );
-    } else if (relationship === "Requestee") {
-      button1 = (
-        <button className="cancel-request-btn">
-          <UserMinus weight="fill" className="icon" />
-          Cancel Request
-        </button>
-      );
-    } else if (relationship === "None") {
-      button1 = (
-        <button className="add-friend-btn">
-          <UserPlus weight="fill" className="icon" />
-          Add Friend
-        </button>
-      );
-    }
-
-    return (
-      <div className="relationship-btn-container">
-        {button1}
-        {button2}
-      </div>
-    );
-  }
-
   return (
     <div className={"Profile" + (isMe ? "" : " not-me")}>
       <header>
@@ -204,7 +157,7 @@ function Profile() {
                 ))}
               </div>
             </div>
-            {relationshipBtn()}
+            {<RelationshipBtn relationship={relationship} unfriendBtn={true} />}
           </div>
         </div>
       </header>

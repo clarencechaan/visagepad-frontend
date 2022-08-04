@@ -19,17 +19,25 @@ import {
 function Post({ post, setFeedComments, setFeed }) {
   const me = useSelector((state) => state.me);
   const [commentsExpanded, setCommentsExpanded] = useState(true);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(
+    post && post.likes && post.likes.some((user) => user._id === me.user._id)
+  );
   const [viewingPrevComments, setViewingPrevComments] = useState(false);
   const [userListShown, setUserListShown] = useState(false);
   const [editPostFormShown, setEditPostFormShown] = useState(false);
   const [confirmDeletePopupShown, setConfirmDeletePopupShown] = useState(false);
+  const [commentMessage, setCommentMessage] = useState("");
+  const [newComments, setNewComments] = useState([]);
   const comments = post.comments;
   const commentInputRef = useRef(null);
 
   useEffect(() => {
     fetchComments();
   }, []);
+
+  useEffect(() => {
+    resizeTextInput();
+  }, [commentMessage]);
 
   function handleCommentCountClicked() {
     // show/hide comments section
@@ -41,8 +49,94 @@ function Post({ post, setFeedComments, setFeed }) {
     setViewingPrevComments((prev) => !prev);
   }
 
-  function handleLikeBtnClicked() {
-    setIsLiked((prev) => !prev);
+  async function fetchPost(postId) {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${postId}`;
+
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (resObj._id) {
+        return resObj;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function handleLikeBtnClicked() {
+    // post is not liked
+    // like post
+    if (!isLiked) {
+      setIsLiked(true);
+      const postDidLike = await uploadLike();
+      if (postDidLike) {
+        const fetchedPost = await fetchPost(post._id);
+        setFeed((prev) => {
+          const idx = prev.findIndex(
+            (feedPost) => feedPost && feedPost._id === post._id
+          );
+          let newFeed = [...prev];
+          if (idx >= 0) {
+            newFeed[idx] = { ...newFeed[idx], ...fetchedPost };
+          }
+          return newFeed;
+        });
+      }
+    } else {
+      // post is liked
+      // unlike post
+      setIsLiked(false);
+      const postDidUnlike = await uploadUnlike();
+      if (postDidUnlike) {
+        const fetchedPost = await fetchPost(post._id);
+        setFeed((prev) => {
+          const idx = prev.findIndex(
+            (feedPost) => feedPost && feedPost._id === post._id
+          );
+          let newFeed = [...prev];
+          if (idx >= 0) {
+            newFeed[idx] = { ...newFeed[idx], ...fetchedPost };
+          }
+          return newFeed;
+        });
+      }
+    }
+  }
+
+  async function uploadLike() {
+    const method = "PUT";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}/like`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+
+    try {
+      const response = await fetch(url, { headers, method });
+      const resObj = await response.json();
+      if (resObj.msg === "Post successfully liked.") {
+        return true;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function uploadUnlike() {
+    const method = "PUT";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}/unlike`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+
+    try {
+      const response = await fetch(url, { headers, method });
+      const resObj = await response.json();
+      if (resObj.msg === "Post successfully unliked.") {
+        return true;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   function handleCommentBtnClicked() {
@@ -64,13 +158,63 @@ function Post({ post, setFeedComments, setFeed }) {
   }
 
   function resizeTextInput() {
-    commentInputRef.current.style.minHeight = "0px";
-    commentInputRef.current.style.minHeight =
-      commentInputRef.current.scrollHeight + "px";
+    if (commentInputRef && commentInputRef.current) {
+      commentInputRef.current.style.minHeight = "0px";
+      commentInputRef.current.style.minHeight =
+        commentInputRef.current.scrollHeight + "px";
+    }
   }
 
-  function handleTextInputChanged() {
-    resizeTextInput();
+  function handleTextInputChanged(e) {
+    setCommentMessage(e.target.value);
+  }
+
+  async function handleTextInputKeyDown(e) {
+    const key = e.keyCode;
+
+    // enter key pressed
+    if (key === 13) {
+      e.preventDefault();
+      const commentId = await uploadComment();
+      if (commentId) {
+        const fetchedCommment = await fetchComment(commentId);
+        setNewComments((prev) => [...prev, fetchedCommment]);
+        setCommentMessage("");
+      }
+    }
+  }
+
+  async function uploadComment() {
+    const method = "POST";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}/comments`;
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + me.token,
+    };
+    const body = JSON.stringify({ message: commentMessage });
+    try {
+      const response = await fetch(url, { headers, method, body });
+      const resObj = await response.json();
+      if (resObj.commentId) {
+        return resObj.commentId;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function fetchComment(commentId) {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/comments/${commentId}`;
+
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (resObj._id) {
+        return resObj;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   function handleEditBtnClicked() {
@@ -89,7 +233,6 @@ function Post({ post, setFeedComments, setFeed }) {
         const idx = prev.findIndex(
           (feedPost) => feedPost && feedPost._id === post._id
         );
-        // const newFeed = [...prev.slice(0, idx), ...prev.slice(idx + 1)];
         let newFeed = [...prev];
         newFeed[idx] = null;
         return newFeed;
@@ -107,7 +250,7 @@ function Post({ post, setFeedComments, setFeed }) {
     try {
       const response = await fetch(url, { headers, method });
       const resObj = await response.json();
-      if ((resObj.msg = "Post successfully deleted.")) {
+      if (resObj.msg === "Post successfully deleted.") {
         return true;
       }
     } catch (error) {
@@ -157,24 +300,27 @@ function Post({ post, setFeedComments, setFeed }) {
   }
 
   function commentCount() {
-    if (!Array.isArray(comments) || comments.length === 0) {
+    const count =
+      (comments && comments.length) + (newComments && newComments.length);
+    if (!count) {
       return null;
     }
 
     let string = "";
-    if (comments.length === 1) {
+    if (count === 1) {
       string = "1 comment";
     } else {
-      string = comments.length + " comments";
+      string = count + " comments";
     }
 
     return (
       <button
         className="comment-count has-tooltip"
         onClick={handleCommentCountClicked}
-        data-descr={getUsersTooltipContent(
-          comments.map((comment) => comment.author)
-        )}
+        data-descr={getUsersTooltipContent([
+          ...comments.map((comment) => comment.author),
+          ...newComments.map((comment) => comment.author),
+        ])}
       >
         {string}
       </button>
@@ -182,10 +328,6 @@ function Post({ post, setFeedComments, setFeed }) {
   }
 
   async function fetchComments() {
-    if (Array.isArray(comments)) {
-      return;
-    }
-
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/posts/${post._id}/comments`;
     try {
       const response = await fetch(url);
@@ -209,7 +351,6 @@ function Post({ post, setFeedComments, setFeed }) {
         ? "View 1 previous comment"
         : `View ${comments.length - 1} previous comments`;
     const previousComments = comments.slice(0, commentCount - 1);
-    const latestComment = comments[commentCount - 1];
 
     return (
       <div className={"comments" + (commentsExpanded ? "" : " hidden")}>
@@ -224,12 +365,19 @@ function Post({ post, setFeedComments, setFeed }) {
           {viewPreviousCommentsStr}
         </button>
         <div>
-          <div className={"prev" + (viewingPrevComments ? "" : " hidden")}>
-            {previousComments.map((comment) => (
-              <Comment comment={comment} key={comment._id} />
-            ))}
-          </div>
-          {latestComment ? <Comment comment={latestComment} /> : null}
+          {viewingPrevComments ? (
+            <div className="prev">
+              {previousComments.map((comment) => (
+                <Comment comment={comment} key={comment._id} />
+              ))}
+            </div>
+          ) : null}
+          {comments.length ? (
+            <Comment comment={comments[comments.length - 1]} />
+          ) : null}
+          {newComments.length
+            ? newComments.map((comment) => <Comment comment={comment} />)
+            : null}
         </div>
         <div className="comment-bar">
           <Link to={`/profile/${me.user._id}`} onClick={smoothScrollToTop}>
@@ -241,8 +389,10 @@ function Post({ post, setFeedComments, setFeed }) {
               id="comment-input"
               ref={commentInputRef}
               onChange={handleTextInputChanged}
+              onKeyDown={handleTextInputKeyDown}
               minLength={1}
               maxLength={1500}
+              value={commentMessage}
               placeholder="Write a comment..."
             />
           </div>
@@ -360,7 +510,8 @@ function Post({ post, setFeedComments, setFeed }) {
         <div className="photo-container">{media(post.img_url)}</div>
       ) : null}
       {(post && post.likes && post.likes.length) ||
-      (comments && comments.length) ? (
+      (comments && comments.length) ||
+      (newComments && newComments.length) ? (
         <div className="counts">
           {likeCount()}
           {commentCount()}

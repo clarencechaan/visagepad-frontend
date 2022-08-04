@@ -13,7 +13,6 @@
 }
 
 .Post {
-  min-height: 190px;
   width: min(100%, 680px);
   background-color: white;
   border-radius: 8px;
@@ -170,6 +169,7 @@
 
 .Post > .content {
   margin-top: 4px;
+  margin-bottom: 12px;
   line-height: 20px;
 }
 
@@ -179,10 +179,9 @@
   display: flex;
   justify-content: center;
   background-color: lightgray;
-  margin-top: 12px;
-  margin-bottom: -1px;
   align-self: center;
   z-index: 0;
+  margin-bottom: 12px;
 }
 
 .Post .photo-container .media {
@@ -191,9 +190,10 @@
 }
 
 .Post .counts {
-  margin-top: 12px;
+  margin-top: auto;
   margin-bottom: 12px;
   display: flex;
+  height: 18px;
 }
 
 .Post .counts .like-count,
@@ -246,7 +246,6 @@
   box-sizing: border-box;
   height: 44px;
   column-gap: 4px;
-  margin-top: auto;
 }
 
 .Post .action-btns button {

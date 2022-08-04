@@ -1,11 +1,10 @@
 import "../styles/ProfileFriendItem.css";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { media } from "../scripts/scripts";
 import blankUser from "../images/blank-user.png";
-import { Check, UserMinus, UserPlus } from "phosphor-react";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import RelationshipBtn from "./RelationshipBtn";
 
 function ProfileFriendItem({ user, query }) {
   const me = useSelector((state) => state.me);
@@ -51,42 +50,6 @@ function ProfileFriendItem({ user, query }) {
 
   function normalize(str) {
     return str.trim().replace(/  +/g, " ").toLowerCase();
-  }
-
-  function relationshipBtn() {
-    let button = null;
-    if (relationship === "Self") {
-    } else if (relationship === "Friends") {
-      button = (
-        <div className="is-friend">
-          <Check weight="bold" className="icon" />
-          <label htmlFor="">Friend</label>
-        </div>
-      );
-    } else if (relationship === "Requesting") {
-      button = (
-        <button className="accept-request-btn">
-          <UserPlus weight="fill" className="icon" />
-          Accept Request
-        </button>
-      );
-    } else if (relationship === "Requestee") {
-      button = (
-        <button className="cancel-request-btn">
-          <UserMinus weight="fill" className="icon" />
-          Cancel Request
-        </button>
-      );
-    } else if (relationship === "None") {
-      button = (
-        <button className="add-friend-btn">
-          <UserPlus weight="fill" className="icon" />
-          Add Friend
-        </button>
-      );
-    }
-
-    return <div className="relationship-btn-container">{button}</div>;
   }
 
   async function fetchRelationship() {
@@ -152,7 +115,7 @@ function ProfileFriendItem({ user, query }) {
           </Link>
         ) : null}
       </div>
-      {relationshipBtn()}
+      {<RelationshipBtn relationship={relationship} />}
     </div>
   );
 }
