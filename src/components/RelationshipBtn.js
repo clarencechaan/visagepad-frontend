@@ -112,6 +112,15 @@ function RelationshipBtn({ unfriendBtn, userId }) {
     setMakingRequest(false);
   }
 
+  async function handleDenyRequestBtnClicked() {
+    setMakingRequest(true);
+    const didDenyRequest = await disallowFriendship();
+    if (didDenyRequest) {
+      setRelationship("None");
+    }
+    setMakingRequest(false);
+  }
+
   let button1 = null;
   let button2 = null;
 
@@ -127,6 +136,7 @@ function RelationshipBtn({ unfriendBtn, userId }) {
         <button
           className={"unfriend-btn" + (makingRequest ? " making-request" : "")}
           onClick={handleUnfriendBtnClicked}
+          disabled={makingRequest}
         >
           <UserMinus weight="fill" className="icon" />
           Unfriend
@@ -140,9 +150,22 @@ function RelationshipBtn({ unfriendBtn, userId }) {
           "accept-request-btn" + (makingRequest ? " making-request" : "")
         }
         onClick={handleAcceptRequestBtnClicked}
+        disabled={makingRequest}
       >
         <UserPlus weight="fill" className="icon" />
         Accept Request
+      </button>
+    );
+    button2 = (
+      <button
+        className={
+          "deny-request-btn" + (makingRequest ? " making-request" : "")
+        }
+        onClick={handleDenyRequestBtnClicked}
+        disabled={makingRequest}
+      >
+        <UserPlus weight="fill" className="icon" />
+        Deny Request
       </button>
     );
   } else if (relationship === "Requestee") {

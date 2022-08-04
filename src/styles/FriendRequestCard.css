@@ -138,3 +138,8 @@
   background-color: rgb(228, 230, 235);
   margin-top: 6px;
 }
+
+.FriendRequestCard button.making-request {
+  filter: grayscale(0.5) opacity(0.5);
+  pointer-events: none;
+}

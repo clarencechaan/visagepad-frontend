@@ -29,7 +29,8 @@
   color: white;
 }
 
-.RelationshipBtn .unfriend-btn {
+.RelationshipBtn .unfriend-btn,
+.RelationshipBtn .deny-request-btn {
   background-color: rgb(242, 24, 119);
   color: white;
 }

@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import "../styles/FriendRequestCard.css";
 import blankUser from "../images/blank-user.png";
 import { media } from "../scripts/scripts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUsersTooltipContent } from "../scripts/scripts";
 import { useSelector } from "react-redux";
 
 function FriendRequestCard({ user, setFriendRequests }) {
   const me = useSelector((state) => state.me);
   const mutuals = user.mutuals || [];
+  const [makingRequest, setMakingRequest] = useState(false);
 
   useEffect(() => {
     fetchMutuals(user, setMutuals);
@@ -44,6 +45,82 @@ function FriendRequestCard({ user, setFriendRequests }) {
     });
   }
 
+  async function allowFriendship() {
+    const method = "PUT";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${user._id}/allow-friendship`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+
+    try {
+      const response = await fetch(url, { headers, method });
+      const resObj = await response.json();
+      if (
+        resObj.msg === "Friend request sent." ||
+        resObj.msg === "Accepted friend request."
+      ) {
+        return true;
+      } else {
+        throw new Error(resObj.msg);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function disallowFriendship() {
+    const method = "PUT";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${user._id}/disallow-friendship`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+
+    try {
+      const response = await fetch(url, { headers, method });
+      const resObj = await response.json();
+      if (
+        resObj.msg === "Denied friend request." ||
+        resObj.msg === "Revoked friend request." ||
+        resObj.msg === "Unfriended user."
+      ) {
+        return true;
+      } else {
+        throw new Error(resObj.msg);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function handleConfirmBtnClicked() {
+    setMakingRequest(true);
+    const didAcceptRequest = await allowFriendship();
+    if (didAcceptRequest) {
+      removeFriendRequest();
+    }
+    setMakingRequest(false);
+  }
+
+  async function handleDeleteBtnClicked() {
+    setMakingRequest(true);
+    const didDenyRequest = await disallowFriendship();
+    if (didDenyRequest) {
+      removeFriendRequest();
+    }
+    setMakingRequest(false);
+  }
+
+  async function removeFriendRequest() {
+    setFriendRequests((prev) => {
+      const idx = prev.findIndex((u) => u._id === user._id);
+      let newFriendRequests = [...prev];
+      if (idx >= 0) {
+        newFriendRequests.splice(idx, 1);
+      }
+      return newFriendRequests;
+    });
+  }
+
   return (
     <div className="FriendRequestCard">
       <Link to={`/profile/${user._id}`} className="pfp-anchor">
@@ -66,10 +143,20 @@ function FriendRequestCard({ user, setFriendRequests }) {
               : null}
           </div>
         </Link>
-        <button type="button" className="confirm-btn">
+        <button
+          type="button"
+          className={"confirm-btn" + (makingRequest ? " making-request" : "")}
+          onClick={handleConfirmBtnClicked}
+          disabled={makingRequest}
+        >
           Confirm
         </button>
-        <button type="button" className="delete-btn">
+        <button
+          type="button"
+          className={"delete-btn" + (makingRequest ? " making-request" : "")}
+          onClick={handleDeleteBtnClicked}
+          disabled={makingRequest}
+        >
           Delete
         </button>
       </div>
