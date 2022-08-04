@@ -451,7 +451,7 @@
 }
 
 .Post > .confirm-delete-popup .confirm-btn {
-  background-color: rgb(24, 119, 242);
+  background-color: rgb(242, 24, 119);
   color: white;
   width: 116px;
 }

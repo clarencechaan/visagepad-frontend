@@ -20,7 +20,6 @@ function Profile() {
   const [friendsIsLoading, setFriendsIsLoading] = useState(false);
   const navLinksRef = useRef(null);
   const intersectionTriggerRef = useRef(null);
-  const [relationship, setRelationship] = useState("");
 
   useEffect(() => {
     const intersectionTriggerEl = intersectionTriggerRef.current;
@@ -44,14 +43,11 @@ function Profile() {
     // reset state if profile has changed
     setUser({ first_name: "", last_name: "" });
     setFriendsList([]);
-    setRelationship("");
     fetchUser();
     fetchFriends();
-    fetchRelationship();
   }, [userId]);
 
   useEffect(() => {
-    fetchRelationship();
     fetchFriends();
   }, [me]);
 
@@ -90,26 +86,6 @@ function Profile() {
     }
 
     setFriendsIsLoading(false);
-  }
-
-  async function fetchRelationship() {
-    if (!me.token) {
-      return;
-    }
-
-    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${userId}/relationship`;
-    const headers = {
-      Authorization: "Bearer " + me.token,
-    };
-    try {
-      const response = await fetch(url, { headers });
-      const resObj = await response.json();
-      if (resObj.status) {
-        setRelationship(resObj.status);
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
   }
 
   return (
@@ -157,7 +133,7 @@ function Profile() {
                 ))}
               </div>
             </div>
-            {<RelationshipBtn relationship={relationship} unfriendBtn={true} />}
+            {<RelationshipBtn unfriendBtn={true} userId={user._id} />}
           </div>
         </div>
       </header>

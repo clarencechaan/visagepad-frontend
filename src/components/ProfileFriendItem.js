@@ -8,7 +8,6 @@ import RelationshipBtn from "./RelationshipBtn";
 
 function ProfileFriendItem({ user, query }) {
   const me = useSelector((state) => state.me);
-  const [relationship, setRelationship] = useState("");
   const [mutualCount, setMutualCount] = useState(0);
   const [isShown, setIsShown] = useState(true);
   let fetchController = new AbortController();
@@ -19,7 +18,6 @@ function ProfileFriendItem({ user, query }) {
       abortFetchEnabled = true;
     }, 1);
 
-    fetchRelationship();
     fetchMutualsCount();
 
     return () => {
@@ -50,27 +48,6 @@ function ProfileFriendItem({ user, query }) {
 
   function normalize(str) {
     return str.trim().replace(/  +/g, " ").toLowerCase();
-  }
-
-  async function fetchRelationship() {
-    const url = `${process.env.REACT_APP_API_BASE_URL}/api/users/${user._id}/relationship`;
-    const headers = {
-      Authorization: "Bearer " + me.token,
-    };
-    try {
-      const response = await fetch(url, {
-        headers,
-        signal: fetchController.signal,
-      });
-      const resObj = await response.json();
-      if (resObj.status) {
-        setRelationship(resObj.status);
-      }
-    } catch (error) {
-      if (!error.toString().includes("The user aborted a request")) {
-        console.log("error", error);
-      }
-    }
   }
 
   async function fetchMutualsCount() {
@@ -115,7 +92,7 @@ function ProfileFriendItem({ user, query }) {
           </Link>
         ) : null}
       </div>
-      {<RelationshipBtn relationship={relationship} />}
+      {<RelationshipBtn userId={user._id} />}
     </div>
   );
 }

@@ -27,13 +27,26 @@ function Post({ post, setFeedComments, setFeed }) {
   const [editPostFormShown, setEditPostFormShown] = useState(false);
   const [confirmDeletePopupShown, setConfirmDeletePopupShown] = useState(false);
   const [commentMessage, setCommentMessage] = useState("");
-  const [newComments, setNewComments] = useState([]);
-  const comments = post.comments;
+  const [previousComments, setPreviousComments] = useState(
+    (post.comments && post.comments.slice(0, -1)) || []
+  );
+  const [newComments, setNewComments] = useState(
+    (post.comments && post.comments.length && [post.comments.slice(-1)[0]]) ||
+      []
+  );
   const commentInputRef = useRef(null);
 
   useEffect(() => {
     fetchComments();
   }, []);
+
+  useEffect(() => {
+    setPreviousComments((post.comments && post.comments.slice(0, -1)) || []);
+    setNewComments(
+      (post.comments && post.comments.length && [post.comments.slice(-1)[0]]) ||
+        []
+    );
+  }, [post.comments]);
 
   useEffect(() => {
     resizeTextInput();
@@ -68,8 +81,8 @@ function Post({ post, setFeedComments, setFeed }) {
     // like post
     if (!isLiked) {
       setIsLiked(true);
-      const postDidLike = await uploadLike();
-      if (postDidLike) {
+      const didLikePost = await uploadLike();
+      if (didLikePost) {
         const fetchedPost = await fetchPost(post._id);
         setFeed((prev) => {
           const idx = prev.findIndex(
@@ -86,8 +99,8 @@ function Post({ post, setFeedComments, setFeed }) {
       // post is liked
       // unlike post
       setIsLiked(false);
-      const postDidUnlike = await uploadUnlike();
-      if (postDidUnlike) {
+      const didUnlikePost = await uploadUnlike();
+      if (didUnlikePost) {
         const fetchedPost = await fetchPost(post._id);
         setFeed((prev) => {
           const idx = prev.findIndex(
@@ -227,8 +240,8 @@ function Post({ post, setFeedComments, setFeed }) {
   }
 
   async function deletePost() {
-    const postDidDelete = await fetchDeletePost();
-    if (postDidDelete) {
+    const didDeletePost = await fetchDeletePost();
+    if (didDeletePost) {
       setFeed((prev) => {
         const idx = prev.findIndex(
           (feedPost) => feedPost && feedPost._id === post._id
@@ -301,7 +314,8 @@ function Post({ post, setFeedComments, setFeed }) {
 
   function commentCount() {
     const count =
-      (comments && comments.length) + (newComments && newComments.length);
+      (previousComments && previousComments.length) +
+      (newComments && newComments.length);
     if (!count) {
       return null;
     }
@@ -318,7 +332,7 @@ function Post({ post, setFeedComments, setFeed }) {
         className="comment-count has-tooltip"
         onClick={handleCommentCountClicked}
         data-descr={getUsersTooltipContent([
-          ...comments.map((comment) => comment.author),
+          ...previousComments.map((comment) => comment.author),
           ...newComments.map((comment) => comment.author),
         ])}
       >
@@ -341,16 +355,15 @@ function Post({ post, setFeedComments, setFeed }) {
   }
 
   function commentsSection() {
-    if (!Array.isArray(comments)) {
+    if (!Array.isArray(previousComments)) {
       return;
     }
 
-    const commentCount = comments.length;
+    const previousCommentCount = previousComments.length;
     const viewPreviousCommentsStr =
-      comments.length === 2
+      previousComments.length === 1
         ? "View 1 previous comment"
-        : `View ${comments.length - 1} previous comments`;
-    const previousComments = comments.slice(0, commentCount - 1);
+        : `View ${previousComments.length} previous comments`;
 
     return (
       <div className={"comments" + (commentsExpanded ? "" : " hidden")}>
@@ -358,7 +371,7 @@ function Post({ post, setFeedComments, setFeed }) {
           type="button"
           className={
             "view-prev-comments-btn" +
-            (viewingPrevComments || commentCount <= 1 ? " hidden" : "")
+            (viewingPrevComments || previousCommentCount < 1 ? " hidden" : "")
           }
           onClick={handleViewPrevCommentsClicked}
         >
@@ -368,15 +381,22 @@ function Post({ post, setFeedComments, setFeed }) {
           {viewingPrevComments ? (
             <div className="prev">
               {previousComments.map((comment) => (
-                <Comment comment={comment} key={comment._id} />
+                <Comment
+                  comment={comment}
+                  key={comment._id}
+                  setComments={setPreviousComments}
+                />
               ))}
             </div>
           ) : null}
-          {comments.length ? (
-            <Comment comment={comments[comments.length - 1]} />
-          ) : null}
           {newComments.length
-            ? newComments.map((comment) => <Comment comment={comment} />)
+            ? newComments.map((comment) => (
+                <Comment
+                  comment={comment}
+                  setComments={setNewComments}
+                  key={comment._id}
+                />
+              ))
             : null}
         </div>
         <div className="comment-bar">
@@ -510,7 +530,7 @@ function Post({ post, setFeedComments, setFeed }) {
         <div className="photo-container">{media(post.img_url)}</div>
       ) : null}
       {(post && post.likes && post.likes.length) ||
-      (comments && comments.length) ||
+      (previousComments && previousComments.length) ||
       (newComments && newComments.length) ? (
         <div className="counts">
           {likeCount()}

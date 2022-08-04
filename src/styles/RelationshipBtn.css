@@ -64,3 +64,8 @@
 .RelationshipBtn .is-friend .icon {
   font-size: 18px;
 }
+
+.RelationshipBtn button.making-request {
+  filter: grayscale(0.5) opacity(0.5);
+  pointer-events: none;
+}

@@ -12,13 +12,20 @@ import {
   getUsersTooltipContent,
 } from "../scripts/scripts";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-function Comment({ comment }) {
+function Comment({ comment, setComments }) {
   const me = useSelector((state) => state.me);
   const textInputRef = useRef(null);
   const [isLiked, setIsLiked] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [userListShowm, setUserListShown] = useState(false);
+  const [message, setMessage] = useState(comment.message);
+  const [editedMessage, setEditedMessage] = useState(comment.message);
+
+  useEffect(() => {
+    setMessage(comment.message);
+  }, [comment.message]);
 
   function handleLikeBtnClicked() {
     setIsLiked((prev) => !prev);
@@ -42,8 +49,9 @@ function Comment({ comment }) {
       textInputRef.current.scrollHeight + "px";
   }
 
-  function handleTextInputChanged() {
+  function handleTextInputChanged(e) {
     resizeTextInput();
+    setEditedMessage(e.target.value);
   }
 
   function handleEditBtnClicked() {
@@ -56,6 +64,71 @@ function Comment({ comment }) {
 
   function handleCancelBtnClicked() {
     setIsEditing(false);
+  }
+
+  async function uploadEditedComment() {
+    const method = "PUT";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/comments/${comment._id}`;
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + me.token,
+    };
+    const body = JSON.stringify({ message: editedMessage });
+    try {
+      const response = await fetch(url, { headers, method, body });
+      const resObj = await response.json();
+      if (resObj.msg === "Comment successfully edited.") {
+        return true;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function handleTextInputKeyDown(e) {
+    const key = e.keyCode;
+
+    // enter key pressed
+    if (key === 13) {
+      e.preventDefault();
+      const didEditComment = await uploadEditedComment();
+      if (didEditComment) {
+        setMessage(editedMessage);
+        setIsEditing(false);
+      }
+    }
+  }
+
+  async function handleDeleteBtnClicked(e) {
+    e.target.blur();
+    const didDeleteComment = await uploadDelete();
+    if (didDeleteComment) {
+      setComments((prev) => {
+        const idx = prev.findIndex((c) => c._id === comment._id);
+        let newComments = [...prev];
+        if (idx >= 0) {
+          newComments.splice(idx, 1);
+        }
+        return newComments;
+      });
+    }
+  }
+
+  async function uploadDelete() {
+    const method = "DELETE";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/comments/${comment._id}`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+    try {
+      const response = await fetch(url, { headers, method });
+      const resObj = await response.json();
+      if (resObj.msg === "Comment successfully deleted.") {
+        return true;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   function moreOptions() {
@@ -71,11 +144,7 @@ function Comment({ comment }) {
               <PencilSimple className="icon" />
               Edit comment
             </button>
-            <button
-              onClick={(e) => {
-                e.target.blur();
-              }}
-            >
+            <button onClick={handleDeleteBtnClicked}>
               <Trash className="icon" />
               Delete comment
             </button>
@@ -128,7 +197,7 @@ function Comment({ comment }) {
             >
               {`${comment.author.first_name} ${comment.author.last_name}`}
             </Link>
-            <div className="message">{comment.message}</div>
+            <div className="message">{message}</div>
             {likeCount()}
           </div>
           {moreOptions()}
@@ -158,9 +227,8 @@ function Comment({ comment }) {
             maxLength={1500}
             ref={textInputRef}
             onChange={handleTextInputChanged}
-            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud."
+            onKeyDown={handleTextInputKeyDown}
+            defaultValue={editedMessage}
           />
         </div>
         <button className="cancel-btn" onClick={handleCancelBtnClicked}>
