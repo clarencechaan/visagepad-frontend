@@ -3,21 +3,23 @@ import "../styles/Comment.css";
 import blankUser from "../images/blank-user.png";
 import dots from "../images/dots.svg";
 import { PencilSimple, Trash, ThumbsUp } from "phosphor-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import UserList from "./UserList";
 import {
   media,
   getTimeAgoShort,
   getLongDateTime,
   getUsersTooltipContent,
+  smoothScrollToTop,
 } from "../scripts/scripts";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 
 function Comment({ comment, setComments }) {
   const me = useSelector((state) => state.me);
   const textInputRef = useRef(null);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(
+    comment.likes.some((like) => like._id === me.user._id)
+  );
   const [isEditing, setIsEditing] = useState(false);
   const [userListShowm, setUserListShown] = useState(false);
   const [message, setMessage] = useState(comment.message);
@@ -27,8 +29,38 @@ function Comment({ comment, setComments }) {
     setMessage(comment.message);
   }, [comment.message]);
 
-  function handleLikeBtnClicked() {
-    setIsLiked((prev) => !prev);
+  async function handleLikeBtnClicked() {
+    // comment is not liked
+    // like comment
+    if (!isLiked) {
+      setIsLiked(true);
+      const didLikeComment = await uploadLike();
+
+      if (didLikeComment) {
+        const fetchedComment = await fetchComment();
+        setComments((prev) => {
+          const idx = prev.findIndex((c) => c._id === comment._id);
+          let newComments = [...prev];
+          newComments[idx] = fetchedComment;
+          return newComments;
+        });
+      }
+    } else {
+      // comment is liked
+      // unlike comment
+      setIsLiked(false);
+      const didUnlikeComment = await uploadUnlike();
+
+      if (didUnlikeComment) {
+        const fetchedComment = await fetchComment();
+        setComments((prev) => {
+          const idx = prev.findIndex((c) => c._id === comment._id);
+          let newComments = [...prev];
+          newComments[idx] = fetchedComment;
+          return newComments;
+        });
+      }
+    }
   }
 
   function handleLikeCountClicked() {
@@ -183,9 +215,59 @@ function Comment({ comment, setComments }) {
     }
   }
 
+  async function uploadLike() {
+    const method = "PUT";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/comments/${comment._id}/like`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+
+    try {
+      const response = await fetch(url, { headers, method });
+      const resObj = await response.json();
+      if (resObj.msg === "Comment successfully liked.") {
+        return true;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function uploadUnlike() {
+    const method = "PUT";
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/comments/${comment._id}/unlike`;
+    const headers = {
+      Authorization: "Bearer " + me.token,
+    };
+
+    try {
+      const response = await fetch(url, { headers, method });
+      const resObj = await response.json();
+      if (resObj.msg === "Comment successfully unliked.") {
+        return true;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  async function fetchComment() {
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/comments/${comment._id}`;
+
+    try {
+      const response = await fetch(url);
+      const resObj = await response.json();
+      if (resObj._id) {
+        return resObj;
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
   return (
     <div className="Comment">
-      <Link to={`/profile/${comment.author._id}`}>
+      <Link to={`/profile/${comment.author._id}`} onClick={smoothScrollToTop}>
         {media(comment.author.pfp || blankUser, "pfp-small")}
       </Link>
       <div className={"display" + (isEditing ? " hidden" : "")}>

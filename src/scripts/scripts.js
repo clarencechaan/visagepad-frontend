@@ -1,4 +1,9 @@
-function smoothScrollToTop() {
+function smoothScrollToTop(e) {
+  // do nothing if opening in new tab
+  if (e.ctrlKey || e.shiftKey || e.metaKey || (e.button && e.button == 1)) {
+    return;
+  }
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 

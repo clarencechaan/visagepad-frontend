@@ -82,6 +82,7 @@ function Post({ post, setFeedComments, setFeed }) {
     if (!isLiked) {
       setIsLiked(true);
       const didLikePost = await uploadLike();
+
       if (didLikePost) {
         const fetchedPost = await fetchPost(post._id);
         setFeed((prev) => {
@@ -100,6 +101,7 @@ function Post({ post, setFeedComments, setFeed }) {
       // unlike post
       setIsLiked(false);
       const didUnlikePost = await uploadUnlike();
+
       if (didUnlikePost) {
         const fetchedPost = await fetchPost(post._id);
         setFeed((prev) => {

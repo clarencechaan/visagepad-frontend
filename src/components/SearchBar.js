@@ -1,8 +1,7 @@
 import "../styles/SearchBar.css";
 import { MagnifyingGlass, ArrowLeft } from "phosphor-react";
 import SearchResultItem from "./SearchResultItem";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
