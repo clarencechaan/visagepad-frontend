@@ -98,7 +98,14 @@ function LogIn({ fetchContacts }) {
               Log In
             </button>
           </form>
-          <a className="fb connect" href={isLoading ? null : ""}>
+          <a
+            className="fb connect"
+            href={
+              isLoading
+                ? null
+                : `${process.env.REACT_APP_API_BASE_URL}/auth/login/facebook`
+            }
+          >
             Log In with Facebook
           </a>
           <div className="divider" />

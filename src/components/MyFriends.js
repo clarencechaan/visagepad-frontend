@@ -53,6 +53,10 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
     setReqsIsLoading(false);
   }
 
+  const sortedContacts = [...me.contacts].sort((a, b) =>
+    a.first_name > b.first_name ? 1 : -1
+  );
+
   let reqsToShow = null;
 
   if (reqsIsLoading) {
@@ -78,8 +82,10 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
       </div>
       <div className="friends">
         <div className="title">Friends</div>
-        {me.contacts.length ? (
-          me.contacts.map((user) => <FriendCard user={user} key={user._id} />)
+        {sortedContacts.length ? (
+          sortedContacts.map((user) => (
+            <FriendCard user={user} key={user._id} />
+          ))
         ) : (
           <div className="no-friends-msg">
             No friends found. Start adding friends now!

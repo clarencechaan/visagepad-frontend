@@ -219,3 +219,7 @@
 .Comment .editing .cancel-btn:hover {
   text-decoration: underline;
 }
+
+.Comment > a {
+  align-self: flex-start;
+}
