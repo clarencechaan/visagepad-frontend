@@ -60,12 +60,33 @@ function LogIn({ fetchContacts }) {
   }
 
   function handleFbLoginBtnClicked() {
-    window.FB.getLoginStatus(function (response) {
-      console.log(response);
-    });
     window.FB.login(function (response) {
-      console.log(response);
+      const accessToken = response.authResponse.accessToken;
+      logInWithFbAccessToken(accessToken);
     });
+  }
+
+  async function logInWithFbAccessToken(token) {
+    // get user from accessToken
+    const url = `${process.env.REACT_APP_API_BASE_URL}/auth/login/facebook`;
+    const headers = {
+      Authorization: "Bearer " + token,
+    };
+
+    try {
+      const response = await fetch(url, { headers });
+      const resObj = await response.json();
+      if (resObj.user) {
+        dispatch(setUser(resObj.user));
+        dispatch(setToken(resObj.token));
+        saveMeToLocalStorage({ user: resObj.user, token: resObj.token });
+        fetchContacts(resObj.user._id, resObj.token);
+      } else {
+        setLoginMessage(resObj.info);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   return (

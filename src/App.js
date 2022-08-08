@@ -37,7 +37,6 @@ function App() {
 
       window.FB.getLoginStatus(function (response) {
         const loginStatus = response.status;
-        console.log(loginStatus);
       });
 
       window.FB.AppEvents.logPageView();
