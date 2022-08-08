@@ -137,7 +137,7 @@
 
 /* Facebook login button */
 
-a.fb {
+button.fb {
   font-family: "SFUIText-Regular";
   display: flex;
   align-items: center;
@@ -155,13 +155,15 @@ a.fb {
   box-sizing: border-box;
   font-size: 18px;
   transition: background-color 0.2s, transform 0.2s, filter 0.5s;
+  border: none;
+  cursor: pointer;
 }
 
-a.fb:hover {
+button.fb:hover {
   background-color: hsl(219, 44.5%, 38.9%);
 }
 
-a.fb:active {
+button.fb:active {
   background-color: hsl(219, 44.5%, 36.9%);
   transform: scale(0.98);
 }

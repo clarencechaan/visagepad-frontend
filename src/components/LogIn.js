@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../slices/meSlice";
@@ -58,6 +59,15 @@ function LogIn({ fetchContacts }) {
     setSignUpFormShown(true);
   }
 
+  function handleFbLoginBtnClicked() {
+    window.FB.getLoginStatus(function (response) {
+      console.log(response);
+    });
+    window.FB.login(function (response) {
+      console.log(response);
+    });
+  }
+
   return (
     <div className="LogIn">
       <div className="logo-container">
@@ -98,16 +108,9 @@ function LogIn({ fetchContacts }) {
               Log In
             </button>
           </form>
-          <a
-            className="fb connect"
-            href={
-              isLoading
-                ? null
-                : `${process.env.REACT_APP_API_BASE_URL}/auth/login/facebook`
-            }
-          >
+          <button className="fb connect" onClick={handleFbLoginBtnClicked}>
             Log In with Facebook
-          </a>
+          </button>
           <div className="divider" />
           <button
             type="button"
