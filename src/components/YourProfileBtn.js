@@ -22,6 +22,9 @@ function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
 
     // clear me from localstorage
     localStorage.removeItem("me");
+
+    // log out from facebook
+    window.FB.logout();
   }
 
   return (
