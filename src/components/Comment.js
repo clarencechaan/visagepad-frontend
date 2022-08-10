@@ -46,7 +46,9 @@ function Comment({ comment, setComments }) {
         setComments((prev) => {
           const idx = prev.findIndex((c) => c._id === comment._id);
           let newComments = [...prev];
-          newComments[idx] = fetchedComment;
+          if (idx >= 0) {
+            newComments[idx] = fetchedComment;
+          }
           return newComments;
         });
       }
@@ -61,7 +63,9 @@ function Comment({ comment, setComments }) {
         setComments((prev) => {
           const idx = prev.findIndex((c) => c._id === comment._id);
           let newComments = [...prev];
-          newComments[idx] = fetchedComment;
+          if (idx >= 0) {
+            newComments[idx] = fetchedComment;
+          }
           return newComments;
         });
       }

@@ -93,7 +93,9 @@ function Home({
     setHomeFeed((prev) => {
       let newHomeFeed = [...prev];
       const idx = newHomeFeed.findIndex((post) => post && post._id === postId);
-      newHomeFeed[idx] = { ...newHomeFeed[idx], comments };
+      if (idx >= 0) {
+        newHomeFeed[idx] = { ...newHomeFeed[idx], comments };
+      }
       return newHomeFeed;
     });
   }

@@ -93,9 +93,14 @@ function LogIn({ fetchContacts }) {
   }
 
   function handleFbLoginBtnClicked() {
+    setIsLoading(true);
     window.FB.login(function (response) {
-      const accessToken = response.authResponse.accessToken;
-      logInWithFbAccessToken(accessToken);
+      if (response.status === "connected") {
+        const accessToken = response.authResponse.accessToken;
+        logInWithFbAccessToken(accessToken);
+      } else {
+        setIsLoading(false);
+      }
     });
   }
 
@@ -120,6 +125,8 @@ function LogIn({ fetchContacts }) {
     } catch (error) {
       console.log("error", error);
     }
+
+    setIsLoading(false);
   }
 
   function handleDemoUserBtnClicked() {

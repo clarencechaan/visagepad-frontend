@@ -252,7 +252,9 @@ function Post({ post, setFeedComments, setFeed }) {
           (feedPost) => feedPost && feedPost._id === post._id
         );
         let newFeed = [...prev];
-        newFeed[idx] = null;
+        if (idx >= 0) {
+          newFeed[idx] = null;
+        }
         return newFeed;
       });
     }

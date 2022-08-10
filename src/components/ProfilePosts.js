@@ -104,7 +104,9 @@ function ProfilePosts({ friends, friendsIsLoading }) {
       const idx = newProfileFeed.findIndex(
         (post) => post && post._id === postId
       );
-      newProfileFeed[idx] = { ...newProfileFeed[idx], comments };
+      if (idx >= 0) {
+        newProfileFeed[idx] = { ...newProfileFeed[idx], comments };
+      }
       return newProfileFeed;
     });
   }

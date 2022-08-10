@@ -28,23 +28,7 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
       const response = await fetch(url, { headers });
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
-        setFriendRequests((prev) => {
-          let newFriendRequests = [...prev];
-          for (const fetchedFr of resObj) {
-            const idx = newFriendRequests.findIndex(
-              (user) => user && user._id === fetchedFr._id
-            );
-            if (idx !== -1) {
-              newFriendRequests[idx] = {
-                ...newFriendRequests[idx],
-                ...fetchedFr,
-              };
-            } else {
-              newFriendRequests.push(fetchedFr);
-            }
-          }
-          return newFriendRequests;
-        });
+        setFriendRequests(resObj);
       }
     } catch (error) {
       console.log("error", error);
