@@ -11,6 +11,7 @@ import {
   getLongDateTime,
   getUsersTooltipContent,
   smoothScrollToTop,
+  addEscKeyDownListener,
 } from "../scripts/scripts";
 import { useSelector } from "react-redux";
 
@@ -24,6 +25,10 @@ function Comment({ comment, setComments }) {
   const [userListShowm, setUserListShown] = useState(false);
   const [message, setMessage] = useState(comment.message);
   const [editedMessage, setEditedMessage] = useState(comment.message);
+
+  useEffect(() => {
+    return addEscKeyDownListener(setIsEditing);
+  }, []);
 
   useEffect(() => {
     setMessage(comment.message);

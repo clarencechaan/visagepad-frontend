@@ -147,7 +147,6 @@ function addEscKeyDownListener(setShown) {
   window.addEventListener("keydown", handleEscKeyDown);
 
   return () => {
-    console.log("removing");
     window.removeEventListener("keydown", handleEscKeyDown);
   };
 }
