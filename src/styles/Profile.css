@@ -360,7 +360,6 @@
 .Profile .pfp-label .SpinThrobber {
   width: 146px;
   height: 146px;
-  transform: scale(0.3) !important;
   margin: 0;
 }
 

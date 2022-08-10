@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../slices/meSlice";
 import "../styles/LogIn.css";
@@ -10,6 +9,7 @@ function LogIn({ fetchContacts }) {
   const [isLoading, setIsLoading] = useState(false);
   const [loginMessage, setLoginMessage] = useState("");
   const [signUpFormShown, setSignUpFormShown] = useState(false);
+  const loginFormRef = useRef(null);
 
   useEffect(() => {
     loadFbSdk();
@@ -40,7 +40,8 @@ function LogIn({ fetchContacts }) {
     })(document, "script", "facebook-jssdk");
   }
 
-  async function login(form) {
+  async function login() {
+    const form = loginFormRef.current;
     setIsLoading(true);
 
     const username = form[0].value;
@@ -73,7 +74,7 @@ function LogIn({ fetchContacts }) {
 
   function handleFormSubmitted(e) {
     e.preventDefault();
-    login(e.target);
+    login();
   }
 
   function clearLoginMessage() {
@@ -118,6 +119,15 @@ function LogIn({ fetchContacts }) {
     }
   }
 
+  function handleDemoUserBtnClicked() {
+    const form = loginFormRef.current;
+    const username = "greasedozen";
+    const password = "pass";
+    form[0].value = username;
+    form[1].value = password;
+    login();
+  }
+
   return (
     <div className="LogIn">
       <div className="logo-container">
@@ -132,6 +142,7 @@ function LogIn({ fetchContacts }) {
             action=""
             className="log-in-form"
             onSubmit={handleFormSubmitted}
+            ref={loginFormRef}
           >
             <input
               type="text"
@@ -156,6 +167,13 @@ function LogIn({ fetchContacts }) {
             />
             <button className="log-in-btn" disabled={isLoading}>
               Log In
+            </button>
+            <button
+              type="button"
+              className="demo-user-btn"
+              onClick={handleDemoUserBtnClicked}
+            >
+              Log In with Demo User
             </button>
           </form>
           <button className="fb connect" onClick={handleFbLoginBtnClicked}>

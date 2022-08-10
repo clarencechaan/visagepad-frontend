@@ -70,6 +70,7 @@
 }
 
 .LogIn .log-in-form .log-in-btn,
+.LogIn .log-in-form .demo-user-btn,
 .LogIn .log-in-window .new-account-btn {
   height: 48px;
   border: none;
@@ -80,7 +81,6 @@
 
 .LogIn .log-in-form .log-in-btn {
   background-color: hsl(214, 89.3%, 52.2%);
-  border-radius: 5px;
   color: white;
   font-size: 20px;
   cursor: pointer;
@@ -94,6 +94,13 @@
 .LogIn .log-in-form .log-in-btn:active {
   background-color: hsl(214, 89.3%, 46.7%);
   transform: scale(0.98);
+}
+
+.LogIn .log-in-form .demo-user-btn {
+  background-color: hsl(110, 62.7%, 44.1%);
+  color: white;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .LogIn .login-message {
@@ -113,11 +120,13 @@
   align-self: center;
 }
 
-.LogIn .log-in-window .new-account-btn:hover {
+.LogIn .log-in-window .new-account-btn:hover,
+.LogIn .log-in-form .demo-user-btn:hover {
   background-color: hsl(110, 62.7%, 41.9%);
 }
 
-.LogIn .log-in-window .new-account-btn:active {
+.LogIn .log-in-window .new-account-btn:active,
+.LogIn .log-in-form .demo-user-btn:active {
   background-color: hsl(110, 62.7%, 39.7%);
   transform: scale(0.98);
 }
