@@ -1,8 +1,14 @@
 import "../styles/UserList.css";
 import { ThumbsUp } from "phosphor-react";
 import UserListItem from "./UserListItem";
+import { addEscKeyDownListener } from "../scripts/scripts";
+import { useEffect } from "react";
 
 function UserList({ setUserListShown, users }) {
+  useEffect(() => {
+    return addEscKeyDownListener(setUserListShown);
+  });
+
   function handleCloseBtnClicked() {
     setUserListShown(false);
   }

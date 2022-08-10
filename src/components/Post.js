@@ -14,6 +14,7 @@ import {
   getLongDateTime,
   getUsersTooltipContent,
   smoothScrollToTop,
+  addEscKeyDownListener,
 } from "../scripts/scripts";
 
 function Post({ post, setFeedComments, setFeed }) {
@@ -38,6 +39,8 @@ function Post({ post, setFeedComments, setFeed }) {
 
   useEffect(() => {
     fetchComments();
+
+    return addEscKeyDownListener(setConfirmDeletePopupShown);
   }, []);
 
   useEffect(() => {

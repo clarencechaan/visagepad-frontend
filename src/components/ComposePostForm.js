@@ -5,7 +5,7 @@ import "../styles/ComposePostForm.css";
 import DotsThrobber from "./DotsThrobber";
 import blankUser from "../images/blank-user.png";
 import { Image } from "phosphor-react";
-import { media } from "../scripts/scripts";
+import { media, addEscKeyDownListener } from "../scripts/scripts";
 
 function ComposePostForm({
   setComposePostFormShown,
@@ -25,6 +25,8 @@ function ComposePostForm({
 
     focusTextInput();
     resizeTextInput();
+
+    return addEscKeyDownListener(setComposePostFormShown);
   }, []);
 
   async function uploadImage(file) {

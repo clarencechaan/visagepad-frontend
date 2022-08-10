@@ -2,11 +2,8 @@ import "../styles/SearchResultItem.css";
 import { Link } from "react-router-dom";
 import blankUser from "../images/blank-user.png";
 import { media } from "../scripts/scripts";
-import { useSelector } from "react-redux";
 
 function SearchResultItem({ user, query }) {
-  const me = useSelector((state) => state.me);
-
   function fullname() {
     const firstName = user.first_name;
     const lastName = user.last_name;

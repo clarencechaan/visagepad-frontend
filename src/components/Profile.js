@@ -242,7 +242,7 @@ function Profile() {
                 ))}
               </div>
             </div>
-            {<RelationshipBtn unfriendBtn={true} userId={user._id} />}
+            {<RelationshipBtn showButton2={true} userId={user._id} />}
           </div>
         </div>
       </header>

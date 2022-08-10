@@ -3,7 +3,7 @@ import { Check, UserMinus, UserPlus } from "phosphor-react";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-function RelationshipBtn({ unfriendBtn, userId }) {
+function RelationshipBtn({ showButton2, userId }) {
   const me = useSelector((state) => state.me);
   const [relationship, setRelationship] = useState("");
   const [makingRequest, setMakingRequest] = useState(false);
@@ -131,7 +131,7 @@ function RelationshipBtn({ unfriendBtn, userId }) {
         <label htmlFor="">Friend</label>
       </div>
     );
-    if (unfriendBtn) {
+    if (showButton2) {
       button2 = (
         <button
           className={"unfriend-btn" + (makingRequest ? " making-request" : "")}
@@ -156,18 +156,20 @@ function RelationshipBtn({ unfriendBtn, userId }) {
         Accept Request
       </button>
     );
-    button2 = (
-      <button
-        className={
-          "deny-request-btn" + (makingRequest ? " making-request" : "")
-        }
-        onClick={handleDenyRequestBtnClicked}
-        disabled={makingRequest}
-      >
-        <UserPlus weight="fill" className="icon" />
-        Deny Request
-      </button>
-    );
+    if (showButton2) {
+      button2 = (
+        <button
+          className={
+            "deny-request-btn" + (makingRequest ? " making-request" : "")
+          }
+          onClick={handleDenyRequestBtnClicked}
+          disabled={makingRequest}
+        >
+          <UserPlus weight="fill" className="icon" />
+          Deny Request
+        </button>
+      );
+    }
   } else if (relationship === "Requestee") {
     button1 = (
       <button

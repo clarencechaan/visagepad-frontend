@@ -2,6 +2,7 @@ import "../styles/SearchBar.css";
 import { MagnifyingGlass, ArrowLeft } from "phosphor-react";
 import SearchResultItem from "./SearchResultItem";
 import { useState, useEffect } from "react";
+import { addEscKeyDownListener } from "../scripts/scripts";
 
 function SearchBar() {
   const [query, setQuery] = useState("");
@@ -13,6 +14,8 @@ function SearchBar() {
     } else {
       fetchResults();
     }
+
+    return addEscKeyDownListener();
   }, [query]);
 
   async function fetchResults() {

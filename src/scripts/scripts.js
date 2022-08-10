@@ -135,6 +135,23 @@ function getUsersTooltipContent(users) {
   return string;
 }
 
+// hide popup windows on esc key down
+function addEscKeyDownListener(setShown) {
+  const handleEscKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      setShown && setShown(false);
+      document.activeElement.blur();
+    }
+  };
+
+  window.addEventListener("keydown", handleEscKeyDown);
+
+  return () => {
+    console.log("removing");
+    window.removeEventListener("keydown", handleEscKeyDown);
+  };
+}
+
 export {
   smoothScrollToTop,
   media,
@@ -142,4 +159,5 @@ export {
   getLongDateTime,
   getTimeAgoShort,
   getUsersTooltipContent,
+  addEscKeyDownListener,
 };

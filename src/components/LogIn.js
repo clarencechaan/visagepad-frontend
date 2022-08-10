@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../slices/meSlice";
 import "../styles/LogIn.css";
 import SignUpForm from "./SignUpForm";
+import { addEscKeyDownListener } from "../scripts/scripts";
 
 function LogIn({ fetchContacts }) {
   const dispatch = useDispatch();
@@ -13,6 +14,8 @@ function LogIn({ fetchContacts }) {
 
   useEffect(() => {
     loadFbSdk();
+
+    return addEscKeyDownListener(setSignUpFormShown);
   }, []);
 
   function loadFbSdk() {
