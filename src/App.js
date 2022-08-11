@@ -75,7 +75,7 @@ function App() {
   return (
     <div className="App">
       <ScrollToTop />
-      {me.token.length === 0 ? (
+      {!me.token ? (
         <>
           <LogIn fetchContacts={fetchContacts} />
           <Footer />

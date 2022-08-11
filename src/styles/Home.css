@@ -14,8 +14,12 @@
   padding-left: 8px;
   box-sizing: border-box;
   align-self: flex-start;
-  overflow-y: auto;
   height: calc(100vh - 56px);
+  overflow: hidden;
+}
+
+.Home .sidebar:hover {
+  overflow-y: auto;
 }
 
 .Home .people-you-may-know .title {

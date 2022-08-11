@@ -5,7 +5,11 @@
   height: calc(100vh - 56px);
   padding: 28px 8px 0 0;
   box-sizing: border-box;
-  overflow: auto;
+  overflow: hidden;
+}
+
+.ContactsSidebar:hover {
+  overflow-y: auto;
 }
 
 .ContactsSidebar .title {

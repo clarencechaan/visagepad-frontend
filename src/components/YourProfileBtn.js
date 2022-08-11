@@ -37,7 +37,6 @@ function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
             className="link"
             onClick={() => {
               document.activeElement.blur();
-              smoothScrollToTop();
             }}
           >
             {media(me.user.pfp || blankUser)}
