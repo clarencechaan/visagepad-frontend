@@ -5,11 +5,11 @@
   height: calc(100vh - 56px);
   padding: 28px 8px 0 0;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: overlay;
 }
 
-.ContactsSidebar:hover {
-  overflow-y: auto;
+.ContactsSidebar:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
 }
 
 .ContactsSidebar .title {
@@ -22,7 +22,7 @@
 
 .ContactsSidebar .contacts {
   box-sizing: border-box;
-  padding: 8px 0;
+  padding: 8px 12px 0 0;
 }
 
 .ContactsSidebar .no-contacts-msg {

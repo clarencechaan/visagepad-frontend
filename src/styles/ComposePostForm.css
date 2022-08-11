@@ -37,6 +37,10 @@
   position: absolute;
   top: 12px;
   right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
 }
 
 .ComposePostForm form .close-btn:hover {

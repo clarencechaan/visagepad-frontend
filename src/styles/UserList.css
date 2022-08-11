@@ -70,6 +70,10 @@
   position: absolute;
   top: 12px;
   right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
 }
 
 .UserList .close-btn:hover {
@@ -82,5 +86,9 @@
 
 .UserList .user-list {
   padding: 8px 0;
-  overflow: auto;
+  overflow: overlay;
+}
+
+.UserList .user-list:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
 }

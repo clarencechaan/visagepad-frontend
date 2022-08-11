@@ -62,6 +62,7 @@ body ::-webkit-scrollbar-thumb {
   border-radius: 20px;
   border: 6px solid transparent;
   background-clip: content-box;
+  visibility: hidden;
 }
 
 body ::-webkit-scrollbar-thumb:hover {

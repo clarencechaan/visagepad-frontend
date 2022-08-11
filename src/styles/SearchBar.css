@@ -115,8 +115,12 @@
   box-sizing: border-box;
   flex: 1;
   max-height: 468px;
-  overflow: auto;
+  overflow: overlay;
   margin-bottom: 8px;
+}
+
+.SearchBar .results:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
 }
 
 .SearchBar .no-results {

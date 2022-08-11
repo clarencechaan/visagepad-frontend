@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding: 0 16px;
+  padding: 0 18px 0 16px;
 }
 
 .UserListItem .pfp {
