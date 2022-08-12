@@ -193,7 +193,7 @@
   margin-top: auto;
   margin-bottom: 12px;
   display: flex;
-  height: 18px;
+  min-height: 18px;
 }
 
 .Post .counts .like-count,
@@ -205,6 +205,7 @@
   color: rgb(101, 103, 107);
   font-size: 14px;
   font-family: inherit;
+  text-align: left;
 }
 
 .Post .counts .like-count:hover,
@@ -213,8 +214,8 @@
 }
 
 .Post .counts .like-count .badge {
-  height: 18px;
-  width: 18px;
+  min-height: 18px;
+  min-width: 18px;
   margin-right: 6px;
   border-radius: 50%;
   background: linear-gradient(rgb(112, 163, 231), rgb(0, 97, 224));

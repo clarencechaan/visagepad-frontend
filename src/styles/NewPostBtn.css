@@ -1,13 +1,13 @@
 .NewPostBtn {
   width: min(100%, 680px);
-  height: 62px;
+  min-height: 62px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.263);
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  padding: 9px 16px;
   column-gap: 10px;
 }
 
@@ -24,13 +24,13 @@
 
 .NewPostBtn .new-post-btn {
   width: 100%;
-  height: 40px;
+  min-height: 40px;
   box-sizing: border-box;
-  padding: 0 16px;
+  padding: 8px 16px;
   border: none;
   border-radius: 20px;
   text-align: left;
-  font-family: "SFUIText-Regular";
+  font-family: "SFUIText-Light";
   font-size: 16px;
   color: rgb(101, 103, 107);
   background-color: rgb(240, 242, 245);

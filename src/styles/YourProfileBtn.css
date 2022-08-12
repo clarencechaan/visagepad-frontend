@@ -1,17 +1,22 @@
+.YourProfileBtn {
+  height: 100%;
+}
+
 .YourProfileBtn > button {
   width: 40px;
-  height: 40px;
+  height: 100%;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   border: none;
   cursor: pointer;
   padding: 0;
+  background-color: transparent;
 }
 
 .YourProfileBtn > button .media {
-  width: 100%;
-  height: 100%;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -29,7 +34,7 @@
   position: absolute;
   width: 360px;
   background-color: white;
-  top: 50px;
+  bottom: -158px;
   right: 16px;
   border-radius: 8px;
   box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.282);

@@ -166,7 +166,6 @@ function Post({ post, setFeedComments, setFeed }) {
     commentInputRef.current.scrollIntoView({
       behavior: "smooth",
       block: "center",
-      inline: "center",
     });
     commentInputRef.current.focus({ preventScroll: true });
   }

@@ -2,11 +2,13 @@ body,
 #root,
 .App {
   min-height: 100vh;
+  min-width: 302px;
 }
 
 body {
   margin: 0;
   background-color: rgb(240, 242, 245);
+  overflow-x: hidden;
 }
 
 .App {
@@ -67,4 +69,101 @@ body ::-webkit-scrollbar-thumb {
 
 body ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.25);
+}
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 1192px) {
+  body .Home .sidebar {
+    display: none;
+  }
+
+  body .ContactsSidebar {
+    min-width: auto;
+  }
+}
+
+@media only screen and (max-width: 952px) {
+  body .ContactsSidebar {
+    width: 240px;
+  }
+
+  body .Home .home-feed {
+    min-width: 460px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  body .ContactsSidebar {
+    display: none;
+  }
+
+  body .NavBar .left.third {
+    min-width: 244px;
+  }
+
+  body .SearchBar input {
+    width: 180px;
+  }
+
+  body .SearchBar:focus-within input {
+    width: 194px;
+  }
+
+  body .SearchBar .window {
+    width: 260px;
+  }
+
+  body .YourProfileBtn .window {
+    width: 260px;
+  }
+}
+
+@media only screen and (max-width: 492px) {
+  body .Home .home-feed {
+    min-width: 0;
+  }
+
+  body .Home .Post > .counts .comment-count {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 444px) {
+  body .NavBar .left.third {
+    min-width: 102px;
+  }
+
+  body .SearchBar input {
+    width: 40px;
+  }
+
+  body .SearchBar input:not(:focus) {
+    cursor: pointer;
+  }
+
+  body .SearchBar input::placeholder {
+    color: transparent;
+  }
+
+  body .SearchBar input:not(:focus) {
+    color: transparent;
+  }
+
+  body .SearchBar .magnifying-glass {
+    margin-left: 9px;
+    font-size: 22px;
+  }
+
+  body .Home .home-feed {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  body .Home .home-feed .Post {
+    border-radius: 0;
+  }
+
+  body .Home .NewPostBtn {
+    border-radius: 0;
+  }
 }

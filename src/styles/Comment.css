@@ -4,6 +4,10 @@
   column-gap: 6px;
 }
 
+.Comment .display {
+  min-width: 0;
+}
+
 .Comment .media.pfp-small {
   width: 32px;
   height: 32px;
@@ -36,6 +40,7 @@
 .Comment .message {
   margin-top: 2px;
   line-height: 20px;
+  word-wrap: break-word;
 }
 
 .Comment .bubble .like-count {
