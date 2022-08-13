@@ -2,7 +2,7 @@ body,
 #root,
 .App {
   min-height: 100vh;
-  min-width: 302px;
+  min-width: 310px;
 }
 
 body {
@@ -72,6 +72,9 @@ body ::-webkit-scrollbar-thumb:hover {
 }
 
 /* MEDIA QUERIES */
+
+/* Home */
+
 @media only screen and (max-width: 1192px) {
   body .Home .sidebar {
     display: none;
@@ -165,5 +168,45 @@ body ::-webkit-scrollbar-thumb:hover {
 
   body .Home .NewPostBtn {
     border-radius: 0;
+  }
+}
+
+/* ProfilePosts */
+@media only screen and (max-width: 1248px) {
+  body .ProfilePosts .friends-small {
+    min-width: 334px;
+    max-width: 334px;
+  }
+
+  body .ProfilePosts .friends-small .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, auto);
+  }
+}
+
+@media only screen and (max-width: 952px) {
+  body .ProfilePosts {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  body .ProfilePosts .friends-small {
+    position: initial;
+    min-width: none;
+    max-width: 678px;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  body .ProfilePosts .friends-small .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+  }
+}
+
+@media only screen and (max-width: 555px) {
+  body .ProfilePosts .friends-small .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
   }
 }
