@@ -48,7 +48,7 @@
 
 .Profile .cover-photo {
   max-width: 1250px;
-  height: 463px;
+  aspect-ratio: 2.7/1;
   background: linear-gradient(rgb(240, 242, 245) 84%, rgb(109, 109, 109));
   border-radius: 0 0 8px 8px;
   display: flex;
@@ -111,14 +111,13 @@
 }
 
 .Profile .user {
-  height: 158px;
   padding: 0 32px 16px 32px;
   box-sizing: border-box;
   display: flex;
+  margin-top: -30px;
 }
 
 .Profile .user .pfp-label {
-  align-self: flex-end;
   display: flex;
   cursor: pointer;
   position: relative;
@@ -178,14 +177,13 @@
 }
 
 .Profile .user .info {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0 16px 14px 16px;
   box-sizing: border-box;
-  flex: 1;
   overflow: hidden;
+  flex: 1;
 }
 
 .Profile .user .full-name {

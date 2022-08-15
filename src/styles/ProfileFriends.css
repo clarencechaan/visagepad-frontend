@@ -1,5 +1,5 @@
 .ProfileFriends {
-  width: 1186px;
+  width: min(100%, 1186px);
   padding: 16px;
   background-color: white;
   border-radius: 8px;

@@ -172,7 +172,12 @@ body ::-webkit-scrollbar-thumb:hover {
 }
 
 /* ProfilePosts */
+
 @media only screen and (max-width: 1248px) {
+  body .Profile .cover-photo {
+    border-radius: 0;
+  }
+
   body .ProfilePosts .friends-small {
     min-width: 334px;
     max-width: 334px;
@@ -185,6 +190,10 @@ body ::-webkit-scrollbar-thumb:hover {
 }
 
 @media only screen and (max-width: 952px) {
+  body .Profile .profile-content {
+    padding: 0 16px;
+  }
+
   body .ProfilePosts {
     flex-direction: column;
     align-items: center;
@@ -204,9 +213,91 @@ body ::-webkit-scrollbar-thumb:hover {
   }
 }
 
+@media only screen and (max-width: 900px) {
+  body .Profile .user {
+    flex-direction: column;
+    align-items: center;
+    margin-top: -82px;
+  }
+
+  body .Profile .user .info {
+    align-items: center;
+  }
+
+  body .Profile .user .RelationshipBtn {
+    padding: 0;
+    margin-left: 0;
+  }
+}
+
 @media only screen and (max-width: 555px) {
   body .ProfilePosts .friends-small .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(2, auto);
+  }
+}
+
+@media only screen and (max-width: 492px) {
+  body .ProfilePosts .Post > .counts .comment-count {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 444px) {
+  body .Profile .profile-content {
+    padding: 0;
+  }
+
+  body .Profile .profile-nav {
+    padding: 0 16px;
+  }
+
+  body .ProfilePosts .friends-small {
+    border-radius: 0;
+  }
+
+  body .ProfilePosts .NewPostBtn {
+    border-radius: 0;
+  }
+
+  body .ProfilePosts .Post {
+    border-radius: 0;
+  }
+}
+
+/* ProfileFriends */
+
+@media only screen and (max-width: 952px) {
+  body .ProfileFriends .RelationshipBtn {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  body .ProfileFriends .ProfileFriendItem {
+    padding: 8px;
+  }
+
+  body .ProfileFriends .ProfileFriendItem .media {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  body .ProfileFriends .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 444px) {
+  body .ProfileFriends {
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  body .ProfileFriends .search-bar {
+    display: none;
   }
 }

@@ -1,11 +1,10 @@
 .ProfileFriendItem {
-  height: 116px;
   border: 1px solid rgb(243, 243, 243);
   border-radius: 8px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  padding: 0 16px;
+  padding: 16px;
   column-gap: 16px;
   max-width: 574px;
 }
