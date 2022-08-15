@@ -16,19 +16,6 @@ function FriendCard({ user }) {
         <Link to={`/profile/${user._id}`} className="full-name">
           {`${user.first_name} ${user.last_name}`}
         </Link>
-        <Link
-          to={`/profile/${user._id}/friends`}
-          className="mutual-friends has-tooltip"
-          data-descr={getUsersTooltipContent(mutuals)}
-        >
-          <div className="count">
-            {mutuals.length
-              ? `${mutuals.length} mutual friend${
-                  mutuals.length > 1 ? "s" : ""
-                }`
-              : null}
-          </div>
-        </Link>
       </div>
     </div>
   );
