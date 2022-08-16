@@ -12,6 +12,7 @@
 }
 
 .UserList .user-list-window {
+  min-width: 310px;
   width: 548px;
   height: 440px;
   background-color: white;

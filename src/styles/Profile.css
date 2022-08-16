@@ -48,6 +48,7 @@
 
 .Profile .cover-photo {
   max-width: 1250px;
+  min-height: 160px;
   aspect-ratio: 2.7/1;
   background: linear-gradient(rgb(240, 242, 245) 84%, rgb(109, 109, 109));
   border-radius: 0 0 8px 8px;
@@ -202,7 +203,6 @@
   color: rgb(101, 103, 107);
   margin-top: 6px;
   text-decoration: none;
-  min-height: 19px;
 }
 
 .Profile .user .friend-count:hover {

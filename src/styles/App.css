@@ -343,3 +343,80 @@ body ::-webkit-scrollbar-thumb:hover {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
+
+/* ComposePostForm */
+
+@media only screen and (max-width: 500px) {
+  body .ComposePostForm form {
+    border-radius: 0;
+  }
+}
+
+/* Post (confirm-delete-popup) */
+
+@media only screen and (max-width: 548px) {
+  body .Post > .confirm-delete-popup .window {
+    border-radius: 0;
+  }
+}
+
+/* UserList */
+
+@media only screen and (max-width: 548px) {
+  body .UserList .user-list-window {
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  body .UserListItem .RelationshipBtn {
+    display: none;
+  }
+}
+
+/* LogIn */
+
+@media only screen and (max-width: 800px) {
+  body .LogIn {
+    flex-direction: column;
+    padding: 0 16px;
+    align-items: center;
+    row-gap: 32px;
+  }
+
+  body .LogIn .logo-container {
+    padding: 0 16px;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  body .LogIn {
+    padding: 0;
+  }
+
+  body .LogIn .window-container {
+    width: 100%;
+  }
+
+  body .LogIn .log-in-window {
+    border-radius: 0;
+  }
+
+  body .SignUpForm {
+    padding: 0;
+  }
+
+  body .SignUpForm form {
+    border-radius: 0;
+  }
+
+  body .SignUpForm form .full-name-inputs {
+    flex-direction: column;
+  }
+
+  body .SignUpForm form .full-name-inputs input {
+    width: 100%;
+    flex: none;
+  }
+}

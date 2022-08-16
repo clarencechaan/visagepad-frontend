@@ -12,9 +12,10 @@
 }
 
 .ComposePostForm form {
-  width: 500px;
-  min-height: 428px;
-  max-height: 676px;
+  min-width: 310px;
+  width: min(100%, 500px);
+  min-height: min(100%, 428px);
+  max-height: min(100%, 676px);
   background-color: white;
   border-radius: 8px;
   box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
@@ -104,7 +105,7 @@
 
 .ComposePostForm form .content .post-content {
   background-color: transparent;
-  font-size: 22px;
+  font-size: 16px;
   font-family: "SFUIText-Light";
   word-wrap: break-word;
   border: none;
