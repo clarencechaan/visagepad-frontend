@@ -8,7 +8,7 @@ function smoothScrollToTop(e) {
 }
 
 // return video or img depending on filetype
-function media(src, className) {
+function media(src, className, doOnLoad) {
   if (!src) {
     return null;
   }
@@ -16,16 +16,19 @@ function media(src, className) {
   if (!className) {
     className = "";
   }
+
   return src && src.substring(src.length - 4) === ".mp4" ? (
     <video
       src={src}
       autoPlay="autoplay"
       muted
       loop
+      playsInline
+      onCanPlayThrough={doOnLoad}
       className={className + " media"}
     />
   ) : (
-    <img src={src} className={className + " media"} />
+    <img src={src} className={className + " media"} onLoad={doOnLoad} />
   );
 }
 
@@ -151,6 +154,14 @@ function addEscKeyDownListener(setShown) {
   };
 }
 
+function disableScrolling() {
+  document.documentElement.style.overflow = "hidden";
+
+  return () => {
+    document.documentElement.style.removeProperty("overflow");
+  };
+}
+
 export {
   smoothScrollToTop,
   media,
@@ -159,4 +170,5 @@ export {
   getTimeAgoShort,
   getUsersTooltipContent,
   addEscKeyDownListener,
+  disableScrolling,
 };

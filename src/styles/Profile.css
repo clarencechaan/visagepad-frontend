@@ -38,6 +38,7 @@
   display: flex;
   justify-content: center;
   z-index: 2;
+  overflow-x: hidden;
 }
 
 .Profile header .header-content {
@@ -98,10 +99,6 @@
   z-index: 2;
 }
 
-.Profile .cover-photo .add-cover-btn:hover {
-  background-color: rgb(242, 242, 242);
-}
-
 .Profile .cover-photo .add-cover-btn:active {
   background-color: rgb(229, 229, 228);
   transform: scale(0.96);
@@ -138,10 +135,6 @@
   object-fit: cover;
 }
 
-.Profile .user .media.pfp:hover {
-  filter: brightness(0.9);
-}
-
 .Profile .user .media.pfp:active {
   filter: brightness(0.8);
   transform: scale(0.97);
@@ -162,10 +155,6 @@
 
 .Profile.not-me .user .camera {
   display: none;
-}
-
-.Profile .user .camera:hover {
-  background-color: rgb(216, 218, 222);
 }
 
 .Profile .user .camera:active {
@@ -203,10 +192,6 @@
   color: rgb(101, 103, 107);
   margin-top: 6px;
   text-decoration: none;
-}
-
-.Profile .user .friend-count:hover {
-  text-decoration: underline;
 }
 
 .Profile .user .friends-pfps {
@@ -306,10 +291,6 @@
   border-radius: 5px;
 }
 
-.Profile .nav-links a.unselected:hover {
-  background-color: rgb(241, 241, 241);
-}
-
 .Profile .nav-links a.unselected:active {
   background-color: rgb(230, 230, 230);
 }
@@ -329,10 +310,6 @@
   font-size: 16px;
   margin-left: 10px;
   animation: fadeIn 0.3s, slideUp 0.3s;
-}
-
-.Profile .user-jump-to-top-btn:hover {
-  background-color: rgb(241, 241, 241);
 }
 
 .Profile .user-jump-to-top-btn:active {
@@ -363,4 +340,30 @@
 
 .Profile header .is-uploading {
   pointer-events: none;
+}
+
+@media not (hover: none) {
+  .Profile .cover-photo .add-cover-btn:hover {
+    background-color: rgb(242, 242, 242);
+  }
+
+  .Profile .user .media.pfp:hover {
+    filter: brightness(0.9);
+  }
+
+  .Profile .user .camera:hover {
+    background-color: rgb(216, 218, 222);
+  }
+
+  .Profile .user .friend-count:hover {
+    text-decoration: underline;
+  }
+
+  .Profile .nav-links a.unselected:hover {
+    background-color: rgb(241, 241, 241);
+  }
+
+  .Profile .user-jump-to-top-btn:hover {
+    background-color: rgb(241, 241, 241);
+  }
 }

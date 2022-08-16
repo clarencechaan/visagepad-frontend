@@ -24,10 +24,6 @@
   text-overflow: ellipsis;
 }
 
-.UserListItem .full-name:hover {
-  text-decoration: underline;
-}
-
 .UserListItem button {
   margin-left: auto;
   height: 36px;
@@ -47,10 +43,6 @@
 
 .UserListItem button .icon {
   font-size: 18px;
-}
-
-.UserListItem button:hover {
-  filter: brightness(0.95);
 }
 
 .UserListItem button:active {
@@ -73,4 +65,14 @@
 
 .UserListItem .is-friend .icon {
   font-size: 18px;
+}
+
+@media not (hover: none) {
+  .UserListItem .full-name:hover {
+    text-decoration: underline;
+  }
+
+  .UserListItem button:hover {
+    filter: brightness(0.95);
+  }
 }

@@ -53,10 +53,6 @@
   line-height: 0;
 }
 
-.SignUpForm form .close-btn:hover {
-  background-color: rgb(242, 242, 242);
-}
-
 .SignUpForm form .close-btn:active {
   background-color: rgb(229, 229, 229);
 }
@@ -143,10 +139,6 @@
   transition: background-color 0.2s, transform 0.2s;
 }
 
-.SignUpForm form .sign-up-btn:hover {
-  background-color: hsl(110, 62.7%, 41.9%);
-}
-
 .SignUpForm form .sign-up-btn:active {
   background-color: hsl(110, 62.7%, 39.7%);
   transform: scale(0.97);
@@ -155,4 +147,14 @@
 .SignUpForm .sign-up-message {
   color: red;
   min-height: 17px;
+}
+
+@media not (hover: none) {
+  .SignUpForm form .close-btn:hover {
+    background-color: rgb(242, 242, 242);
+  }
+
+  .SignUpForm form .sign-up-btn:hover {
+    background-color: hsl(110, 62.7%, 41.9%);
+  }
 }

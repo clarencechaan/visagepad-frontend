@@ -35,10 +35,6 @@
   color: black;
 }
 
-.ProfilePosts .friends-small .title:hover {
-  text-decoration: underline;
-}
-
 .ProfilePosts .friends-small .friend-count {
   font-size: 15px;
   color: rgb(101, 103, 107);
@@ -55,10 +51,6 @@
   margin-left: auto;
   margin-right: -4px;
   border-radius: 5px;
-}
-
-.ProfilePosts .friends-small .all-friends-link:hover {
-  background-color: rgb(241, 241, 241);
 }
 
 .ProfilePosts .friends-small .all-friends-link:active {
@@ -91,10 +83,6 @@
   border-radius: 8px;
 }
 
-.ProfilePosts .friends-small .friend-item .media.pfp:hover {
-  filter: brightness(0.9);
-}
-
 .ProfilePosts .friends-small .friend-item .full-name {
   text-decoration: none;
   font-size: 12px;
@@ -107,10 +95,6 @@
   text-overflow: ellipsis;
 }
 
-.ProfilePosts .friends-small .friend-item .full-name:hover {
-  text-decoration: underline;
-}
-
 .ProfilePosts .friends-small .no-friends-msg {
   grid-column: 1 / -1;
   margin-bottom: 16px;
@@ -121,4 +105,22 @@
   min-width: 0;
   flex: 1;
   width: 100%;
+}
+
+@media not (hover: none) {
+  .ProfilePosts .friends-small .title:hover {
+    text-decoration: underline;
+  }
+
+  .ProfilePosts .friends-small .all-friends-link:hover {
+    background-color: rgb(241, 241, 241);
+  }
+
+  .ProfilePosts .friends-small .friend-item .media.pfp:hover {
+    filter: brightness(0.9);
+  }
+
+  .ProfilePosts .friends-small .friend-item .full-name:hover {
+    text-decoration: underline;
+  }
 }

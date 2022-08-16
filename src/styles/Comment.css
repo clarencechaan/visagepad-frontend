@@ -33,10 +33,6 @@
   font-size: 12px;
 }
 
-.Comment .author-full-name:hover {
-  text-decoration: underline;
-}
-
 .Comment .message {
   margin-top: 2px;
   line-height: 20px;
@@ -58,10 +54,6 @@
   font-size: 12px;
   font-family: "SFUIText-Regular";
   cursor: pointer;
-}
-
-.Comment .bubble .like-count:hover {
-  background-color: rgb(245, 245, 245);
 }
 
 .Comment .bubble .like-count::after {
@@ -106,10 +98,6 @@
   padding: 0;
 }
 
-.Comment .comment-btns .like-btn:hover {
-  text-decoration: underline;
-}
-
 .Comment .comment-btns .like-btn.liked {
   color: rgb(32, 120, 244);
 }
@@ -126,10 +114,6 @@
   top: 18px;
 }
 
-.Comment .comment-btns .time-ago:hover::after {
-  transition-delay: 0.5s;
-}
-
 .Comment .more-options {
   display: flex;
   justify-content: center;
@@ -143,25 +127,12 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  opacity: 0;
   background-color: transparent;
 }
 
 .Comment .more-options > button::after {
   content: "Edit or delete this";
   top: -25px;
-}
-
-.Comment .more-options > button:hover::after {
-  transition-delay: 0.5s;
-}
-
-.Comment:hover .more-options > button {
-  opacity: 1;
-}
-
-.Comment .more-options > button:hover {
-  background-color: rgb(240, 242, 245);
 }
 
 .Comment .more-options > button:active {
@@ -171,10 +142,6 @@
 .Comment .more-options > button img {
   width: 16px;
   height: 16px;
-}
-
-.Comment .more-options .dropdown .triangle {
-  align-self: center;
 }
 
 .Comment > :nth-child(2) > :first-child {
@@ -221,10 +188,44 @@
   color: rgb(32, 120, 244);
 }
 
-.Comment .editing .cancel-btn:hover {
-  text-decoration: underline;
-}
-
 .Comment > a {
   align-self: flex-start;
+}
+
+@media not (hover: none) {
+  .Comment .more-options > button {
+    opacity: 0;
+  }
+
+  .Comment:hover .more-options > button {
+    opacity: 1;
+  }
+
+  .Comment .author-full-name:hover {
+    text-decoration: underline;
+  }
+
+  .Comment .bubble .like-count:hover {
+    background-color: rgb(245, 245, 245);
+  }
+
+  .Comment .comment-btns .like-btn:hover {
+    text-decoration: underline;
+  }
+
+  .Comment .comment-btns .time-ago:hover::after {
+    transition-delay: 0.5s;
+  }
+
+  .Comment .more-options > button:hover::after {
+    transition-delay: 0.5s;
+  }
+
+  .Comment .more-options > button:hover {
+    background-color: rgb(240, 242, 245);
+  }
+
+  .Comment .editing .cancel-btn:hover {
+    text-decoration: underline;
+  }
 }

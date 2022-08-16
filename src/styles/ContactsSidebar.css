@@ -9,10 +9,6 @@
   overflow: overlay;
 }
 
-.ContactsSidebar:hover::-webkit-scrollbar-thumb {
-  visibility: visible;
-}
-
 .ContactsSidebar .title {
   color: rgb(101, 103, 107);
   font-size: 16px;
@@ -28,4 +24,10 @@
 
 .ContactsSidebar .no-contacts-msg {
   padding-left: 8px;
+}
+
+@media not (hover: none) {
+  .ContactsSidebar:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
 }

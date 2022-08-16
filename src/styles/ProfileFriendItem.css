@@ -16,10 +16,6 @@
   border-radius: 8px;
 }
 
-.ProfileFriendItem .media:hover {
-  filter: brightness(0.9);
-}
-
 .ProfileFriendItem > a {
   line-height: 0;
 }
@@ -34,10 +30,6 @@
   text-decoration: none;
 }
 
-.ProfileFriendItem .text a:hover {
-  text-decoration: underline;
-}
-
 .ProfileFriendItem .full-name {
   font-family: "SFUIText-Medium";
   color: black;
@@ -50,4 +42,14 @@
 .ProfileFriendItem .mutual-friend-count {
   color: rgb(101, 103, 107);
   font-size: 12px;
+}
+
+@media not (hover: none) {
+  .ProfileFriendItem .media:hover {
+    filter: brightness(0.9);
+  }
+
+  .ProfileFriendItem .text a:hover {
+    text-decoration: underline;
+  }
 }

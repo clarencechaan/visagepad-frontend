@@ -46,6 +46,14 @@ function SearchBar() {
     return str.trim().toLowerCase();
   }
 
+  function handleInputFocused(e) {
+    e.preventDefault();
+  }
+
+  function pauseScrolling() {
+    window.style.position = "hidden";
+  }
+
   return (
     <div className="SearchBar" tabIndex={-1}>
       <input
@@ -53,6 +61,7 @@ function SearchBar() {
         placeholder="Search VisagePad"
         value={query}
         onChange={handleInputChanged}
+        onFocus={handleInputFocused}
       />
       <MagnifyingGlass className="magnifying-glass" />
       <div className="window">
@@ -60,8 +69,8 @@ function SearchBar() {
           <button
             type="button"
             className="back-btn"
-            onClick={(e) => {
-              e.target.blur();
+            onClick={() => {
+              document.activeElement.blur();
             }}
           >
             <ArrowLeft className="arrow-left" />

@@ -19,10 +19,6 @@
   min-width: 240px;
 }
 
-.Home .sidebar:hover::-webkit-scrollbar-thumb {
-  visibility: visible;
-}
-
 .Home .people-you-may-know .title {
   color: rgb(101, 103, 107);
   font-size: 16px;
@@ -45,10 +41,6 @@
   padding: 0 8px;
   color: black;
   text-decoration: none;
-}
-
-.Home .me-link:hover {
-  background-color: rgb(228, 230, 233);
 }
 
 .Home .me-link:active {
@@ -74,4 +66,14 @@
   flex-direction: column;
   align-items: center;
   min-width: 680px;
+}
+
+@media not (hover: none) {
+  .Home .sidebar:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
+
+  .Home .me-link:hover {
+    background-color: rgb(228, 230, 233);
+  }
 }

@@ -26,6 +26,7 @@
 }
 
 .LogIn .window-container {
+  min-width: 396px;
   width: min(100%, 396px);
 }
 
@@ -88,10 +89,6 @@
   margin-bottom: 10px;
 }
 
-.LogIn .log-in-form .log-in-btn:hover {
-  background-color: hsl(214, 89.3%, 49.6%);
-}
-
 .LogIn .log-in-form .log-in-btn:active {
   background-color: hsl(214, 89.3%, 46.7%);
   transform: scale(0.98);
@@ -119,11 +116,6 @@
   font-size: 16px;
   padding: 0 20px;
   align-self: center;
-}
-
-.LogIn .log-in-window .new-account-btn:hover,
-.LogIn .log-in-form .demo-user-btn:hover {
-  background-color: hsl(110, 62.7%, 41.9%);
 }
 
 .LogIn .log-in-window .new-account-btn:active,
@@ -169,10 +161,6 @@ button.fb {
   cursor: pointer;
 }
 
-button.fb:hover {
-  background-color: hsl(219, 44.5%, 38.9%);
-}
-
 button.fb:active {
   background-color: hsl(219, 44.5%, 36.9%);
   transform: scale(0.98);
@@ -192,4 +180,19 @@ button.fb:active {
   margin: -8px 7px -7px -30px;
   padding: 2 25px 0 0;
   content: "f";
+}
+
+@media not (hover: none) {
+  .LogIn .log-in-form .log-in-btn:hover {
+    background-color: hsl(214, 89.3%, 49.6%);
+  }
+
+  .LogIn .log-in-window .new-account-btn:hover,
+  .LogIn .log-in-form .demo-user-btn:hover {
+    background-color: hsl(110, 62.7%, 41.9%);
+  }
+
+  button.fb:hover {
+    background-color: hsl(219, 44.5%, 38.9%);
+  }
 }

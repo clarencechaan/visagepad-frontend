@@ -5,7 +5,11 @@ import "../styles/ComposePostForm.css";
 import DotsThrobber from "./DotsThrobber";
 import blankUser from "../images/blank-user.png";
 import { Image } from "phosphor-react";
-import { media, addEscKeyDownListener } from "../scripts/scripts";
+import {
+  media,
+  addEscKeyDownListener,
+  disableScrolling,
+} from "../scripts/scripts";
 
 function ComposePostForm({
   setComposePostFormShown,
@@ -26,7 +30,15 @@ function ComposePostForm({
     focusTextInput();
     resizeTextInput();
 
-    return addEscKeyDownListener(setComposePostFormShown);
+    const enableScrolling = disableScrolling();
+    const removeEscKeyDownListener = addEscKeyDownListener(
+      setComposePostFormShown
+    );
+
+    return () => {
+      enableScrolling();
+      removeEscKeyDownListener();
+    };
   }, []);
 
   async function uploadImage(file) {
@@ -236,14 +248,9 @@ function ComposePostForm({
             <div className="photo-preview-container">
               {isLoading ? <DotsThrobber /> : null}
               <div className={isLoading ? "hidden" : ""}>
-                <img
-                  src={post.img_url}
-                  alt=""
-                  className="photo-preview"
-                  onLoad={() => {
-                    setIsLoading(false);
-                  }}
-                />
+                {media(post.img_url, "photo-preview", () => {
+                  setIsLoading(false);
+                })}
                 <button
                   type="button"
                   className="remove-btn"

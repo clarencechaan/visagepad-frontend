@@ -42,10 +42,12 @@
   transition: background-color 0.2s;
 }
 
-.NewPostBtn .new-post-btn:hover {
-  background-color: rgb(228, 230, 233);
-}
-
 .NewPostBtn .new-post-btn:active {
   background-color: rgb(216, 217, 220);
+}
+
+@media not (hover: none) {
+  .NewPostBtn .new-post-btn:hover {
+    background-color: rgb(228, 230, 233);
+  }
 }

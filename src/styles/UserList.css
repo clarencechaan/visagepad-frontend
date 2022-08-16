@@ -77,10 +77,6 @@
   line-height: 0;
 }
 
-.UserList .close-btn:hover {
-  background-color: rgb(242, 242, 242);
-}
-
 .UserList .close-btn:active {
   background-color: rgb(229, 229, 229);
 }
@@ -90,6 +86,12 @@
   overflow: overlay;
 }
 
-.UserList .user-list:hover::-webkit-scrollbar-thumb {
-  visibility: visible;
+@media not (hover: none) {
+  .UserList .close-btn:hover {
+    background-color: rgb(242, 242, 242);
+  }
+
+  .UserList .user-list:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
 }

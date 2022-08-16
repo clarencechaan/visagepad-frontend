@@ -55,11 +55,6 @@
   align-self: center;
 }
 
-.FriendRequestCard .full-name:hover,
-.FriendCard .full-name:hover {
-  text-decoration: underline;
-}
-
 .FriendRequestCard .mutual-friends,
 .FriendCard .mutual-friends {
   display: flex;
@@ -122,10 +117,6 @@
   margin-top: auto;
 }
 
-.FriendRequestCard button:hover {
-  filter: brightness(0.95);
-}
-
 .FriendRequestCard button:active {
   filter: brightness(0.9);
   transform: scale(0.95);
@@ -139,4 +130,15 @@
 .FriendRequestCard button.making-request {
   filter: grayscale(0.5) opacity(0.5);
   pointer-events: none;
+}
+
+@media not (hover: none) {
+  .FriendRequestCard .full-name:hover,
+  .FriendCard .full-name:hover {
+    text-decoration: underline;
+  }
+
+  .FriendRequestCard button:hover {
+    filter: brightness(0.95);
+  }
 }

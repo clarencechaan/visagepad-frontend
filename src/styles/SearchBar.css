@@ -96,10 +96,6 @@
   background-color: transparent;
 }
 
-.SearchBar .window .back-btn:hover {
-  background-color: rgb(240, 242, 245);
-}
-
 .SearchBar .window .back-btn:active {
   background-color: rgb(226, 226, 226);
 }
@@ -125,14 +121,20 @@
   margin-bottom: 8px;
 }
 
-.SearchBar .results:hover::-webkit-scrollbar-thumb {
-  visibility: visible;
-}
-
 .SearchBar .no-results {
   height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgb(138, 141, 145);
+}
+
+@media not (hover: none) {
+  .SearchBar .window .back-btn:hover {
+    background-color: rgb(240, 242, 245);
+  }
+
+  .SearchBar .results:hover::-webkit-scrollbar-thumb {
+    visibility: visible;
+  }
 }

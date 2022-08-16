@@ -8,10 +8,6 @@
   text-decoration: none;
 }
 
-.SearchResultItem:hover {
-  background-color: rgb(227, 228, 229);
-}
-
 .SearchResultItem .media {
   width: 36px;
   height: 36px;
@@ -41,4 +37,10 @@
 .SearchResultItem .relationship {
   color: gray;
   font-size: 12px;
+}
+
+@media not (hover: none) {
+  .SearchResultItem:hover {
+    background-color: rgb(227, 228, 229);
+  }
 }

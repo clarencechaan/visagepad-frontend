@@ -8,13 +8,13 @@ import { ThumbsUp, Chat, PencilSimple, Trash } from "phosphor-react";
 import Comment from "../components/Comment";
 import UserList from "./UserList";
 import ComposePostForm from "./ComposePostForm";
+import ConfirmDeletePopup from "./ConfirmDeletePopup";
 import {
   media,
   getTimeAgo,
   getLongDateTime,
   getUsersTooltipContent,
   smoothScrollToTop,
-  addEscKeyDownListener,
 } from "../scripts/scripts";
 
 function Post({ post, setFeedComments, setFeed }) {
@@ -35,12 +35,11 @@ function Post({ post, setFeedComments, setFeed }) {
     (post.comments && post.comments.length && [post.comments.slice(-1)[0]]) ||
       []
   );
+  const [moreOptionsShown, setMoreOptionsShown] = useState(false);
   const commentInputRef = useRef(null);
 
   useEffect(() => {
     fetchComments();
-
-    return addEscKeyDownListener(setConfirmDeletePopupShown);
   }, []);
 
   useEffect(() => {
@@ -427,75 +426,49 @@ function Post({ post, setFeedComments, setFeed }) {
     );
   }
 
-  function moreOptions() {
-    if (post && post.author && post.author._id === me.user._id) {
-      return (
-        <div className="more-options">
-          <button>
-            <img src={dots} alt="" />
+  const moreOptions =
+    post && post.author && post.author._id === me.user._id ? (
+      <div className="more-options">
+        <button
+          onClick={handleMoreOptionsBtnClicked}
+          onBlur={handleMoreOptionsBlurred}
+        >
+          <img src={dots} alt="" />
+        </button>
+        <div
+          className={"dropdown" + (moreOptionsShown ? "" : " invisible")}
+          tabIndex={-1}
+        >
+          <div className="triangle"></div>
+          <button onClick={handleEditBtnClicked}>
+            <PencilSimple className="icon" />
+            Edit post
           </button>
-          <div className="dropdown" tabIndex={-1}>
-            <div className="triangle"></div>
-            <button onClick={handleEditBtnClicked}>
-              <PencilSimple className="icon" />
-              Edit post
-            </button>
-            <button onClick={handleDropdownDeleteBtnClicked}>
-              <Trash className="icon" />
-              Delete post
-            </button>
-          </div>
+          <button onClick={handleDropdownDeleteBtnClicked}>
+            <Trash className="icon" />
+            Delete post
+          </button>
         </div>
-      );
-    } else {
-      return null;
-    }
+      </div>
+    ) : null;
+
+  function handleMoreOptionsBtnClicked() {
+    setMoreOptionsShown(true);
+    document.addEventListener("touchend", handleMoreOptionsBlurred);
   }
 
-  function closeConfirmDeletePopup() {
-    setConfirmDeletePopupShown(false);
-  }
-
-  async function handleConfirmDeleteBtnClicked() {
-    await deletePost();
-    closeConfirmDeletePopup();
+  function handleMoreOptionsBlurred() {
+    setMoreOptionsShown(false);
+    document.removeEventListener("touchend", handleMoreOptionsBlurred);
   }
 
   return (
     <div className="Post">
       {confirmDeletePopupShown ? (
-        <div className="confirm-delete-popup">
-          <div className="window">
-            <div className="title-bar">
-              <button
-                type="button"
-                className="close-btn"
-                onClick={closeConfirmDeletePopup}
-              >
-                ✕
-              </button>
-              <div className="title">Delete this post?</div>
-            </div>
-            <div className="content">
-              Are you sure you want to delete this post forever? This action
-              cannot be undone.
-              <div className="delete-btns">
-                <button
-                  className="cancel-btn"
-                  onClick={closeConfirmDeletePopup}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="confirm-btn"
-                  onClick={handleConfirmDeleteBtnClicked}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ConfirmDeletePopup
+          deletePost={deletePost}
+          setConfirmDeletePopupShown={setConfirmDeletePopupShown}
+        />
       ) : null}
       <div className="info-bar">
         <Link
@@ -521,7 +494,7 @@ function Post({ post, setFeedComments, setFeed }) {
             {getTimeAgo(post.date)}
           </div>
         </div>
-        {moreOptions()}
+        {moreOptions}
         {editPostFormShown ? (
           <ComposePostForm
             setComposePostFormShown={setEditPostFormShown}

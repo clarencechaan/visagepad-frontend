@@ -25,10 +25,6 @@
   cursor: pointer;
 }
 
-.ProfileFriends .title:hover {
-  text-decoration: underline;
-}
-
 .ProfileFriends .search-bar {
   margin-left: auto;
   margin-right: auto;
@@ -81,4 +77,10 @@
   grid-column: 1 / -1;
   text-align: center;
   margin-top: 96px;
+}
+
+@media not (hover: none) {
+  .ProfileFriends .title:hover {
+    text-decoration: underline;
+  }
 }

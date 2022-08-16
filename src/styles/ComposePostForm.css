@@ -44,10 +44,6 @@
   line-height: 0;
 }
 
-.ComposePostForm form .close-btn:hover {
-  background-color: rgb(242, 242, 242);
-}
-
 .ComposePostForm form .close-btn:active {
   background-color: rgb(229, 229, 229);
 }
@@ -142,10 +138,6 @@
   padding-left: 16px;
 }
 
-.ComposePostForm form .photo-picker-label .prompt:hover {
-  background-color: rgb(245, 245, 245);
-}
-
 .ComposePostForm form .photo-picker-label .icon {
   color: rgb(24, 119, 242);
   font-size: 32px;
@@ -167,7 +159,7 @@
   justify-content: center;
 }
 
-.ComposePostForm form img.photo-preview {
+.ComposePostForm form .photo-preview.media {
   width: 100%;
   border-radius: 8px;
 }
@@ -190,10 +182,6 @@
   overflow: hidden;
 }
 
-.ComposePostForm form .remove-btn:hover {
-  background-color: rgb(242, 242, 242);
-}
-
 .ComposePostForm form .done-btn {
   min-height: 36px;
   border: none;
@@ -208,10 +196,6 @@
   transition: 0.2s;
 }
 
-.ComposePostForm form .done-btn:hover {
-  filter: brightness(0.95);
-}
-
 .ComposePostForm form .done-btn:active {
   filter: brightness(0.9);
   transform: scale(0.98);
@@ -221,4 +205,22 @@
   pointer-events: none;
   background-color: rgb(228, 230, 235);
   color: rgb(188, 188, 188);
+}
+
+@media not (hover: none) {
+  .ComposePostForm form .close-btn:hover {
+    background-color: rgb(242, 242, 242);
+  }
+
+  .ComposePostForm form .photo-picker-label .prompt:hover {
+    background-color: rgb(245, 245, 245);
+  }
+
+  .ComposePostForm form .remove-btn:hover {
+    background-color: rgb(242, 242, 242);
+  }
+
+  .ComposePostForm form .done-btn:hover {
+    filter: brightness(0.95);
+  }
 }

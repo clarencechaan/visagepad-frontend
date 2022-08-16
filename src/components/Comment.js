@@ -25,6 +25,7 @@ function Comment({ comment, setComments }) {
   const [userListShowm, setUserListShown] = useState(false);
   const [message, setMessage] = useState(comment.message);
   const [editedMessage, setEditedMessage] = useState(comment.message);
+  const [moreOptionsShown, setMoreOptionsShown] = useState(false);
 
   useEffect(() => {
     return addEscKeyDownListener(setIsEditing);
@@ -172,29 +173,41 @@ function Comment({ comment, setComments }) {
     }
   }
 
-  function moreOptions() {
-    if (comment && comment.author && comment.author._id === me.user._id) {
-      return (
-        <div className="more-options">
-          <button className="has-tooltip">
-            <img src={dots} alt="" />
+  const moreOptions =
+    comment && comment.author && comment.author._id === me.user._id ? (
+      <div className="more-options">
+        <button
+          className="has-tooltip"
+          onClick={handleMoreOptionsBtnClicked}
+          onBlur={handleMoreOptionsBlurred}
+        >
+          <img src={dots} alt="" />
+        </button>
+        <div
+          className={"dropdown" + (moreOptionsShown ? "" : " invisible")}
+          tabIndex={-1}
+        >
+          <div className="triangle"></div>
+          <button onClick={handleEditBtnClicked}>
+            <PencilSimple className="icon" />
+            Edit comment
           </button>
-          <div className="dropdown" tabIndex={-1}>
-            <div className="triangle"></div>
-            <button onClick={handleEditBtnClicked}>
-              <PencilSimple className="icon" />
-              Edit comment
-            </button>
-            <button onClick={handleDeleteBtnClicked}>
-              <Trash className="icon" />
-              Delete comment
-            </button>
-          </div>
+          <button onClick={handleDeleteBtnClicked}>
+            <Trash className="icon" />
+            Delete comment
+          </button>
         </div>
-      );
-    } else {
-      return null;
-    }
+      </div>
+    ) : null;
+
+  function handleMoreOptionsBtnClicked() {
+    setMoreOptionsShown(true);
+    document.addEventListener("touchend", handleMoreOptionsBlurred);
+  }
+
+  function handleMoreOptionsBlurred() {
+    setMoreOptionsShown(false);
+    document.removeEventListener("touchend", handleMoreOptionsBlurred);
   }
 
   function likeCount() {
@@ -291,7 +304,7 @@ function Comment({ comment, setComments }) {
             <div className="message">{message}</div>
             {likeCount()}
           </div>
-          {moreOptions()}
+          {moreOptions}
         </div>
         <div className="comment-btns">
           <button
@@ -319,6 +332,7 @@ function Comment({ comment, setComments }) {
             ref={textInputRef}
             onChange={handleTextInputChanged}
             onKeyDown={handleTextInputKeyDown}
+            inputMode="search"
             defaultValue={editedMessage}
           />
         </div>

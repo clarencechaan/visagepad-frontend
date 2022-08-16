@@ -39,10 +39,6 @@
   font-size: 18px;
 }
 
-.RelationshipBtn button:hover {
-  filter: brightness(0.95);
-}
-
 .RelationshipBtn button:active {
   filter: brightness(0.9);
   transform: scale(0.95);
@@ -69,4 +65,10 @@
 .RelationshipBtn button.making-request {
   filter: grayscale(0.5) opacity(0.5);
   pointer-events: none;
+}
+
+@media not (hover: none) {
+  .RelationshipBtn button:hover {
+    filter: brightness(0.95);
+  }
 }

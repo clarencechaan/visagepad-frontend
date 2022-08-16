@@ -79,11 +79,6 @@
   transition: 0.2s;
 }
 
-.NavBar .home-link.unselected .img-container:hover,
-.NavBar .friends-link.unselected .img-container:hover {
-  background-color: rgb(245, 246, 247);
-}
-
 .NavBar .home-link.unselected .img-container:active,
 .NavBar .friends-link.unselected .img-container:active {
   background-color: rgb(232, 232, 232);
@@ -108,4 +103,11 @@
   content: "Your profile";
   bottom: -33px;
   right: -8px;
+}
+
+@media not (hover: none) {
+  .NavBar .home-link.unselected .img-container:hover,
+  .NavBar .friends-link.unselected .img-container:hover {
+    background-color: rgb(245, 246, 247);
+  }
 }

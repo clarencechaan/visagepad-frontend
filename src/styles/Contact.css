@@ -9,10 +9,6 @@
   border-radius: 8px;
 }
 
-.Contact:hover {
-  background-color: rgb(228, 230, 233);
-}
-
 .Contact:active {
   background-color: rgb(216, 217, 220);
 }
@@ -32,4 +28,10 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+@media not (hover: none) {
+  .Contact:hover {
+    background-color: rgb(228, 230, 233);
+  }
 }
