@@ -194,6 +194,12 @@ body ::-webkit-scrollbar-thumb:hover {
     padding: 0 16px;
   }
 
+  body .Profile .cover-photo .add-cover-btn {
+    bottom: none;
+    top: 16px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
   body .ProfilePosts {
     flex-direction: column;
     align-items: center;
@@ -201,7 +207,7 @@ body ::-webkit-scrollbar-thumb:hover {
 
   body .ProfilePosts .friends-small {
     position: initial;
-    min-width: none;
+    min-width: 0;
     max-width: 678px;
     width: 100%;
     margin-bottom: 16px;

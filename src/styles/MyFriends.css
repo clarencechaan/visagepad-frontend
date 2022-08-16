@@ -36,10 +36,6 @@
   margin-top: 24px;
 }
 
-.MyFriends .SpinThrobber {
-  grid-column: 3 / 4;
-}
-
 .MyFriends .no-friends-msg {
   grid-column: 1 / -1;
 }

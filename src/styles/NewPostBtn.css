@@ -11,6 +11,10 @@
   column-gap: 10px;
 }
 
+.NewPostBtn > a {
+  line-height: 0;
+}
+
 .NewPostBtn .new-post-btn-pfp {
   height: 40px;
   width: 40px;

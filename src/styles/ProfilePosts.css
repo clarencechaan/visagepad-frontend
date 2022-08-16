@@ -19,6 +19,7 @@
   top: 132px;
   margin-bottom: 48px;
   flex: 1;
+  max-width: 492px;
 }
 
 .ProfilePosts .friends-small .top-bar .upper {
@@ -110,7 +111,14 @@
   text-decoration: underline;
 }
 
+.ProfilePosts .friends-small .no-friends-msg {
+  grid-column: 1 / -1;
+  margin-bottom: 16px;
+}
+
 .ProfilePosts .profile-feed {
   max-width: 678px;
   min-width: 0;
+  flex: 1;
+  width: 100%;
 }
