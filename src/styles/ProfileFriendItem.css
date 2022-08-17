@@ -44,7 +44,7 @@
   font-size: 12px;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .ProfileFriendItem .media:hover {
     filter: brightness(0.9);
   }

@@ -81,6 +81,15 @@ body ::-webkit-scrollbar-thumb {
   visibility: hidden;
 }
 
+* {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+.media {
+  background: lightgray;
+  position: relative;
+}
+
 /* MEDIA QUERIES */
 
 /* Home */
@@ -460,7 +469,7 @@ body ::-webkit-scrollbar-thumb {
   }
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .has-tooltip:hover::after {
     visibility: visible;
     opacity: 1;

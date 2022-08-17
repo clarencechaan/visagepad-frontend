@@ -96,10 +96,6 @@
   background-color: transparent;
 }
 
-.SearchBar .window .back-btn:active {
-  background-color: rgb(226, 226, 226);
-}
-
 .SearchBar .window .arrow-left {
   pointer-events: none;
   font-size: 22px;
@@ -129,7 +125,7 @@
   color: rgb(138, 141, 145);
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .SearchBar .window .back-btn:hover {
     background-color: rgb(240, 242, 245);
   }
@@ -137,4 +133,8 @@
   .SearchBar .results:hover::-webkit-scrollbar-thumb {
     visibility: visible;
   }
+}
+
+.SearchBar .window .back-btn:active {
+  background-color: rgb(226, 226, 226);
 }

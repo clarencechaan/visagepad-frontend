@@ -39,11 +39,6 @@
   font-size: 18px;
 }
 
-.RelationshipBtn button:active {
-  filter: brightness(0.9);
-  transform: scale(0.95);
-}
-
 .RelationshipBtn .is-friend {
   height: 34px;
   padding: 0 12px;
@@ -67,8 +62,13 @@
   pointer-events: none;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .RelationshipBtn button:hover {
     filter: brightness(0.95);
   }
+}
+
+.RelationshipBtn button:active {
+  filter: brightness(0.9);
+  transform: scale(0.95);
 }

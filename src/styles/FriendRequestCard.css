@@ -117,11 +117,6 @@
   margin-top: auto;
 }
 
-.FriendRequestCard button:active {
-  filter: brightness(0.9);
-  transform: scale(0.95);
-}
-
 .FriendRequestCard button.delete-btn {
   background-color: rgb(228, 230, 235);
   margin-top: 6px;
@@ -132,7 +127,7 @@
   pointer-events: none;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .FriendRequestCard .full-name:hover,
   .FriendCard .full-name:hover {
     text-decoration: underline;
@@ -141,4 +136,9 @@
   .FriendRequestCard button:hover {
     filter: brightness(0.95);
   }
+}
+
+.FriendRequestCard button:active {
+  filter: brightness(0.9);
+  transform: scale(0.95);
 }

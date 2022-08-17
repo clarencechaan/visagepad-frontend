@@ -43,10 +43,6 @@
   text-decoration: none;
 }
 
-.Home .me-link:active {
-  background-color: rgb(216, 217, 220);
-}
-
 .Home .me-link .media {
   width: 36px;
   height: 36px;
@@ -68,7 +64,7 @@
   min-width: 680px;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .Home .sidebar:hover::-webkit-scrollbar-thumb {
     visibility: visible;
   }
@@ -76,4 +72,8 @@
   .Home .me-link:hover {
     background-color: rgb(228, 230, 233);
   }
+}
+
+.Home .me-link:active {
+  background-color: rgb(216, 217, 220);
 }

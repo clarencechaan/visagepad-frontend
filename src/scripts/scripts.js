@@ -8,19 +8,22 @@ function smoothScrollToTop(e) {
 }
 
 // return video or img depending on filetype
-function media(src, className, doOnLoad) {
+function media(src, options) {
+  const { className, doOnLoad, playable } = options || {};
+
   if (!src) {
     return null;
   }
 
-  if (!className) {
-    className = "";
+  if (!playable) {
+    src = src.replace(".mp4", "l.jpeg");
   }
 
   return src && src.substring(src.length - 4) === ".mp4" ? (
     <video
       src={src}
       autoPlay="autoplay"
+      preload="none"
       muted
       loop
       playsInline

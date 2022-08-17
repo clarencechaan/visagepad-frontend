@@ -213,7 +213,7 @@ function ComposePostForm({
         </div>
         <div className="author-bar">
           <Link to={`/profile/${me.user._id}`}>
-            {media(me.user.pfp || blankUser, "pfp")}
+            {media(me.user.pfp || blankUser, { className: "pfp" })}
           </Link>
           <div className="text">
             <div className="surtitle">posting as</div>
@@ -248,8 +248,12 @@ function ComposePostForm({
             <div className="photo-preview-container">
               {isLoading ? <DotsThrobber /> : null}
               <div className={isLoading ? "hidden" : ""}>
-                {media(post.img_url, "photo-preview", () => {
-                  setIsLoading(false);
+                {media(post.img_url, {
+                  className: "photo-preview",
+                  doOnLoad: () => {
+                    setIsLoading(false);
+                  },
+                  playable: true,
                 })}
                 <button
                   type="button"

@@ -79,7 +79,7 @@
   margin-top: 96px;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .ProfileFriends .title:hover {
     text-decoration: underline;
   }

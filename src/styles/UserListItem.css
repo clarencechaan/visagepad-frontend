@@ -6,7 +6,7 @@
   padding: 0 18px 0 16px;
 }
 
-.UserListItem .pfp {
+.UserListItem .pfp.media {
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -45,11 +45,6 @@
   font-size: 18px;
 }
 
-.UserListItem button:active {
-  filter: brightness(0.9);
-  transform: scale(0.95);
-}
-
 .UserListItem .is-friend {
   height: 34px;
   padding: 0 12px;
@@ -67,7 +62,7 @@
   font-size: 18px;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .UserListItem .full-name:hover {
     text-decoration: underline;
   }
@@ -75,4 +70,9 @@
   .UserListItem button:hover {
     filter: brightness(0.95);
   }
+}
+
+.UserListItem button:active {
+  filter: brightness(0.9);
+  transform: scale(0.95);
 }

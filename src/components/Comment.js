@@ -179,11 +179,7 @@ function Comment({ comment, setComments }) {
   const moreOptions =
     comment && comment.author && comment.author._id === me.user._id ? (
       <div className="more-options">
-        <button
-          className="has-tooltip"
-          onClick={handleMoreOptionsBtnClicked}
-          onBlur={handleMoreOptionsBlurred}
-        >
+        <button className="has-tooltip" onClick={handleMoreOptionsBtnClicked}>
           <img src={dots} alt="" />
         </button>
         <div
@@ -205,12 +201,14 @@ function Comment({ comment, setComments }) {
 
   function handleMoreOptionsBtnClicked() {
     setMoreOptionsShown(true);
-    document.addEventListener("touchend", handleMoreOptionsBlurred);
+    document.addEventListener("touchend", hideMoreOptionsDropdown);
+    document.addEventListener("mousedown", hideMoreOptionsDropdown);
   }
 
-  function handleMoreOptionsBlurred() {
+  function hideMoreOptionsDropdown() {
     setMoreOptionsShown(false);
-    document.removeEventListener("touchend", handleMoreOptionsBlurred);
+    document.removeEventListener("touchend", hideMoreOptionsDropdown);
+    document.removeEventListener("mousedown", hideMoreOptionsDropdown);
   }
 
   function likeCount() {
@@ -293,7 +291,9 @@ function Comment({ comment, setComments }) {
   return (
     <div className="Comment">
       <Link to={`/profile/${comment.author._id}`} onClick={smoothScrollToTop}>
-        {media(comment.author.pfp || blankUser, "pfp-small")}
+        {media(comment.author.pfp || blankUser, {
+          className: "pfp-small",
+        })}
       </Link>
       <div className={"display" + (isEditing ? " hidden" : "")}>
         <div>

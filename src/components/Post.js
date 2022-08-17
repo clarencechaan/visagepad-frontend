@@ -407,7 +407,7 @@ function Post({ post, setFeedComments, setFeed }) {
         </div>
         <div className="comment-bar">
           <Link to={`/profile/${me.user._id}`} onClick={smoothScrollToTop}>
-            {media(me.user.pfp || blankUser, "pfp-small")}
+            {media(me.user.pfp || blankUser, { className: "pfp-small" })}
           </Link>
           <div className="bubble">
             <textarea
@@ -431,10 +431,7 @@ function Post({ post, setFeedComments, setFeed }) {
   const moreOptions =
     post && post.author && post.author._id === me.user._id ? (
       <div className="more-options">
-        <button
-          onClick={handleMoreOptionsBtnClicked}
-          onBlur={handleMoreOptionsBlurred}
-        >
+        <button onClick={handleMoreOptionsBtnClicked}>
           <img src={dots} alt="" />
         </button>
         <div
@@ -456,12 +453,14 @@ function Post({ post, setFeedComments, setFeed }) {
 
   function handleMoreOptionsBtnClicked() {
     setMoreOptionsShown(true);
-    document.addEventListener("touchend", handleMoreOptionsBlurred);
+    document.addEventListener("touchend", hideMoreOptionsDropdown);
+    document.addEventListener("mousedown", hideMoreOptionsDropdown);
   }
 
-  function handleMoreOptionsBlurred() {
+  function hideMoreOptionsDropdown() {
     setMoreOptionsShown(false);
-    document.removeEventListener("touchend", handleMoreOptionsBlurred);
+    document.removeEventListener("touchend", hideMoreOptionsDropdown);
+    document.removeEventListener("mousedown", hideMoreOptionsDropdown);
   }
 
   return (
@@ -508,7 +507,9 @@ function Post({ post, setFeedComments, setFeed }) {
       </div>
       <div className="content">{post.content}</div>
       {post.img_url ? (
-        <div className="photo-container">{media(post.img_url)}</div>
+        <div className="photo-container">
+          {media(post.img_url, { playable: true })}
+        </div>
       ) : null}
       {(post && post.likes && post.likes.length) ||
       (previousComments && previousComments.length) ||

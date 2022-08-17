@@ -196,18 +196,13 @@
   transition: 0.2s;
 }
 
-.ComposePostForm form .done-btn:active {
-  filter: brightness(0.9);
-  transform: scale(0.98);
-}
-
 .ComposePostForm form .done-btn:disabled {
   pointer-events: none;
   background-color: rgb(228, 230, 235);
   color: rgb(188, 188, 188);
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .ComposePostForm form .close-btn:hover {
     background-color: rgb(242, 242, 242);
   }
@@ -223,4 +218,9 @@
   .ComposePostForm form .done-btn:hover {
     filter: brightness(0.95);
   }
+}
+
+.ComposePostForm form .done-btn:active {
+  filter: brightness(0.9);
+  transform: scale(0.98);
 }

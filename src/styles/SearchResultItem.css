@@ -39,7 +39,7 @@
   font-size: 12px;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .SearchResultItem:hover {
     background-color: rgb(227, 228, 229);
   }

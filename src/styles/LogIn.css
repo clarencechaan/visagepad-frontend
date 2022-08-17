@@ -89,11 +89,6 @@
   margin-bottom: 10px;
 }
 
-.LogIn .log-in-form .log-in-btn:active {
-  background-color: hsl(214, 89.3%, 46.7%);
-  transform: scale(0.98);
-}
-
 .LogIn .log-in-form .demo-user-btn {
   background-color: hsl(110, 62.7%, 44.1%);
   color: white;
@@ -116,12 +111,6 @@
   font-size: 16px;
   padding: 0 20px;
   align-self: center;
-}
-
-.LogIn .log-in-window .new-account-btn:active,
-.LogIn .log-in-form .demo-user-btn:active {
-  background-color: hsl(110, 62.7%, 39.7%);
-  transform: scale(0.98);
 }
 
 .LogIn .log-in-window.disabled input,
@@ -161,11 +150,6 @@ button.fb {
   cursor: pointer;
 }
 
-button.fb:active {
-  background-color: hsl(219, 44.5%, 36.9%);
-  transform: scale(0.98);
-}
-
 .connect:before {
   display: inline-block;
   position: relative;
@@ -182,7 +166,7 @@ button.fb:active {
   content: "f";
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .LogIn .log-in-form .log-in-btn:hover {
     background-color: hsl(214, 89.3%, 49.6%);
   }
@@ -195,4 +179,20 @@ button.fb:active {
   button.fb:hover {
     background-color: hsl(219, 44.5%, 38.9%);
   }
+}
+
+.LogIn .log-in-form .log-in-btn:active {
+  background-color: hsl(214, 89.3%, 46.7%);
+  transform: scale(0.98);
+}
+
+.LogIn .log-in-window .new-account-btn:active,
+.LogIn .log-in-form .demo-user-btn:active {
+  background-color: hsl(110, 62.7%, 39.7%);
+  transform: scale(0.98);
+}
+
+button.fb:active {
+  background-color: hsl(219, 44.5%, 36.9%);
+  transform: scale(0.98);
 }

@@ -22,11 +22,6 @@
   object-fit: cover;
 }
 
-.YourProfileBtn > button:active .media {
-  transform: scale(0.96);
-  filter: brightness(80%);
-}
-
 .YourProfileBtn .window {
   position: absolute;
   width: 360px;
@@ -68,11 +63,6 @@
   max-width: 100%;
   padding-right: 12px;
   box-sizing: border-box;
-}
-
-.YourProfileBtn .window .user .link:active,
-.YourProfileBtn .window .log-out-link:active {
-  background-color: rgb(229, 229, 229);
 }
 
 .YourProfileBtn .window .user .link .media {
@@ -120,7 +110,7 @@
   font-family: "SFUIText-Regular";
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .YourProfileBtn > button:hover .media {
     filter: brightness(90%);
   }
@@ -129,4 +119,14 @@
   .YourProfileBtn .window .log-out-link:hover {
     background-color: rgb(243, 243, 243);
   }
+}
+
+.YourProfileBtn > button:active .media {
+  transform: scale(0.96);
+  filter: brightness(80%);
+}
+
+.YourProfileBtn .window .user .link:active,
+.YourProfileBtn .window .log-out-link:active {
+  background-color: rgb(229, 229, 229);
 }

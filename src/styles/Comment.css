@@ -135,10 +135,6 @@
   top: -25px;
 }
 
-.Comment .more-options > button:active {
-  background-color: rgb(229, 229, 229);
-}
-
 .Comment .more-options > button img {
   width: 16px;
   height: 16px;
@@ -192,7 +188,7 @@
   align-self: flex-start;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .Comment .more-options > button {
     opacity: 0;
   }
@@ -228,4 +224,8 @@
   .Comment .editing .cancel-btn:hover {
     text-decoration: underline;
   }
+}
+
+.Comment .more-options > button:active {
+  background-color: rgb(229, 229, 229);
 }

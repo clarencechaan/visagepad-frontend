@@ -9,10 +9,6 @@
   border-radius: 8px;
 }
 
-.Contact:active {
-  background-color: rgb(216, 217, 220);
-}
-
 .Contact .media.pfp {
   height: 36px;
   width: 36px;
@@ -30,8 +26,12 @@
   text-overflow: ellipsis;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .Contact:hover {
     background-color: rgb(228, 230, 233);
   }
+}
+
+.Contact:active {
+  background-color: rgb(216, 217, 220);
 }

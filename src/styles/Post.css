@@ -134,11 +134,6 @@
   border-radius: 6px;
 }
 
-.Post .info-bar .more-options .dropdown button:active,
-.Comment .more-options .dropdown button:active {
-  background-color: rgb(229, 229, 229);
-}
-
 .Post .info-bar .more-options .dropdown button .icon,
 .Comment .more-options .dropdown button .icon {
   font-size: 24px;
@@ -235,11 +230,6 @@
   align-items: center;
   justify-content: center;
   column-gap: 6px;
-}
-
-.Post .action-btns button:active,
-.Post .info-bar .more-options > button:active {
-  background-color: rgb(229, 229, 229);
 }
 
 .Post .action-btns button .icon {
@@ -371,10 +361,6 @@
   line-height: 0;
 }
 
-.Post > .ConfirmDeletePopup .close-btn:active {
-  background-color: rgb(229, 229, 229);
-}
-
 .Post > .ConfirmDeletePopup .title {
   font-size: 20px;
   font-family: "SFUIText-Semibold";
@@ -421,12 +407,7 @@
   width: 116px;
 }
 
-.Post > .ConfirmDeletePopup .delete-btns button:active {
-  filter: brightness(0.9);
-  transform: scale(0.97);
-}
-
-@media not (hover: none) {
+@media (hover: hover) {
   .Post .info-bar a.full-name:hover {
     text-decoration: underline;
   }
@@ -461,4 +442,23 @@
   .Post > .ConfirmDeletePopup .delete-btns button:hover {
     filter: brightness(0.95);
   }
+}
+
+.Post .info-bar .more-options .dropdown button:active,
+.Comment .more-options .dropdown button:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.Post .action-btns button:active,
+.Post .info-bar .more-options > button:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.Post > .ConfirmDeletePopup .close-btn:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.Post > .ConfirmDeletePopup .delete-btns button:active {
+  filter: brightness(0.9);
+  transform: scale(0.97);
 }

@@ -53,10 +53,6 @@
   border-radius: 5px;
 }
 
-.ProfilePosts .friends-small .all-friends-link:active {
-  background-color: rgb(230, 230, 230);
-}
-
 .ProfilePosts .friends-small .grid {
   width: 100%;
   display: grid;
@@ -107,7 +103,7 @@
   width: 100%;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .ProfilePosts .friends-small .title:hover {
     text-decoration: underline;
   }
@@ -123,4 +119,8 @@
   .ProfilePosts .friends-small .friend-item .full-name:hover {
     text-decoration: underline;
   }
+}
+
+.ProfilePosts .friends-small .all-friends-link:active {
+  background-color: rgb(230, 230, 230);
 }

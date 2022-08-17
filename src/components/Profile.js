@@ -212,7 +212,7 @@ function Profile() {
                   <SpinThrobber />
                 </div>
               ) : (
-                media(user.pfp || blankUser, "pfp")
+                media(user.pfp || blankUser, { className: "pfp" })
               )}
               {isUploadingPfp ? null : (
                 <div className="camera">
@@ -270,7 +270,7 @@ function Profile() {
             </Link>
           </div>
           <button className="user-jump-to-top-btn" onClick={smoothScrollToTop}>
-            {media(user.pfp || blankUser, "jump-pfp")}
+            {media(user.pfp || blankUser, { className: "jump-pfp" })}
             <div className="jump-full-name">{`${user.first_name} ${user.last_name}`}</div>
           </button>
         </div>

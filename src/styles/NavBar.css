@@ -12,6 +12,17 @@
   z-index: 3;
 }
 
+/* fixes bug that creates gap above NavBar on iOS */
+.NavBar::before {
+  content: "";
+  height: 16px;
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  top: -16px;
+  left: 0;
+}
+
 .NavBar .third {
   flex: 1;
   display: flex;
@@ -79,14 +90,14 @@
   transition: 0.2s;
 }
 
-.NavBar .home-link.unselected .img-container:active,
-.NavBar .friends-link.unselected .img-container:active {
-  background-color: rgb(232, 232, 232);
-}
-
 .NavBar .home-link .img-container img {
   height: 70%;
   max-height: 28px;
+}
+
+.NavBar .home-link .img-container img,
+.NavBar .friends-link .img-container img {
+  pointer-events: none;
 }
 
 .NavBar .home-link::after {
@@ -105,9 +116,14 @@
   right: -8px;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .NavBar .home-link.unselected .img-container:hover,
   .NavBar .friends-link.unselected .img-container:hover {
     background-color: rgb(245, 246, 247);
   }
+}
+
+.NavBar .home-link.unselected .img-container:active,
+.NavBar .friends-link.unselected .img-container:active {
+  background-color: rgb(232, 232, 232);
 }

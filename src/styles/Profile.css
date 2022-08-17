@@ -99,11 +99,6 @@
   z-index: 2;
 }
 
-.Profile .cover-photo .add-cover-btn:active {
-  background-color: rgb(229, 229, 228);
-  transform: scale(0.96);
-}
-
 .Profile .cover-photo .add-cover-btn .icon {
   font-size: 18px;
 }
@@ -135,11 +130,6 @@
   object-fit: cover;
 }
 
-.Profile .user .media.pfp:active {
-  filter: brightness(0.8);
-  transform: scale(0.97);
-}
-
 .Profile .user .camera {
   position: absolute;
   right: 11px;
@@ -155,11 +145,6 @@
 
 .Profile.not-me .user .camera {
   display: none;
-}
-
-.Profile .user .camera:active {
-  background-color: rgb(203, 207, 211);
-  transform: scale(0.95);
 }
 
 .Profile .user .pfp-label .icon {
@@ -216,11 +201,6 @@
   border-radius: 50%;
   object-fit: cover;
   filter: brightness(1);
-}
-
-.Profile .user .friends-pfps .media:active {
-  filter: brightness(0.8);
-  transform: scale(0.95);
 }
 
 .Profile .user .friends-pfps a:not(:first-child) {
@@ -291,10 +271,6 @@
   border-radius: 5px;
 }
 
-.Profile .nav-links a.unselected:active {
-  background-color: rgb(230, 230, 230);
-}
-
 .Profile .user-jump-to-top-btn {
   background-color: transparent;
   border: none;
@@ -310,10 +286,6 @@
   font-size: 16px;
   margin-left: 10px;
   animation: fadeIn 0.3s, slideUp 0.3s;
-}
-
-.Profile .user-jump-to-top-btn:active {
-  background-color: rgb(230, 230, 230);
 }
 
 .Profile .user-jump-to-top-btn .jump-pfp {
@@ -342,7 +314,7 @@
   pointer-events: none;
 }
 
-@media not (hover: none) {
+@media (hover: hover) {
   .Profile .cover-photo .add-cover-btn:hover {
     background-color: rgb(242, 242, 242);
   }
@@ -366,4 +338,32 @@
   .Profile .user-jump-to-top-btn:hover {
     background-color: rgb(241, 241, 241);
   }
+}
+
+.Profile .cover-photo .add-cover-btn:active {
+  background-color: rgb(229, 229, 228);
+  transform: scale(0.96);
+}
+
+.Profile .user .media.pfp:active {
+  filter: brightness(0.8);
+  transform: scale(0.97);
+}
+
+.Profile .user .camera:active {
+  background-color: rgb(203, 207, 211);
+  transform: scale(0.95);
+}
+
+.Profile .user .friends-pfps .media:active {
+  filter: brightness(0.8);
+  transform: scale(0.95);
+}
+
+.Profile .nav-links a.unselected:active {
+  background-color: rgb(230, 230, 230);
+}
+
+.Profile .user-jump-to-top-btn:active {
+  background-color: rgb(230, 230, 230);
 }
