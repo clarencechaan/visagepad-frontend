@@ -213,7 +213,7 @@ function ComposePostForm({
         </div>
         <div className="author-bar">
           <Link to={`/profile/${me.user._id}`}>
-            {media(me.user.pfp || blankUser, { className: "pfp" })}
+            {media(me.user.pfp || blankUser, { className: "pfp", size: "s" })}
           </Link>
           <div className="text">
             <div className="surtitle">posting as</div>

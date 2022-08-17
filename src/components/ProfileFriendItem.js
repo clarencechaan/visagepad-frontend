@@ -76,7 +76,9 @@ function ProfileFriendItem({ user, query }) {
 
   return (
     <div className={"ProfileFriendItem" + (isShown ? "" : " hidden")}>
-      <Link to={`/profile/${user._id}`}>{media(user.pfp || blankUser)}</Link>
+      <Link to={`/profile/${user._id}`}>
+        {media(user.pfp || blankUser, { size: "s" })}
+      </Link>
       <div className="text">
         <Link to={`/profile/${user._id}`} className="full-name">
           {`${user.first_name} ${user.last_name}`}

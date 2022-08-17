@@ -9,14 +9,17 @@ function smoothScrollToTop(e) {
 
 // return video or img depending on filetype
 function media(src, options) {
-  const { className, doOnLoad, playable } = options || {};
+  const { className, doOnLoad, size, playable } = options || {};
 
   if (!src) {
     return null;
   }
 
-  if (!playable) {
-    src = src.replace(".mp4", "l.jpeg");
+  if (size && !playable) {
+    src = src.replace(".mp4", ".jpeg");
+    src = src.replace(".jpeg", size + ".jpeg");
+  } else if (src.includes(".mp4") && !size && !playable) {
+    src = src.replace(".mp4", "h.jpeg");
   }
 
   return src && src.substring(src.length - 4) === ".mp4" ? (
@@ -27,10 +30,14 @@ function media(src, options) {
       loop
       playsInline
       onCanPlayThrough={doOnLoad}
-      className={className + " media"}
+      className={"media" + (className ? " " + className : "")}
     />
   ) : (
-    <img src={src} className={className + " media"} onLoad={doOnLoad} />
+    <img
+      src={src}
+      className={"media" + (className ? " " + className : "")}
+      onLoad={doOnLoad}
+    />
   );
 }
 

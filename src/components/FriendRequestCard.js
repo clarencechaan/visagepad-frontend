@@ -126,7 +126,7 @@ function FriendRequestCard({ user, setFriendRequests }) {
   return (
     <div className="FriendRequestCard">
       <Link to={`/profile/${user._id}`} className="pfp-anchor">
-        {media(user.pfp || blankUser, { className: "pfp" })}
+        {media(user.pfp || blankUser, { className: "pfp", size: "l" })}
       </Link>
       <div className="details">
         <Link to={`/profile/${user._id}`} className="full-name">

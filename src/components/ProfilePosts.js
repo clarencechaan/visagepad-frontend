@@ -89,7 +89,7 @@ function ProfilePosts({ friends, friendsIsLoading }) {
     return (
       <div className="friend-item" key={user._id}>
         <Link to={`/profile/${user._id}`}>
-          {media(user.pfp || blankUser, { className: "pfp" })}
+          {media(user.pfp || blankUser, { className: "pfp", size: "m" })}
         </Link>
         <Link to={`/profile/${user._id}`} className="full-name">
           {`${user.first_name} ${user.last_name}`}

@@ -213,7 +213,7 @@ function Profile() {
                   <SpinThrobber />
                 </div>
               ) : (
-                media(user.pfp || blankUser, { className: "pfp" })
+                media(user.pfp || blankUser, { className: "pfp", size: "m" })
               )}
               {isUploadingPfp ? null : (
                 <div className="camera">
@@ -238,7 +238,7 @@ function Profile() {
               <div className="friends-pfps">
                 {friendsList.slice(0, 8).map((user) => (
                   <Link to={`/profile/${user._id}`} key={user._id}>
-                    {media(user.pfp || blankUser)}
+                    {media(user.pfp || blankUser, { size: "s" })}
                   </Link>
                 ))}
               </div>
@@ -271,7 +271,7 @@ function Profile() {
             </Link>
           </div>
           <button className="user-jump-to-top-btn" onClick={smoothScrollToTop}>
-            {media(user.pfp || blankUser, { className: "jump-pfp" })}
+            {media(user.pfp || blankUser, { className: "jump-pfp", size: "s" })}
             <div className="jump-full-name">{`${user.first_name} ${user.last_name}`}</div>
           </button>
         </div>

@@ -293,6 +293,7 @@ function Comment({ comment, setComments }) {
       <Link to={`/profile/${comment.author._id}`} onClick={smoothScrollToTop}>
         {media(comment.author.pfp || blankUser, {
           className: "pfp-small",
+          size: "s",
         })}
       </Link>
       <div className={"display" + (isEditing ? " hidden" : "")}>

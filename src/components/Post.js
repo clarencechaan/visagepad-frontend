@@ -407,7 +407,10 @@ function Post({ post, setFeedComments, setFeed }) {
         </div>
         <div className="comment-bar">
           <Link to={`/profile/${me.user._id}`} onClick={smoothScrollToTop}>
-            {media(me.user.pfp || blankUser, { className: "pfp-small" })}
+            {media(me.user.pfp || blankUser, {
+              className: "pfp-small",
+              size: "s",
+            })}
           </Link>
           <div className="bubble">
             <textarea
@@ -477,7 +480,7 @@ function Post({ post, setFeedComments, setFeed }) {
           className="author-profile-pic"
           onClick={smoothScrollToTop}
         >
-          {media(post.author.pfp || blankUser)}
+          {media(post.author.pfp || blankUser, { size: "s" })}
         </Link>
         <div>
           <Link

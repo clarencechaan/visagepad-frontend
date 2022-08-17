@@ -104,7 +104,7 @@ function Home({
     <div className="Home">
       <div className="sidebar">
         <Link to={`/profile/${me.user._id}`} className="me-link">
-          {media(me.user.pfp || blankUser)}
+          {media(me.user.pfp || blankUser, { size: "s" })}
           <div className="name">{`${me.user.first_name} ${me.user.last_name}`}</div>
         </Link>
         <div className="people-you-may-know">

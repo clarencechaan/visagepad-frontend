@@ -19,6 +19,7 @@ function NewPostBtn({ setFeed }) {
       <Link to={`/profile/${me.user._id}`}>
         {media(me.user.pfp || blankUser, {
           className: "new-post-btn-pfp",
+          size: "s",
         })}
       </Link>
       <div className="new-post-form-container">

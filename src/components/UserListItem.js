@@ -13,7 +13,7 @@ function UserListItem({ user, setUserListShown }) {
   return (
     <div className="UserListItem">
       <Link to={`/profile/${user._id}`} onClick={handleLinkClicked}>
-        {media(user.pfp || blankUser, { className: "pfp" })}
+        {media(user.pfp || blankUser, { className: "pfp", size: "s" })}
       </Link>
       <Link
         to={`/profile/${user._id}`}

@@ -29,7 +29,9 @@ function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
 
   return (
     <div className="YourProfileBtn" tabIndex={-1}>
-      <button className="has-tooltip">{media(me.user.pfp || blankUser)}</button>
+      <button className="has-tooltip">
+        {media(me.user.pfp || blankUser, { size: "s" })}
+      </button>
       <div className="window">
         <div className="user">
           <Link
@@ -39,7 +41,7 @@ function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
               document.activeElement.blur();
             }}
           >
-            {media(me.user.pfp || blankUser)}
+            {media(me.user.pfp || blankUser, { size: "s" })}
             <div className="name">{`${me.user.first_name} ${me.user.last_name}`}</div>
           </Link>
         </div>

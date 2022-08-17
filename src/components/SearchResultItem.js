@@ -59,7 +59,7 @@ function SearchResultItem({ user, query }) {
         document.activeElement.blur();
       }}
     >
-      {media(user.pfp || blankUser)}
+      {media(user.pfp || blankUser, { size: "s" })}
       <div className="text">{fullname()}</div>
     </Link>
   );

@@ -6,7 +6,7 @@ import { media } from "../scripts/scripts";
 function Contact({ user }) {
   return (
     <Link to={`/profile/${user._id}`} className="Contact">
-      {media(user.pfp || blankUser, { className: "pfp" })}
+      {media(user.pfp || blankUser, { className: "pfp", size: "s" })}
       <div className="full-name">{`${user.first_name} ${user.last_name}`}</div>
     </Link>
   );

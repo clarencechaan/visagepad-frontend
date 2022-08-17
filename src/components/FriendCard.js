@@ -10,7 +10,7 @@ function FriendCard({ user }) {
   return (
     <div className="FriendCard">
       <Link to={`/profile/${user._id}`} className="pfp-anchor">
-        {media(user.pfp || blankUser, { className: "pfp" })}
+        {media(user.pfp || blankUser, { className: "pfp", size: "l" })}
       </Link>
       <div className="details">
         <Link to={`/profile/${user._id}`} className="full-name">
