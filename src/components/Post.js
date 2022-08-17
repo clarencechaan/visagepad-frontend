@@ -158,7 +158,7 @@ function Post({ post, setFeedComments, setFeed }) {
 
   function handleCommentBtnClicked() {
     setCommentsExpanded(true);
-    setTimeout(focusCommentInput, 1);
+    focusCommentInput();
   }
 
   function focusCommentInput() {
@@ -191,6 +191,7 @@ function Post({ post, setFeedComments, setFeed }) {
     // enter key pressed
     if (key === 13) {
       e.preventDefault();
+      document.activeElement.blur();
       const commentId = await uploadComment();
       if (commentId) {
         const fetchedCommment = await fetchComment(commentId);
@@ -418,6 +419,7 @@ function Post({ post, setFeedComments, setFeed }) {
               minLength={1}
               maxLength={1500}
               value={commentMessage}
+              inputMode="search"
               placeholder="Write a comment..."
             />
           </div>

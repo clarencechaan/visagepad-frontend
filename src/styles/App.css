@@ -31,6 +31,12 @@ body {
   opacity: 0;
 }
 
+.no-space {
+  max-width: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
 button {
   color: inherit;
 }
@@ -176,6 +182,21 @@ body ::-webkit-scrollbar-thumb {
 
   body .Home .NewPostBtn {
     border-radius: 0;
+  }
+}
+
+@media only screen and (max-height: 450px) {
+  body .NavBar {
+    display: none;
+  }
+
+  body .Home .ContactsSidebar {
+    top: 0;
+    height: 100vh;
+  }
+
+  body .Profile .profile-nav {
+    top: -1px;
   }
 }
 
@@ -360,10 +381,10 @@ body ::-webkit-scrollbar-thumb {
   }
 }
 
-/* Post (ConfirmDeletePopup) */
+/* Post (confirm-delete-popup) */
 
 @media only screen and (max-width: 548px) {
-  body .Post > .ConfirmDeletePopup .window {
+  body .Post > .confirm-delete-popup .window {
     border-radius: 0;
   }
 }

@@ -98,9 +98,11 @@ function Comment({ comment, setComments }) {
 
   function handleEditBtnClicked() {
     setIsEditing(true);
+    focusTextInput();
+    resizeTextInput();
+
     setTimeout(() => {
       resizeTextInput();
-      focusTextInput();
     }, 1);
   }
 
@@ -133,6 +135,7 @@ function Comment({ comment, setComments }) {
     // enter key pressed
     if (key === 13) {
       e.preventDefault();
+      document.activeElement.blur();
       const didEditComment = await uploadEditedComment();
       if (didEditComment) {
         setMessage(editedMessage);
@@ -322,7 +325,7 @@ function Comment({ comment, setComments }) {
           </div>
         </div>
       </div>
-      <div className={"editing" + (isEditing ? "" : " hidden")}>
+      <div className={"editing" + (isEditing ? "" : " no-space")}>
         <div className="bubble">
           <textarea
             name="edit-message"

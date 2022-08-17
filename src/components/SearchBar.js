@@ -50,10 +50,6 @@ function SearchBar() {
     e.preventDefault();
   }
 
-  function pauseScrolling() {
-    window.style.position = "hidden";
-  }
-
   return (
     <div className="SearchBar" tabIndex={-1}>
       <input
