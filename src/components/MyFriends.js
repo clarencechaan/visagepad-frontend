@@ -4,6 +4,7 @@ import FriendCard from "./FriendCard";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import SpinThrobber from "./SpinThrobber";
+import Footer from "./Footer";
 
 function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
   const me = useSelector((state) => state.me);
@@ -28,7 +29,21 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
       const response = await fetch(url, { headers });
       const resObj = await response.json();
       if (Array.isArray(resObj)) {
-        setFriendRequests(resObj);
+        setFriendRequests((prev) => {
+          let newFriendRequests = [...prev];
+          for (const resUser of resObj) {
+            const idx = prev.findIndex((user) => user._id === resUser._id);
+            if (idx >= 0) {
+              newFriendRequests[idx] = {
+                ...newFriendRequests[idx],
+                ...resUser,
+              };
+            } else {
+              newFriendRequests.push(resUser);
+            }
+          }
+          return newFriendRequests;
+        });
       }
     } catch (error) {
       console.log("error", error);
@@ -76,6 +91,7 @@ function MyFriends({ fetchContacts, friendRequests, setFriendRequests }) {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

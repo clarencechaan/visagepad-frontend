@@ -23,7 +23,6 @@ function media(src, options) {
     <video
       src={src}
       autoPlay="autoplay"
-      preload="none"
       muted
       loop
       playsInline

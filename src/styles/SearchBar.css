@@ -112,9 +112,8 @@
   padding: 0 8px;
   box-sizing: border-box;
   flex: 1;
-  max-height: 468px;
+  max-height: 476px;
   overflow: overlay;
-  margin-bottom: 8px;
 }
 
 .SearchBar .no-results {
@@ -130,7 +129,7 @@
     background-color: rgb(240, 242, 245);
   }
 
-  .SearchBar .results:hover::-webkit-scrollbar-thumb {
+  .SearchBar .results::-webkit-scrollbar-thumb {
     visibility: visible;
   }
 }

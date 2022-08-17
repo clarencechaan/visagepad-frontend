@@ -11,6 +11,7 @@ import { setUser as setUserMe } from "../slices/meSlice";
 import { smoothScrollToTop, media } from "../scripts/scripts";
 import SpinThrobber from "./SpinThrobber";
 import DotsThrobber from "./DotsThrobber";
+import Footer from "./Footer";
 
 function Profile() {
   const me = useSelector((state) => state.me);
@@ -284,6 +285,7 @@ function Profile() {
           friends={friendsList}
           friendsIsLoading={friendsIsLoading}
         />
+        <Footer />
       </div>
       <div
         className={
@@ -294,6 +296,7 @@ function Profile() {
           friends={friendsList}
           friendsIsLoading={friendsIsLoading}
         />
+        <Footer />
       </div>
     </div>
   );

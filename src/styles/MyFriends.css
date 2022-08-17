@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 32px 64px 32px;
+  padding: 0 32px;
 }
 
 .MyFriends .title {
@@ -24,7 +24,7 @@
 }
 
 .MyFriends .friends {
-  padding-bottom: 24px;
+  padding-bottom: 88px;
 }
 
 .MyFriends .divider {
