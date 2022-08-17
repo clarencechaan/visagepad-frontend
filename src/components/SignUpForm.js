@@ -1,12 +1,24 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../slices/meSlice";
+import { disableScrolling, addEscKeyDownListener } from "../scripts/scripts";
 import "../styles/SignUpForm.css";
 
 function SignUpForm({ setSignUpFormShown }) {
   const dispatch = useDispatch();
   const [signUpMessage, setSignUpMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const enableScrolling = disableScrolling();
+    const removeEscKeyDownListener = addEscKeyDownListener(setSignUpFormShown);
+
+    return () => {
+      enableScrolling();
+      removeEscKeyDownListener();
+    };
+  }, []);
 
   function handleFormSubmitted(e) {
     e.preventDefault();
