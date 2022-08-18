@@ -128,7 +128,7 @@ function LogIn({ fetchContacts }) {
 
   function handleDemoUserBtnClicked() {
     const form = loginFormRef.current;
-    const username = "greasedozen";
+    const username = "disastrousever";
     const password = "pass";
     form[0].value = username;
     form[1].value = password;
