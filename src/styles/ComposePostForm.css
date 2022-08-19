@@ -157,6 +157,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 56px;
 }
 
 .ComposePostForm form .photo-preview.media {
@@ -223,4 +224,13 @@
 .ComposePostForm form .done-btn:active {
   filter: brightness(0.9);
   transform: scale(0.98);
+}
+
+.ComposePostForm .DotsThrobber {
+  filter: brightness(0.75);
+}
+
+.ComposePostForm .DotsThrobber .dot {
+  width: 0.5em;
+  height: 0.5em;
 }

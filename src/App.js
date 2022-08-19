@@ -10,6 +10,8 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import MyFriends from "./components/MyFriends";
 import Profile from "./components/Profile";
+import LoadingScreen from "./components/LoadingScreen";
+import { disableScrolling } from "./scripts/scripts";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,10 +19,26 @@ function App() {
   const [homeFeed, setHomeFeed] = useState([]);
   const [friendRequests, setFriendRequests] = useState([]);
   const [peopleYouMayKnow, setPeopleYouMayKnow] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getMeFromLocalStorage();
+    pingHerokuDyno();
   }, []);
+
+  async function pingHerokuDyno() {
+    const enableScrolling = disableScrolling();
+
+    const url = process.env.REACT_APP_API_BASE_URL;
+    try {
+      await fetch(url);
+      setIsLoading(false);
+    } catch (error) {
+      console.log("error", error);
+    }
+
+    enableScrolling();
+  }
 
   function getMeFromLocalStorage() {
     // log in automatically if user found in localstorage
@@ -75,6 +93,7 @@ function App() {
   return (
     <div className="App">
       <ScrollToTop />
+      <LoadingScreen isLoading={isLoading} />
       {!me.token ? (
         <>
           <LogIn fetchContacts={fetchContacts} />

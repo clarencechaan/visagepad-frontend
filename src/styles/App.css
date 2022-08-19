@@ -272,6 +272,10 @@ body ::-webkit-scrollbar-thumb {
     padding: 0;
     margin-left: 0;
   }
+
+  body .Profile .cover-photo .DotsThrobber {
+    margin-bottom: 80px;
+  }
 }
 
 @media only screen and (max-width: 555px) {

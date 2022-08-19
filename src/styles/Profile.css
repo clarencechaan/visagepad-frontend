@@ -368,3 +368,13 @@
 .Profile .user-jump-to-top-btn:active {
   background-color: rgb(230, 230, 230);
 }
+
+.Profile .cover-photo .DotsThrobber {
+  filter: brightness(0.75);
+}
+
+.Profile .cover-photo .DotsThrobber .dot {
+  width: 0.5em;
+  height: 0.5em;
+  margin: 1.3em;
+}
