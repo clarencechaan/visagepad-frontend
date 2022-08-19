@@ -29,14 +29,14 @@ function App() {
   async function pingHerokuDyno() {
     const enableScrolling = disableScrolling();
 
-    const url = process.env.REACT_APP_API_BASE_URL;
+    const url = `${process.env.REACT_APP_API_BASE_URL}/api/search-users/ping`;
     try {
       await fetch(url);
-      setIsLoading(false);
     } catch (error) {
       console.log("error", error);
     }
 
+    setIsLoading(false);
     enableScrolling();
   }
 
