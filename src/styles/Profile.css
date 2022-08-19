@@ -312,6 +312,7 @@
 
 .Profile header .is-uploading {
   pointer-events: none;
+  overflow: hidden;
 }
 
 @media (hover: hover) {
