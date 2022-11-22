@@ -23,10 +23,10 @@ function App() {
 
   useEffect(() => {
     getMeFromLocalStorage();
-    pingHerokuDyno();
+    pingWebService();
   }, []);
 
-  async function pingHerokuDyno() {
+  async function pingWebService() {
     const enableScrolling = disableScrolling();
 
     const url = `${process.env.REACT_APP_API_BASE_URL}/api/search-users/ping`;

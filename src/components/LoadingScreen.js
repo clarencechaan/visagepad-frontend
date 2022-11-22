@@ -6,8 +6,8 @@ function LoadingScreen({ isLoading }) {
     <div className={"LoadingScreen" + (isLoading ? "" : " invisible")}>
       <DotsThrobber />
       <div className="message">
-        Please be patient as the Heroku dyno wakes up. This may initially take
-        15 to 30 seconds.
+        Please be patient as the Render Web Service wakes up. This may initially
+        take 15 to 30 seconds.
       </div>
     </div>
   );
