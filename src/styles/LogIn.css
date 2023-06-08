@@ -196,3 +196,15 @@ button.fb:active {
   background-color: hsl(219, 44.5%, 36.9%);
   transform: scale(0.98);
 }
+
+.LogIn .privacy-link {
+  align-self: center;
+  margin-top: 14px;
+  color: gray;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.LogIn .privacy-link:hover {
+  text-decoration: underline;
+}

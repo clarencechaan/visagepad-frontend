@@ -51,6 +51,12 @@ function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
           </div>
           <span>Log Out</span>
         </Link>
+        <a
+          className="privacy-link"
+          href="https://docs.google.com/document/d/e/2PACX-1vTWgFWogWZLSQqRCN5f_7aaYyH3e_Pt7SRCfjf_8QfKrr4imJLDxYxHSlh4r2E9Og/pub"
+        >
+          Privacy Policy
+        </a>
       </div>
     </div>
   );

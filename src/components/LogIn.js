@@ -195,6 +195,12 @@ function LogIn({ fetchContacts }) {
           >
             Create new account
           </button>
+          <a
+            className="privacy-link"
+            href="https://docs.google.com/document/d/e/2PACX-1vTWgFWogWZLSQqRCN5f_7aaYyH3e_Pt7SRCfjf_8QfKrr4imJLDxYxHSlh4r2E9Og/pub"
+          >
+            Privacy Policy
+          </a>
         </div>
         <div className="login-message">{loginMessage}</div>
       </div>
