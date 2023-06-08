@@ -5,7 +5,6 @@ import { SignOut } from "phosphor-react";
 import "../styles/NavBar.css";
 import "../styles/YourProfileBtn.css";
 import blankUser from "../images/blank-user.png";
-import { smoothScrollToTop } from "../scripts/scripts";
 import { media } from "../scripts/scripts";
 
 function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
