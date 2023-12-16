@@ -21,9 +21,6 @@ function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
 
     // clear me from localstorage
     localStorage.removeItem("me");
-
-    // log out from facebook
-    window.FB.logout();
   }
 
   return (
@@ -50,9 +47,6 @@ function YourProfileBtn({ setHomeFeed, setFriendRequests }) {
           </div>
           <span>Log Out</span>
         </Link>
-        <a className="privacy-link" href="/privacy-policy.pdf">
-          Privacy Policy
-        </a>
       </div>
     </div>
   );

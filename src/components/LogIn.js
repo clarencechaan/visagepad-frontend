@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser, setToken } from "../slices/meSlice";
 import "../styles/LogIn.css";
@@ -10,35 +10,6 @@ function LogIn({ fetchContacts }) {
   const [loginMessage, setLoginMessage] = useState("");
   const [signUpFormShown, setSignUpFormShown] = useState(false);
   const loginFormRef = useRef(null);
-
-  useEffect(() => {
-    loadFbSdk();
-  }, []);
-
-  function loadFbSdk() {
-    window.fbAsyncInit = async function () {
-      window.FB.init({
-        appId: "722419612179472",
-        cookie: true,
-        xfbml: true,
-        version: "v14.0",
-      });
-
-      window.FB.AppEvents.logPageView();
-    };
-
-    (function (d, s, id) {
-      var js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, "script", "facebook-jssdk");
-  }
 
   async function login() {
     const form = loginFormRef.current;
@@ -87,43 +58,6 @@ function LogIn({ fetchContacts }) {
 
   function handleNewAccountBtnClicked() {
     setSignUpFormShown(true);
-  }
-
-  function handleFbLoginBtnClicked() {
-    setIsLoading(true);
-    window.FB.login(function (response) {
-      if (response.status === "connected") {
-        const accessToken = response.authResponse.accessToken;
-        logInWithFbAccessToken(accessToken);
-      } else {
-        setIsLoading(false);
-      }
-    });
-  }
-
-  async function logInWithFbAccessToken(token) {
-    // get user from accessToken
-    const url = `${process.env.REACT_APP_API_BASE_URL}/auth/login/facebook`;
-    const headers = {
-      Authorization: "Bearer " + token,
-    };
-
-    try {
-      const response = await fetch(url, { headers });
-      const resObj = await response.json();
-      if (resObj.user) {
-        dispatch(setUser(resObj.user));
-        dispatch(setToken(resObj.token));
-        saveMeToLocalStorage({ user: resObj.user, token: resObj.token });
-        fetchContacts(resObj.user._id, resObj.token);
-      } else {
-        setLoginMessage(resObj.info);
-      }
-    } catch (error) {
-      console.log("error", error);
-    }
-
-    setIsLoading(false);
   }
 
   function handleDemoUserBtnClicked() {
@@ -183,9 +117,6 @@ function LogIn({ fetchContacts }) {
               Log In with Demo User
             </button>
           </form>
-          <button className="fb connect" onClick={handleFbLoginBtnClicked}>
-            Log In with Facebook
-          </button>
           <div className="divider" />
           <button
             type="button"
@@ -195,9 +126,6 @@ function LogIn({ fetchContacts }) {
           >
             Create new account
           </button>
-          <a className="privacy-link" href="/privacy-policy.pdf">
-            Privacy Policy
-          </a>
         </div>
         <div className="login-message">{loginMessage}</div>
       </div>
