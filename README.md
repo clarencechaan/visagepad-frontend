@@ -1,7 +1,20 @@
-# visagepad-frontend
+# VisagePad
 
-React frontend for the MERN stack social media web application at https://visagepad.onrender.com/
+Facebook clone built from the ground up, made to look as close to its original design as possible.
 
-Modeled after Facebook, users are able to create and log into created accounts, create/edit/delete posts, create/edit/delete comments on posts, like posts, like comments, create/accept/deny friend requests, unfriend other users, upload profile pictures, upload cover photos, search users by name, view other users' profiles, log in with their Facebook account, and log into a demo user account.
+![VisagePad](/src/images/visagepad.png)
 
-Express/Node RESTful API accessing the MongoDB database can be found at https://github.com/clarencechaan/visagepad-api
+## Features
+
+- Create an account and log in
+- Create, edit, and delete posts
+- Create, edit, and delete comments on posts
+- Like posts and comments
+- Create, accept, and deny friend requests
+- Unfriend other users
+- Upload a profile picture
+- View other users' profiles
+
+## Backend
+
+This repo only contains code for the frontend. [The backend can be found here](https://github.com/clarencechaan/visagepad-api).
